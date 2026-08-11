@@ -1,0 +1,504 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─── Fitrah & Sakina – Islamic Digital Architecture ─── */
+
+:root {
+  /* Brand tokens */
+  --gold:      #D4AF37;
+  --amber:     #C19A6B;
+  --palm:      #2E5A44;
+  --charcoal:  #1A1A1A;
+  --sand-light:#F5ECD7;
+  --glass-bg:  rgba(26,26,26,0.72);
+  --glass-border: rgba(212,175,55,0.25);
+  --glass-blur: blur(18px);
+
+  /* shadcn token overrides */
+  --background: #0E0B07;
+  --foreground: #F5ECD7;
+  --card: rgba(26,26,26,0.72);
+  --card-foreground: #F5ECD7;
+  --popover: #1A1410;
+  --popover-foreground: #F5ECD7;
+  --primary: #D4AF37;
+  --primary-foreground: #0E0B07;
+  --secondary: #2E5A44;
+  --secondary-foreground: #F5ECD7;
+  --muted: rgba(212,175,55,0.10);
+  --muted-foreground: #C19A6B;
+  --accent: #C19A6B;
+  --accent-foreground: #0E0B07;
+  --destructive: #8B2222;
+  --destructive-foreground: #F5ECD7;
+  --border: rgba(212,175,55,0.20);
+  --input: rgba(212,175,55,0.12);
+  --ring: #D4AF37;
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --font-sans: 'Noto Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-arabic: 'Amiri', 'Noto Naskh Arabic', serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 8px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Noto Sans', 'Segoe UI', system-ui, sans-serif;
+    background-color: #0E0B07;
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  /* Arabic / RTL base */
+  [dir="rtl"] {
+    font-family: 'Amiri', 'Noto Naskh Arabic', 'Noto Sans', serif;
+    letter-spacing: 0;
+  }
+  .font-arabic {
+    font-family: 'Amiri', 'Noto Naskh Arabic', serif;
+  }
+}
+
+/* ─── Ambient desert background ─── */
+.bg-desert {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212,175,55,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(46,90,68,0.20) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 60% at 10% 90%,  rgba(193,154,107,0.12) 0%, transparent 60%),
+    linear-gradient(160deg, #0E0B07 0%, #150F08 40%, #0D1410 100%);
+}
+
+/* ─── Glassmorphic panel ─── */
+.glass-panel {
+  background: rgba(20, 16, 8, 0.68);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(212,175,55,0.22);
+  border-radius: 1rem;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.55), inset 0 1px 0 rgba(212,175,55,0.12);
+}
+
+.glass-panel-light {
+  background: rgba(212,175,55,0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212,175,55,0.18);
+  border-radius: 1rem;
+}
+
+/* ─── Gold shimmer button ─── */
+.btn-gold {
+  background: linear-gradient(135deg, #D4AF37 0%, #C19A6B 50%, #D4AF37 100%);
+  background-size: 200% 200%;
+  color: #0E0B07;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition: background-position 0.4s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 2px 16px rgba(212,175,55,0.35);
+}
+.btn-gold:hover {
+  background-position: 100% 0;
+  box-shadow: 0 4px 28px rgba(212,175,55,0.55);
+  transform: translateY(-1px);
+}
+
+/* ─── Primary CTA button ─── */
+.btn-primary {
+  background: linear-gradient(135deg, #D4AF37 0%, #C19A6B 100%);
+  color: #0E0B07;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 20px rgba(212,175,55,0.40);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+.btn-primary:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 32px rgba(212,175,55,0.55);
+}
+
+/* ─── Secondary button ─── */
+.btn-secondary {
+  background: rgba(46,90,68,0.25);
+  color: #7EC8A4;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(46,90,68,0.55);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.btn-secondary:hover {
+  background: rgba(46,90,68,0.40);
+  transform: translateY(-1px);
+}
+
+/* ─── Ghost / outline button ─── */
+.btn-ghost {
+  background: transparent;
+  color: #C19A6B;
+  font-weight: 500;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(193,154,107,0.35);
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.btn-ghost:hover {
+  background: rgba(193,154,107,0.10);
+  color: #F5ECD7;
+  border-color: rgba(193,154,107,0.60);
+}
+
+/* ─── Palm green accent button ─── */
+.btn-palm {
+  background: linear-gradient(135deg, #2E5A44 0%, #3a7057 100%);
+  color: #F5ECD7;
+  font-weight: 600;
+  transition: filter 0.15s, transform 0.15s;
+}
+.btn-palm:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* ─── Geometric ornament ─── */
+.ornament-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), rgba(212,175,55,0.8), rgba(212,175,55,0.5), transparent);
+}
+
+/* ─── Scroll glow border ─── */
+.gold-ring {
+  box-shadow: 0 0 0 2px rgba(212,175,55,0.45), 0 0 20px rgba(212,175,55,0.15);
+}
+
+/* ─── Module orbit layout (desktop) ─── */
+.orbit-container {
+  position: relative;
+  width: 640px;
+  height: 640px;
+}
+.orbit-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+.orbit-ring {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 50%;
+  border: 1px dashed rgba(212,175,55,0.18);
+  pointer-events: none;
+}
+.orbit-item {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+/* ─── Calligraphy text glow ─── */
+.text-glow-gold {
+  text-shadow: 0 0 20px rgba(212,175,55,0.6), 0 0 40px rgba(212,175,55,0.25);
+}
+
+/* ─── Status badge ─── */
+.badge-sharia {
+  background: rgba(46,90,68,0.3);
+  border: 1px solid rgba(46,90,68,0.6);
+  color: #7EC8A4;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ─── Entrance animation ─── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease both;
+}
+
+@keyframes pulseGold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.0); }
+  50%       { box-shadow: 0 0 0 8px rgba(212,175,55,0.15); }
+}
+.animate-pulse-gold {
+  animation: pulseGold 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to   { background-position: 200% center;  }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, #D4AF37 25%, #F5ECD7 50%, #D4AF37 75%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Toast overrides */
+[data-sonner-toast] {
+  background: rgba(20,16,8,0.92) !important;
+  border: 1px solid rgba(212,175,55,0.35) !important;
+  color: #F5ECD7 !important;
+}
+
+/* Hide Next.js dev toolbar */
+nextjs-portal { display: none !important; }
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.25); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(212,175,55,0.45); }
+
+/* Hide scrollbar for horizontal scroll areas */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Checkbox interaction fix */
+.pledge-checkbox-wrapper {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Responsive orbit */
+@media (max-width: 1023px) {
+  .orbit-container { width: 100%; height: auto; }
+}
+
+/* Selection color override */
+::selection { background: rgba(212,175,55,0.3); color: #F5ECD7; }
+
+/* ─── AI Chat bubble glow ─── */
+.ai-bubble {
+  position: relative;
+}
+.ai-bubble::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(212,175,55,0.25), rgba(46,90,68,0.20));
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.ai-bubble:hover::before { opacity: 1; }
+
+/* ─── Pulse ring for active AI indicator ─── */
+@keyframes pingOnce {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ─── Gold border sweep animation ─── */
+@keyframes borderSweep {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.border-sweep {
+  background: linear-gradient(270deg, #D4AF37, #C19A6B, #2E5A44, #D4AF37);
+  background-size: 300% 300%;
+  animation: borderSweep 6s ease infinite;
+  padding: 1px;
+  border-radius: inherit;
+}
+
+/* ─── Hero parallax smoothing ─── */
+.hero-bg-parallax {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* ─── Floating gold dust ─── */
+@keyframes goldDust {
+  0%   { transform: translateY(0) rotate(0deg);   opacity: 0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.3; }
+  100% { transform: translateY(-120px) rotate(360deg); opacity: 0; }
+}
+
+/* ─── Glowing input focus ─── */
+input:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(212,175,55,0.35), 0 0 16px rgba(212,175,55,0.12);
+}
+
+/* ─── Smooth page transitions ─── */
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-enter {
+  animation: pageIn 0.45s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+/* ─── Card hover lift ─── */
+.card-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.40), 0 0 0 1px rgba(212,175,55,0.20);
+}
+
+/* ─── Responsive typography scale ─── */
+@media (max-width: 640px) {
+  .font-arabic { line-height: 2.0; }
+}
+
+/* ─── Islamic geometric grid bg ─── */
+.geom-bg {
+  background-image:
+    repeating-linear-gradient(45deg, rgba(212,175,55,0.025) 0px, rgba(212,175,55,0.025) 1px, transparent 1px, transparent 40px),
+    repeating-linear-gradient(-45deg, rgba(212,175,55,0.025) 0px, rgba(212,175,55,0.025) 1px, transparent 1px, transparent 40px);
+}
+
+/* ─── Nav link active indicator ─── */
+.nav-link-active {
+  color: #D4AF37;
+  position: relative;
+}
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+  border-radius: 1px;
+}
+
+/* ─── Manuscript / parchment aesthetic ─── */
+:root {
+  --parchment:     #F2E8D5;
+  --parchment-dk:  #D4C4A0;
+  --ink-dark:      #2C2416;
+  --ink-mid:       #5C4A2A;
+  --gold-muted:    #B8960C;
+  --grey-charcoal: #3A3530;
+}
+
+/* Old paper texture panel */
+.panel-manuscript {
+  background:
+    linear-gradient(135deg, rgba(242,232,213,0.07) 0%, rgba(212,175,55,0.04) 100%);
+  border: 1px solid rgba(212,175,55,0.22);
+  border-radius: 0.75rem;
+  position: relative;
+}
+.panel-manuscript::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(212,175,55,0.015) 0px, rgba(212,175,55,0.015) 1px, transparent 1px, transparent 28px);
+  pointer-events: none;
+}
+
+/* ─── Character silhouette shapes ─── */
+.silhouette-sheikh {
+  width: 60px; height: 100px;
+  background: rgba(212,175,55,0.12);
+  clip-path: polygon(30% 0%, 70% 0%, 80% 20%, 85% 55%, 100% 100%, 0% 100%, 15% 55%, 20% 20%);
+  position: relative;
+}
+.silhouette-bride {
+  width: 55px; height: 95px;
+  background: rgba(240,160,184,0.12);
+  clip-path: polygon(35% 0%, 65% 0%, 75% 18%, 80% 50%, 95% 100%, 5% 100%, 20% 50%, 25% 18%);
+}
+
+/* ─── Story card manuscript style ─── */
+.story-manuscript {
+  background: linear-gradient(160deg, rgba(26,20,10,0.92) 0%, rgba(14,11,7,0.98) 100%);
+  border: 1px solid rgba(212,175,55,0.20);
+  border-top: 3px solid rgba(212,175,55,0.45);
+  border-radius: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+.story-manuscript::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #D4AF37, #C19A6B, #D4AF37, transparent);
+}
+
+/* ─── Matching score ring ─── */
+@keyframes scoreReveal {
+  from { stroke-dasharray: 0 163.4; }
+  to   { stroke-dasharray: var(--score-dash) 163.4; }
+}
+.score-ring-anim {
+  animation: scoreReveal 1.2s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+
+/* ─── Admin table row hover ─── */
+.admin-row:hover { background: rgba(212,175,55,0.03); }
+
+/* ─── Vision camera glow ─── */
+@keyframes cameraGlow {
+  0%,100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+  50%     { box-shadow: 0 0 0 12px rgba(212,175,55,0.15); }
+}
+.vision-camera { animation: cameraGlow 2s ease-in-out infinite; }
+
+/* ─── Plan card shimmer border ─── */
+.plan-active {
+  box-shadow: 0 0 0 1px rgba(212,175,55,0.6), 0 8px 32px rgba(212,175,55,0.12);
+}
+
+/* ─── Payment split bar ─── */
+@keyframes barFill {
+  from { width: 0; }
+}
+.split-bar { animation: barFill 0.8s cubic-bezier(0.34,1.56,0.64,1) forwards; }
