@@ -7,17 +7,107 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{--gold:#d4af64;--gold-d:#8b6914;--bg:#0a0806;--bg2:#1a1410;--text:#f0e6d3;--muted:#a0876a;--green:#b8d4a0;--border:rgba(212,175,100,0.2)}
+:root{--gold:#d4af64;--gold-d:#8b6914;--gold-l:#f4e4a8;--bg:#0a0806;--bg2:#1a1410;--text:#f0e6d3;--muted:#a0876a;--green:#b8d4a0;--border:rgba(212,175,100,0.2);--tent:#3a2818;--tent-d:#1e1208}
 html{scroll-behavior:smooth}
 body{font-family:'Cairo','Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
 
 /* ========== HERO CINEMATIC ========== */
 .hero{position:relative;height:100vh;min-height:600px;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.hero-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 2s ease}
-.hero-video.active{opacity:1}
-.hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;background:linear-gradient(180deg,rgba(10,8,6,0.4) 0%,rgba(10,8,6,0.15) 30%,rgba(10,8,6,0.5) 70%,rgba(10,8,6,0.95) 100%);pointer-events:none}
-.hero-overlay::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at 50% 40%,rgba(212,175,100,0.08) 0%,transparent 60%);animation:flicker 5s ease-in-out infinite}
-@keyframes flicker{0%,100%{opacity:.6}30%{opacity:.9}60%{opacity:.3}}
+.hero-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 2.5s ease}
+.hero-video.active{opacity:.7}
+
+/* TENT INTERIOR OVERLAY - the key composite layer */
+.tent-scene{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;opacity:0;transition:opacity 2s ease;pointer-events:none;overflow:hidden}
+.tent-scene.show{opacity:1}
+
+/* Tent fabric - draped ceiling/walls using CSS gradients */
+.tent-fabric{position:absolute;top:0;left:0;width:100%;height:100%;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%,rgba(58,40,24,0.6) 0%,transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% 100%,rgba(30,18,8,0.7) 0%,transparent 60%),
+    linear-gradient(180deg,rgba(58,40,24,0.3) 0%,rgba(30,18,8,0.1) 40%,rgba(30,18,8,0.4) 100%)}
+/* Fabric folds - vertical stripes simulating draped cloth */
+.tent-fabric::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+  background:repeating-linear-gradient(90deg,transparent 0px,transparent 60px,rgba(58,40,24,0.15) 60px,rgba(58,40,24,0.15) 62px,transparent 62px,transparent 120px,rgba(58,40,24,0.1) 120px,rgba(58,40,24,0.1) 122px);
+  opacity:.6}
+/* Warm light source - center top (lantern/candle) */
+.tent-light{position:absolute;top:15%;left:50%;transform:translateX(-50%);width:300px;height:300px;
+  background:radial-gradient(circle,rgba(255,200,100,0.25) 0%,rgba(255,180,80,0.1) 30%,transparent 70%);
+  animation:lanternFlicker 4s ease-in-out infinite}
+@keyframes lanternFlicker{0%,100%{opacity:.7;transform:translateX(-50%) scale(1)}25%{opacity:1;transform:translateX(-50%) scale(1.05)}50%{opacity:.6;transform:translateX(-50%) scale(.97)}75%{opacity:.9;transform:translateX(-50%) scale(1.03)}}
+
+/* CHARACTER SILHOUETTES */
+.char-stage{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:90%;max-width:600px;height:70%;display:flex;align-items:flex-end;justify-content:center;gap:20px}
+
+/* SHEIKH - center, sitting, writing */
+.sheikh{position:relative;width:180px;height:280px;flex-shrink:0}
+.sheikh-body{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:140px;height:200px;
+  background:linear-gradient(180deg,#1a0e04 0%,#0d0702 100%);
+  border-radius:70px 70px 10px 10px;
+  box-shadow:0 0 30px rgba(255,200,100,0.08)}
+.sheikh-head{position:absolute;bottom:190px;left:50%;transform:translateX(-50%);width:55px;height:55px;
+  background:#1a0e04;border-radius:50% 50% 45% 45%}
+/* Turban */
+.sheikh-turban{position:absolute;bottom:228px;left:50%;transform:translateX(-50%);width:70px;height:28px;
+  background:linear-gradient(180deg,#2a1e10 0%,#1a0e04 100%);border-radius:35px 35px 5px 5px}
+.sheikh-turban::after{content:'';position:absolute;bottom:-3px;left:50%;transform:translateX(-50%);width:72px;height:8px;
+  background:#1a0e04;border-radius:50%}
+/* Beard - long, prominent */
+.sheikh-beard{position:absolute;bottom:170px;left:50%;transform:translateX(-50%);width:38px;height:32px;
+  background:linear-gradient(180deg,#1a0e04 0%,#0d0601 100%);border-radius:0 0 19px 19px;opacity:.9}
+/* Book/scroll in front */
+.sheikh-book{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100px;height:14px;
+  background:linear-gradient(180deg,#d4af64,#8b6914);border-radius:2px;box-shadow:0 0 15px rgba(212,175,100,0.2)}
+/* Writing hand */
+.sheikh-hand{position:absolute;bottom:10px;left:60%;width:20px;height:30px;
+  background:#1a0e04;border-radius:8px;transform:rotate(-15deg)}
+
+/* GROOM - left, sitting, with long beard */
+.groom{position:relative;width:140px;height:240px;flex-shrink:0}
+.groom-body{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:110px;height:170px;
+  background:linear-gradient(180deg,#1e1208 0%,#0d0702 100%);
+  border-radius:55px 55px 8px 8px;box-shadow:0 0 20px rgba(255,200,100,0.05)}
+.groom-head{position:absolute;bottom:160px;left:50%;transform:translateX(-50%);width:48px;height:48px;
+  background:#1e1208;border-radius:50% 50% 42% 42%}
+/* Long thick beard - prominent */
+.groom-beard{position:absolute;bottom:120px;left:50%;transform:translateX(-50%);width:44px;height:55px;
+  background:linear-gradient(180deg,#1e1208 0%,#0a0501 100%);
+  border-radius:5px 5px 22px 22px;opacity:.95}
+.groom-beard::after{content:'';position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:36px;height:12px;
+  background:#0a0501;border-radius:0 0 18px 18px}
+/* Head covering (keffiyeh/shemagh) */
+.groom-head-cover{position:absolute;bottom:195px;left:50%;transform:translateX(-50%);width:60px;height:22px;
+  background:linear-gradient(180deg,#2a1e10 0%,#1e1208 100%);border-radius:30px 30px 3px 3px}
+
+/* BRIDE - right, sitting, fully covered */
+.bride{position:relative;width:140px;height:240px;flex-shrink:0}
+.bride-body{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:115px;height:190px;
+  background:linear-gradient(180deg,#2a1e14 0%,#1a0e08 100%);
+  border-radius:57px 57px 10px 10px;box-shadow:0 0 20px rgba(255,200,100,0.04)}
+/* Niqab/veil - fully covered head */
+.bride-head{position:absolute;bottom:180px;left:50%;transform:translateX(-50%);width:52px;height:52px;
+  background:linear-gradient(180deg,#2a1e14 0%,#1a0e08 100%);border-radius:50%}
+.bride-veil{position:absolute;bottom:165px;left:50%;transform:translateX(-50%);width:60px;height:80px;
+  background:linear-gradient(180deg,rgba(42,30,20,0.9) 0%,rgba(26,14,8,0.95) 100%);
+  border-radius:30px 30px 10px 10px;opacity:.85}
+/* Veil drape - flowing fabric */
+.bride-veil-drape{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);width:100px;height:130px;
+  background:linear-gradient(180deg,rgba(42,30,20,0.5) 0%,transparent 100%);border-radius:50px}
+
+/* Floor cushion line */
+.tent-floor{position:absolute;bottom:0;left:0;width:100%;height:80px;
+  background:linear-gradient(180deg,transparent 0%,rgba(30,18,8,0.6) 30%,rgba(20,12,4,0.9) 100%)}
+
+/* Contract document glow (subtle, on the book) */
+.contract-glow{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);width:120px;height:30px;
+  background:radial-gradient(ellipse,rgba(212,175,100,0.2) 0%,transparent 70%);
+  animation:contractPulse 5s ease-in-out infinite}
+@keyframes contractPulse{0%,100%{opacity:.6}50%{opacity:1}}
+
+/* Overall gradient overlay */
+.hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:3;
+  background:linear-gradient(180deg,rgba(10,8,6,0.3) 0%,rgba(10,8,6,0.1) 30%,rgba(10,8,6,0.4) 70%,rgba(10,8,6,0.95) 100%);
+  pointer-events:none}
 
 /* TOP BAR */
 .topbar{position:fixed;top:0;left:0;width:100%;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:linear-gradient(180deg,rgba(10,8,6,0.6) 0%,transparent 100%)}
@@ -32,7 +122,7 @@ body{font-family:'Cairo','Inter',sans-serif;background:var(--bg);color:var(--tex
 .scene-label.show{opacity:1}
 .scene-label .icon{font-size:2.5rem;margin-bottom:8px;filter:drop-shadow(0 4px 20px rgba(0,0,0,0.8))}
 .scene-label .title{font-family:'Amiri',serif;font-size:1.6rem;color:var(--gold);text-shadow:0 4px 30px rgba(0,0,0,0.9);margin-bottom:4px}
-.scene-label .sub{font-size:.78rem;color:var(--muted);max-width:300px;line-height:1.6;text-shadow:0 2px 10px rgba(0,0,0,0.9)}
+.scene-label .sub{font-size:.78rem;color:var(--muted);max-width:320px;line-height:1.6;text-shadow:0 2px 10px rgba(0,0,0,0.9)}
 
 /* CTA BUTTON */
 .cta{position:absolute;bottom:120px;left:50%;transform:translateX(-50%);z-index:20}
@@ -55,8 +145,6 @@ body{font-family:'Cairo','Inter',sans-serif;background:var(--bg);color:var(--tex
 .section{min-height:auto;padding:80px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .section-title{font-family:'Amiri',serif;font-size:2rem;color:var(--gold);text-align:center;margin-bottom:10px}
 .section-sub{font-size:.85rem;color:var(--muted);text-align:center;margin-bottom:40px;max-width:500px;line-height:1.7}
-
-/* SHARIA RULES */
 .rules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;max-width:900px;width:100%}
 .rule-card{background:rgba(26,20,16,0.6);border:1px solid var(--border);border-radius:16px;padding:24px;text-align:center;transition:transform .2s}
 .rule-card:hover{transform:translateY(-4px)}
@@ -64,16 +152,12 @@ body{font-family:'Cairo','Inter',sans-serif;background:var(--bg);color:var(--tex
 .rule-card h3{font-family:'Amiri',serif;font-size:1.1rem;color:var(--gold);margin-bottom:8px}
 .rule-card p{font-size:.8rem;color:var(--muted);line-height:1.7}
 .rule-card .ref{font-size:.68rem;color:var(--green);margin-top:6px;font-family:'Amiri'}
-
-/* HOW IT WORKS */
 .steps{display:flex;flex-direction:column;gap:0;max-width:500px;width:100%}
 .step{display:flex;gap:16px;align-items:flex-start;padding:20px 0;position:relative}
 .step:not(:last-child)::after{content:'';position:absolute;left:23px;top:60px;bottom:-10px;width:2px;background:linear-gradient(180deg,var(--border),transparent)}
 .step-num{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold-d),var(--gold));color:var(--bg);display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:700;flex-shrink:0}
 .step-content h3{font-size:.95rem;color:var(--gold);margin-bottom:4px}
 .step-content p{font-size:.8rem;color:var(--muted);line-height:1.6}
-
-/* JOIN FORM */
 .join-form{max-width:500px;width:100%;background:rgba(26,20,16,0.6);border:1px solid var(--border);border-radius:20px;padding:30px}
 .join-form h3{font-family:'Amiri',serif;font-size:1.3rem;color:var(--gold);text-align:center;margin-bottom:16px}
 .form-field{margin-bottom:12px}
@@ -96,17 +180,12 @@ body{font-family:'Cairo','Inter',sans-serif;background:var(--bg);color:var(--tex
   background:linear-gradient(135deg,#d4af64 0%,#f4e4a8 30%,#d4af64 50%,#8b6914 80%,#d4af64 100%);
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
   text-shadow:0 1px 0 #6a4e10,0 2px 0 #5a3e00,0 3px 0 #4a2e00,0 4px 6px rgba(0,0,0,0.4);
-  filter:drop-shadow(0 6px 20px rgba(212,175,100,0.3));
-  letter-spacing:2px;padding:20px 40px;position:relative}
-.sig-text::before{content:'عبد الحفيظ البحار الغريب';position:absolute;top:0;left:0;right:0;
-  -webkit-text-fill-color:transparent;text-shadow:0 0 1px rgba(212,175,100,0.1);
-  background:none;z-index:-1}
+  filter:drop-shadow(0 6px 20px rgba(212,175,100,0.3));letter-spacing:2px;padding:20px 40px;position:relative}
 .sig-base{width:100%;max-width:400px;height:80px;margin:0 auto;position:relative;margin-top:-10px;
   background:linear-gradient(180deg,rgba(139,105,20,0.3) 0%,rgba(139,105,20,0.1) 50%,transparent 100%);
   border-radius:50%;transform:rotateX(70deg);box-shadow:0 0 40px rgba(212,175,100,0.15)}
 .sig-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300px;height:100px;
-  background:radial-gradient(ellipse,rgba(212,175,100,0.15) 0%,transparent 70%);
-  animation:glow 3s ease-in-out infinite}
+  background:radial-gradient(ellipse,rgba(212,175,100,0.15) 0%,transparent 70%);animation:glow 3s ease-in-out infinite}
 @keyframes glow{0%,100%{opacity:.5}50%{opacity:1}}
 .sig-year{font-size:.7rem;color:var(--muted);margin-top:20px;letter-spacing:3px}
 
@@ -136,7 +215,27 @@ body{font-family:'Cairo','Inter',sans-serif;background:var(--bg);color:var(--tex
 .start-btn{background:linear-gradient(135deg,var(--gold-d),var(--gold));color:var(--bg);border:none;border-radius:16px;padding:16px 50px;font-size:1.1rem;font-weight:700;cursor:pointer;font-family:'Cairo';box-shadow:0 5px 25px rgba(139,105,20,0.4)}
 .start-btn:active{transform:scale(.95)}
 
-@media(max-width:600px){.scene-label .title{font-size:1.3rem}.sig-text{font-size:1.6rem}.rules-grid{grid-template-columns:1fr}}
+@media(max-width:600px){
+  .scene-label .title{font-size:1.3rem}
+  .sig-text{font-size:1.6rem}
+  .rules-grid{grid-template-columns:1fr}
+  .char-stage{gap:8px}
+  .sheikh{width:130px;height:220px}
+  .groom{width:100px;height:200px}
+  .bride{width:100px;height:200px}
+  .sheikh-body{width:100px;height:160px}
+  .sheikh-head{bottom:150px;width:42px;height:42px}
+  .sheikh-turban{bottom:180px}
+  .sheikh-beard{bottom:135px}
+  .groom-body{width:85px;height:140px}
+  .groom-head{bottom:130px;width:38px;height:38px}
+  .groom-beard{bottom:95px;width:36px;height:42px}
+  .groom-head-cover{bottom:160px;width:48px}
+  .bride-body{width:90px;height:150px}
+  .bride-head{bottom:140px;width:40px;height:40px}
+  .bride-veil{bottom:130px;width:48px;height:65px}
+  .bride-veil-drape{bottom:50px;width:80px}
+}
 </style>
 </head>
 <body>
@@ -157,10 +256,45 @@ body{font-family:'Cairo','Inter',sans-serif;background:var(--bg);color:var(--tex
 
 <!-- HERO CINEMATIC -->
 <section class="hero" id="hero">
+  <!-- Background videos (atmosphere only) -->
   <video class="hero-video active" id="vid0" loop muted playsinline><source src="https://assets.mixkit.co/videos/4149/4149-720.mp4" type="video/mp4"></video>
   <video class="hero-video" id="vid1" loop muted playsinline><source src="https://assets.mixkit.co/videos/514/514-720.mp4" type="video/mp4"></video>
   <video class="hero-video" id="vid2" loop muted playsinline><source src="https://assets.mixkit.co/videos/30063/30063-720.mp4" type="video/mp4"></video>
   <video class="hero-video" id="vid3" loop muted playsinline><source src="https://assets.mixkit.co/videos/46061/46061-720.mp4" type="video/mp4"></video>
+
+  <!-- TENT INTERIOR SCENE (CSS composite with character silhouettes) -->
+  <div class="tent-scene" id="tentScene">
+    <div class="tent-fabric"></div>
+    <div class="tent-light"></div>
+    <div class="char-stage">
+      <!-- GROOM (left) - long thick beard -->
+      <div class="groom">
+        <div class="groom-head-cover"></div>
+        <div class="groom-head"></div>
+        <div class="groom-beard"></div>
+        <div class="groom-body"></div>
+      </div>
+      <!-- SHEIKH (center) - writing the contract -->
+      <div class="sheikh">
+        <div class="sheikh-turban"></div>
+        <div class="sheikh-head"></div>
+        <div class="sheikh-beard"></div>
+        <div class="sheikh-body"></div>
+        <div class="sheikh-hand"></div>
+        <div class="sheikh-book"></div>
+        <div class="contract-glow"></div>
+      </div>
+      <!-- BRIDE (right) - fully covered with veil -->
+      <div class="bride">
+        <div class="bride-head"></div>
+        <div class="bride-veil"></div>
+        <div class="bride-veil-drape"></div>
+        <div class="bride-body"></div>
+      </div>
+    </div>
+    <div class="tent-floor"></div>
+  </div>
+
   <div class="hero-overlay"></div>
 
   <div class="scene-label" id="sceneLabel">
@@ -266,17 +400,22 @@ function stopAyah(){if(currentAudio){currentAudio.pause();currentAudio.onerror=n
 window.toggleSound=function(){soundOn=!soundOn;document.getElementById('soundBtn').textContent=soundOn?'🔊':'🔇';if(!soundOn){stopAyah();stopAmbient()}else{startAmbient(currentAmbient)}};
 
 // ===== CINEMATIC SCENES =====
+// All scenes show the tent interior with character silhouettes
+// Videos serve as atmospheric background only
 var scenes=[
-  {vid:0,label:'scene1',icon:'🕌',ambient:'wind',ayah:[30,21],dur:12000},
-  {vid:1,label:'scene2',icon:'🤝',ambient:'fire',ayah:[7,189],dur:12000},
-  {vid:2,label:'scene3',icon:'✍️',ambient:'wind',ayah:[24,32],dur:12000},
-  {vid:3,label:'scene4',icon:'🌅',ambient:'wind',ayah:[4,1],dur:12000}
+  {vid:0,tent:true,label:'scene1',icon:'🕌',ambient:'wind',ayah:[30,21],dur:14000},
+  {vid:1,tent:true,label:'scene2',icon:'✍️',ambient:'fire',ayah:[7,189],dur:14000},
+  {vid:1,tent:true,label:'scene3',icon:'🤝',ambient:'fire',ayah:[24,32],dur:14000},
+  {vid:2,tent:false,label:'scene4',icon:'🌅',ambient:'wind',ayah:[4,1],dur:14000}
 ];
 var curScene=0,sceneTimer=null,currentAmbient='wind';
 var vidEls=[document.getElementById('vid0'),document.getElementById('vid1'),document.getElementById('vid2'),document.getElementById('vid3')];
+var tentScene=document.getElementById('tentScene');
 
 function showScene(i){
-  vidEls.forEach(function(v,idx){if(idx===i){v.classList.add('active');v.play().catch(function(){})}else v.classList.remove('active')});
+  vidEls.forEach(function(v,idx){if(idx===scenes[i].vid){v.classList.add('active');v.play().catch(function(){})}else v.classList.remove('active')});
+  // Show tent interior for scenes 0-2, hide for scene 3 (outdoor)
+  if(scenes[i].tent){tentScene.classList.add('show')}else{tentScene.classList.remove('show')}
   var sc=scenes[i];
   var label=document.getElementById('sceneLabel');
   label.querySelector('.icon').textContent=sc.icon;
@@ -284,13 +423,9 @@ function showScene(i){
   label.querySelector('.sub').textContent=I18N[lang][sc.label+'_sub']||I18N.ar[sc.label+'_sub'];
   label.classList.remove('show');
   setTimeout(function(){label.classList.add('show')},500);
-  // ambient
   if(sc.ambient!==currentAmbient){currentAmbient=sc.ambient;if(soundOn)startAmbient(sc.ambient)}
-  // Quran audio
   playAyah(sc.ayah[0],sc.ayah[1]);
-  // progress
   updateProgress(i);
-  // next scene
   if(sceneTimer)clearTimeout(sceneTimer);
   sceneTimer=setTimeout(function(){var n=(i+1)%scenes.length;showScene(n)},sc.dur);
 }
@@ -305,10 +440,10 @@ window.startFilm=function(){
 // ===== I18N (AR/EN/FR/NO) =====
 var lang='ar';
 var I18N={
-  ar:{scene1_title:'عقدُ النكاحِ على السنة',scene1_sub:'في خيمةِ صحراء، تحت إضاءةٍ دافئة، يُكتبُ الميثاقُ الغليظ',scene2_title:'دخولُ العروسان',scene2_sub:'العريسُ بلحيةٍ كثيفةٍ كاملة، والعروسُ بلباسٍ ساترٍ كامل',scene3_title:'كتابةُ العقد',scene3_sub:'الوليُّ يُوجِّهُ الإيجاب، والعريسُ يقبلُ على سنةِ اللهِ ورسوله',scene4_title:'المغربُ والوليمة',scene4_sub:'تغربُ الشمس، يُصلّون المغربَ جماعةً على الرمل، ثم وليمةُ الضيوف',cta:'انضم إلى المنصة 🌿',scroll:'تصفّح الأسفل',rules_title:'الضوابط الشرعية',rules_sub:'منصةُ زواجٍ على منهجِ أهلِ السنةِ والجماعة، بضوابطَ شرعيةٍ صارمة',r1_h:'اللحيةُ الكثيفة',r1_p:'إعفاءُ اللحيةِ تاماً دون قصٍ أو تخفيف، كما أدركَ السلفُ الصالح',r2_h:'منعُ الاختلاط',r2_p:'فصلٌ تامٌّ بين الرجالِ والنساءِ في كلِّ مراحلِ المنصة',r3_h:'الولايةُ الشرعية',r3_p:'لا نكاحَ إلا بوليٍّ مرضيٍّ وصداقٍ معلومٍ وشهودٍ عدول',r4_h:'الصدقُ والأمانة',r4_p:'تعهّدٌ بالصدقِ في البيانات، ومحاسبةٌ على الكذبِ فوراً',r5_h:'النصيحةُ والموعة',r5_p:'نصحٌ واستقامةٌ على المنهجِ السلفي، وحثٌّ على العفاف',r6_h:'القصدُ في المهر',r6_p:'تيسيرُ المهرِ وعدمُ المبالغةِ فيه، أعظمُ لبركتِه',how_title:'طريقةُ العمل',how_sub:'رحلةٌ واضحةٌ من التسجيلِ حتى الزواجِ على سنةِ الله',s1_h:'التسجيلُ الشرعي',s1_p:'تملأُ استمارةً تتضمنُ بياناتك الشرعية: اللحية، الالتزام، الحالة، وتبحثُ عن صفاتِ الشريك',s2_h:'المراجعةُ والمطابقة',s2_p:'يُراجعُ فريقٌ شرعيٌ ملفك ويبحثُ عن الموافقِ من خلالِ ضوابطَ دقيقة',s3_h:'التواصلُ عبر الولي',s3_p:'يتمُّ التواصلُ بين الطرفينِ عبر الأولياءِ فقط، دونَ اختلاطٍ أو خلوة',s4_h:'العقدُ على السنة',s4_p:'بوليٍّ وصداقٍ معلومٍ وشهودٍ عدول، على كتابِ اللهِ وسنةِ رسوله',join_title:'انضمَّ إلى المنصة',join_sub:'كن من الرعيلِ الأول في منصةِ الزواجِ السلفي',pioneer:'🌿 الرعيل الأول',form_title:'الاستمارة الشرعية',f_name:'الاسم (سري)',f_gender:'الجنس',f_age:'العمر',f_status:'الحالة',f_children:'الأولاد',f_city:'المدينة',f_deen:'مستوى الالتزام',f_wali:'الولي (للنساء)',f_bio:'نبذة عني',f_seeking:'أبحث عن',f_submit:'حفظ والبحث عن الموافق ✓',f_choose:'اختر',f_male:'ذكر',f_female:'أنثى',f_single:'أعزب',f_divorced:'مطلق',f_widowed:'أرمل',f_very:'ملتزم جداً (سلفي)',f_practicing:'ملتزم',f_learning:'في طريق الالتزام',f_new:'مسلم جديد',start_title:'فطرة وسكينة',start_sub:'مشهدٌ سينمائيٌّ حي • صوتٌ وتلاوة<br>اضغط وفعّل الصوت 🔊',start_btn:'ابدأ المشهد 🪔'},
-  en:{scene1_title:'Marriage Contract on the Sunnah',scene1_sub:'In a desert tent, under warm light, the sacred covenant is written',scene2_title:'The Couple Enters',scene2_sub:'The groom with a full thick beard, the bride in complete modest covering',scene3_title:'Writing the Contract',scene3_sub:'The wali gives ijab, the groom accepts on the way of Allah and His Messenger',scene4_title:'Maghrib & Feast',scene4_sub:'Sun sets, they pray Maghrib in congregation on the sand, then feast for guests',cta:'Join the Platform 🌿',scroll:'Scroll Down',rules_title:'Sharia Guidelines',rules_sub:'A marriage platform on the methodology of Ahl al-Sunnah, with strict Sharia controls',r1_h:'Full Beard',r1_p:'Growing the beard fully without trimming or thinning, as the Salaf understood',r2_h:'No Mixing',r2_p:'Complete separation between men and women at every stage of the platform',r3_h:'Sharia Guardianship',r3_p:'No marriage without a righteous wali, known mahr, and upright witnesses',r4_h:'Honesty & Trust',r4_p:'Pledge of truthfulness in data, with immediate accountability for falsehood',r5_h:'Sincere Advice',r5_p:'Guidance on the Salafi methodology, encouraging chastity and purity',r6_h:'Modesty in Mahr',r6_p:'Facilitating affordable mahr without excess — greater in blessing',how_title:'How It Works',how_sub:'A clear journey from registration to marriage on the way of Allah',s1_h:'Sharia Registration',s1_p:'Fill a form with your Sharia data: beard, commitment, status, and what you seek in a partner',s2_h:'Review & Matching',s2_p:'A Sharia team reviews your profile and searches for a match through precise criteria',s3_h:'Contact via Wali',s3_p:'Communication between parties occurs only through walis, no mixing or khalwah',s4_h:'Contract on the Sunnah',s4_p:'With a wali, known mahr, and upright witnesses, on the Book of Allah and Sunnah',join_title:'Join the Platform',join_sub:'Be among the first pioneers of the Salafi marriage platform',pioneer:'🌿 First Pioneers',form_title:'Sharia Application Form',f_name:'Name (private)',f_gender:'Gender',f_age:'Age',f_status:'Status',f_children:'Children',f_city:'City',f_deen:'Commitment Level',f_wali:'Wali (for sisters)',f_bio:'About Me',f_seeking:'Seeking',f_submit:'Save & Find a Match ✓',f_choose:'Choose',f_male:'Male',f_female:'Female',f_single:'Single',f_divorced:'Divorced',f_widowed:'Widowed',f_very:'Very committed (Salafi)',f_practicing:'Practicing',f_learning:'Learning',f_new:'New Muslim',start_title:'Fitra & Sakina',start_sub:'Cinematic living scene • Audio & recitation<br>Click and enable sound 🔊',start_btn:'Start Scene 🪔'},
-  fr:{scene1_title:'Contrat de mariage sur la Sunnah',scene1_sub:'Dans une tente du désert, sous une lumière chaleureuse, le pacte sacré est écrit',scene2_title:'Les mariés entrent',scene2_sub:'Le marié avec une barbe épaisse, la mariée en tenue complètement modeste',scene3_title:'Rédaction du contrat',scene3_sub:'Le wali fait l'ijab, le marié accepte sur la voie d'Allah et Son Messager',scene4_title:'Maghrib et repas',scene4_sub:'Le soleil se couche, prière du Maghrib en groupe sur le sable, puis repas',cta:'Rejoindre la plateforme 🌿',scroll:'Défiler',rules_title:'Règles de la Sharia',rules_sub:'Une plateforme de mariage sur la méthodologie des Gens de la Sunnah',r1_h:'Barbe complète',r1_p:'Laisser pousser la barbe sans tailler ni éclaircir, comme les Salaf',r2_h:'Pas de mixité',r2_p:'Séparation complète entre hommes et femmes à chaque étape',r3_h:'Tutelle Sharia',r3_p:'Pas de mariage sans wali pieux, mahr connu et témoins intègres',r4_h:'Honnêteté et confiance',r4_p:'Engagement de véridicité dans les données, responsabilité immédiate',r5_h:'Conseil sincère',r5_p:'Orientation sur la méthodologie salafie, encouragement à la chasteté',r6_h:'Modération du mahr',r6_p:'Faciliter un mahr abordable sans excès — plus de bénédiction',how_title:'Comment ça marche',how_sub:'Un parcours clair de l'inscription au mariage sur la voie d'Allah',s1_h:'Inscription Sharia',s1_p:'Remplissez un formulaire avec vos données Sharia: barbe, engagement, statut',s2_h:'Examen et correspondance',s2_p:'Une équipe Sharia examine votre profil et cherche un correspondant',s3_h:'Contact via wali',s3_p:'Communication entre parties uniquement via walis, sans mixité',s4_h:'Contrat sur la Sunnah',s4_p:'Avec wali, mahr connu et témoins intègres, sur le Livre d'Allah',join_title:'Rejoindre la plateforme',join_sub:'Soyez parmi les premiers pionniers de la plateforme de mariage salafi',pioneer:'🌿 Premiers pionniers',form_title:'Formulaire Sharia',f_name:'Nom (privé)',f_gender:'Genre',f_age:'Âge',f_status:'Statut',f_children:'Enfants',f_city:'Ville',f_deen:'Niveau d'engagement',f_wali:'Wali (pour sœurs)',f_bio:'À propos de moi',f_seeking:'Je cherche',f_submit:'Sauver et trouver un match ✓',f_choose:'Choisir',f_male:'Homme',f_female:'Femme',f_single:'Célibataire',f_divorced:'Divorcé(e)',f_widowed:'Veuf/Veuve',f_very:'Très engagé (Salafi)',f_practicing:'Pratiquant',f_learning:'En apprentissage',f_new:'Nouveau musulman',start_title:'Fitra & Sakina',start_sub:'Scène cinématographique • Audio et récitation<br>Cliquez et activez le son 🔊',start_btn:'Commencer 🪔'},
-  no:{scene1_title:'Ekteskap kontrakt på Sunnah',scene1_sub:'I en ørkentelt, under varmt lys, skrives den hellige pakten',scene2_title:'Brudeparet kommer inn',scene2_sub:'Brudgommen med full tykk skjegg, bruden i komplett beskjeden drakt',scene3_title:'Skriving av kontrakt',scene3_sub:'Wali gir ijab, brudgommen aksepterer på Allahs og Hans sendebuds vei',scene4_title:'Maghrib og fest',scene4_sub:'Solen går ned, de ber Maghrib i menighet på sanden, deretter festmåltid',cta:'Bli med på plattformen 🌿',scroll:'Bla ned',rules_title:'Sharia retningslinjer',rules_sub:'En ekteskapsplattform på Ahl al-Sunnahs metodikk, med strenge Sharia-regler',r1_h:'Full skjegg',r1_p:'La skjeggen vokse fullt uten trimming, som Salaf forsto',r2_h:'Ingen blanding',r2_p:'Fullstendig adskillelse mellom menn og kvinner i alle faser',r3_h:'Sharia formynderskap',r3_p:'Inget ekteskap uten rettferdig wali, kjent mahr og rettferdige vitner',r4_h:'Ærlighet og tillit',r4_p:'Løfte om sannhet i data, med umiddelbar ansvar for løgn',r5_h:'Sinnelig råd',r5_p:'Veiledning på salafi-metoden, oppmuntrende til kyskhet',r6_h:'Måtehold i mahr',r6_p:'Forenkle rimelig mahr uten overflod — større velsignelse',how_title:'Hvordan det fungerer',how_sub:'En klar reise fra registrering til ekteskap på Allahs vei',s1_h:'Sharia registrering',s1_p:'Fyll ut et skjema med dine Sharia-data: skjegg, engasjement, status',s2_h:'Gjennomgang og matching',s2_p:'Et Sharia-team gjennomgår din profil og søker en match',s3_h:'Kontakt via wali',s3_p:'Kommunikasjon mellom parter kun gjennom walis, ingen blanding',s4_h:'Kontrakt på Sunnah',s4_p:'Med wali, kjent mahr og rettferdige vitner, på Allahs bok',join_title:'Bli med på plattformen',join_sub:'Vær blant de første pionerene av salafi ekteskapsplattformen',pioneer:'🌿 Første pionerer',form_title:'Sharia søknadsskjema',f_name:'Navn (privat)',f_gender:'Kjønn',f_age:'Alder',f_status:'Status',f_children:'Barn',f_city:'By',f_deen:'Engasjementsnivå',f_wali:'Wali (for søstre)',f_bio:'Om meg',f_seeking:'Søker',f_submit:'Lagre og finn match ✓',f_choose:'Velg',f_male:'Mann',f_female:'Kvinne',f_single:'Ugift',f_divorced:'Skilt',f_widowed:'Enke/Enkemann',f_very:'Veldig forpliktet (Salafi)',f_practicing:'Praktiserende',f_learning:'Lærende',f_new:'Ny muslim',start_title:'Fitra & Sakina',start_sub:'Levende filmscene • Lyd og resitasjon<br>Klikk og aktiver lyd 🔊',start_btn:'Start scenen 🪔'}
+  ar:{scene1_title:'عقدُ النكاحِ على السنة',scene1_sub:'في خيمةِ صحراء، تحت إضاءةٍ دافئة، يُكتبُ الميثاقُ الغليظ',scene2_title:'كتابةُ العقد',scene2_sub:'الشيخُ يكتبُ كتابَ اللهِ بين العروسانِ أمامَه',scene3_title:'إيجابُ وقبول',scene3_sub:'العريسُ بلحيةٍ كثيفةٍ كاملة، والعروسُ بلباسٍ ساترٍ كامل',scene4_title:'المغربُ والوليمة',scene4_sub:'تغربُ الشمس، يُصلّون المغربَ جماعةً على الرمل، ثم وليمةُ الضيوف',cta:'انضم إلى المنصة 🌿',scroll:'تصفّح الأسفل',rules_title:'الضوابط الشرعية',rules_sub:'منصةُ زواجٍ على منهجِ أهلِ السنةِ والجماعة، بضوابطَ شرعيةٍ صارمة',r1_h:'اللحيةُ الكثيفة',r1_p:'إعفاءُ اللحيةِ تاماً دون قصٍ أو تخفيف، كما أدركَ السلفُ الصالح',r2_h:'منعُ الاختلاط',r2_p:'فصلٌ تامٌّ بين الرجالِ والنساءِ في كلِّ مراحلِ المنصة',r3_h:'الولايةُ الشرعية',r3_p:'لا نكاحَ إلا بوليٍّ مرضيٍّ وصداقٍ معلومٍ وشهودٍ عدول',r4_h:'الصدقُ والأمانة',r4_p:'تعهّدٌ بالصدقِ في البيانات، ومحاسبةٌ على الكذبِ فوراً',r5_h:'النصيحةُ والموعة',r5_p:'نصحٌ واستقامةٌ على المنهجِ السلفي، وحثٌّ على العفاف',r6_h:'القصدُ في المهر',r6_p:'تيسيرُ المهرِ وعدمُ المبالغةِ فيه، أعظمُ لبركتِه',how_title:'طريقةُ العمل',how_sub:'رحلةٌ واضحةٌ من التسجيلِ حتى الزواجِ على سنةِ الله',s1_h:'التسجيلُ الشرعي',s1_p:'تملأُ استمارةً تتضمنُ بياناتك الشرعية: اللحية، الالتزام، الحالة، وتبحثُ عن صفاتِ الشريك',s2_h:'المراجعةُ والمطابقة',s2_p:'يُراجعُ فريقٌ شرعيٌ ملفك ويبحثُ عن الموافقِ من خلالِ ضوابطَ دقيقة',s3_h:'التواصلُ عبر الولي',s3_p:'يتمُّ التواصلُ بين الطرفينِ عبر الأولياءِ فقط، دونَ اختلاطٍ أو خلوة',s4_h:'العقدُ على السنة',s4_p:'بوليٍّ وصداقٍ معلومٍ وشهودٍ عدول، على كتابِ اللهِ وسنةِ رسوله',join_title:'انضمَّ إلى المنصة',join_sub:'كن من الرعيلِ الأول في منصةِ الزواجِ السلفي',pioneer:'🌿 الرعيل الأول',form_title:'الاستمارة الشرعية',f_name:'الاسم (سري)',f_gender:'الجنس',f_age:'العمر',f_status:'الحالة',f_children:'الأولاد',f_city:'المدينة',f_deen:'مستوى الالتزام',f_wali:'الولي (للنساء)',f_bio:'نبذة عني',f_seeking:'أبحث عن',f_submit:'حفظ والبحث عن الموافق ✓',f_choose:'اختر',f_male:'ذكر',f_female:'أنثى',f_single:'أعزب',f_divorced:'مطلق',f_widowed:'أرمل',f_very:'ملتزم جداً (سلفي)',f_practicing:'ملتزم',f_learning:'في طريق الالتزام',f_new:'مسلم جديد',start_title:'فطرة وسكينة',start_sub:'مشهدٌ سينمائيٌّ حي • صوتٌ وتلاوة<br>اضغط وفعّل الصوت 🔊',start_btn:'ابدأ المشهد 🪔'},
+  en:{scene1_title:'Marriage Contract on the Sunnah',scene1_sub:'In a desert tent, under warm light, the sacred covenant is written',scene2_title:'Writing the Contract',scene2_sub:'The sheikh writes the Book of Allah between the couple before him',scene3_title:'Ijab & Qabul',scene3_sub:'The groom with a full thick beard, the bride in complete modest covering',scene4_title:'Maghrib & Feast',scene4_sub:'Sun sets, they pray Maghrib in congregation on the sand, then feast for guests',cta:'Join the Platform 🌿',scroll:'Scroll Down',rules_title:'Sharia Guidelines',rules_sub:'A marriage platform on the methodology of Ahl al-Sunnah, with strict Sharia controls',r1_h:'Full Beard',r1_p:'Growing the beard fully without trimming or thinning, as the Salaf understood',r2_h:'No Mixing',r2_p:'Complete separation between men and women at every stage of the platform',r3_h:'Sharia Guardianship',r3_p:'No marriage without a righteous wali, known mahr, and upright witnesses',r4_h:'Honesty & Trust',r4_p:'Pledge of truthfulness in data, with immediate accountability for falsehood',r5_h:'Sincere Advice',r5_p:'Guidance on the Salafi methodology, encouraging chastity and purity',r6_h:'Modesty in Mahr',r6_p:'Facilitating affordable mahr without excess — greater in blessing',how_title:'How It Works',how_sub:'A clear journey from registration to marriage on the way of Allah',s1_h:'Sharia Registration',s1_p:'Fill a form with your Sharia data: beard, commitment, status, and what you seek in a partner',s2_h:'Review & Matching',s2_p:'A Sharia team reviews your profile and searches for a match through precise criteria',s3_h:'Contact via Wali',s3_p:'Communication between parties occurs only through walis, no mixing or khalwah',s4_h:'Contract on the Sunnah',s4_p:'With a wali, known mahr, and upright witnesses, on the Book of Allah and Sunnah',join_title:'Join the Platform',join_sub:'Be among the first pioneers of the Salafi marriage platform',pioneer:'🌿 First Pioneers',form_title:'Sharia Application Form',f_name:'Name (private)',f_gender:'Gender',f_age:'Age',f_status:'Status',f_children:'Children',f_city:'City',f_deen:'Commitment Level',f_wali:'Wali (for sisters)',f_bio:'About Me',f_seeking:'Seeking',f_submit:'Save & Find a Match ✓',f_choose:'Choose',f_male:'Male',f_female:'Female',f_single:'Single',f_divorced:'Divorced',f_widowed:'Widowed',f_very:'Very committed (Salafi)',f_practicing:'Practicing',f_learning:'Learning',f_new:'New Muslim',start_title:'Fitra & Sakina',start_sub:'Cinematic living scene • Audio & recitation<br>Click and enable sound 🔊',start_btn:'Start Scene 🪔'},
+  fr:{scene1_title:'Contrat de mariage sur la Sunnah',scene1_sub:'Dans une tente du désert, sous une lumière chaleureuse, le pacte sacré est écrit',scene2_title:'Écriture du contrat',scene2_sub:'Le sheikh écrit le Livre d\'Allah entre les mariés devant lui',scene3_title:'Ijab et Qabul',scene3_sub:'Le marié avec une barbe épaisse, la mariée en tenue complètement modeste',scene4_title:'Maghrib et repas',scene4_sub:'Le soleil se couche, prière du Maghrib en groupe sur le sable, puis repas',cta:'Rejoindre la plateforme 🌿',scroll:'Défiler',rules_title:'Règles de la Sharia',rules_sub:'Une plateforme de mariage sur la méthodologie des Gens de la Sunnah',r1_h:'Barbe complète',r1_p:'Laisser pousser la barbe sans tailler ni éclaircir, comme les Salaf',r2_h:'Pas de mixité',r2_p:'Séparation complète entre hommes et femmes à chaque étape',r3_h:'Tutelle Sharia',r3_p:'Pas de mariage sans wali pieux, mahr connu et témoins intègres',r4_h:'Honnêteté et confiance',r4_p:'Engagement de véridicité dans les données, responsabilité immédiate',r5_h:'Conseil sincère',r5_p:'Orientation sur la méthodologie salafie, encouragement à la chasteté',r6_h:'Modération du mahr',r6_p:'Faciliter un mahr abordable sans excès — plus de bénédiction',how_title:'Comment ça marche',how_sub:'Un parcours clair de l\'inscription au mariage sur la voie d\'Allah',s1_h:'Inscription Sharia',s1_p:'Remplissez un formulaire avec vos données Sharia: barbe, engagement, statut',s2_h:'Examen et correspondance',s2_p:'Une équipe Sharia examine votre profil et cherche un correspondant',s3_h:'Contact via wali',s3_p:'Communication entre parties uniquement via walis, sans mixité',s4_h:'Contrat sur la Sunnah',s4_p:'Avec wali, mahr connu et témoins intègres, sur le Livre d\'Allah',join_title:'Rejoindre la plateforme',join_sub:'Soyez parmi les premiers pionniers de la plateforme de mariage salafi',pioneer:'🌿 Premiers pionniers',form_title:'Formulaire Sharia',f_name:'Nom (privé)',f_gender:'Genre',f_age:'Âge',f_status:'Statut',f_children:'Enfants',f_city:'Ville',f_deen:'Niveau d\'engagement',f_wali:'Wali (pour sœurs)',f_bio:'À propos de moi',f_seeking:'Je cherche',f_submit:'Sauver et trouver un match ✓',f_choose:'Choisir',f_male:'Homme',f_female:'Femme',f_single:'Célibataire',f_divorced:'Divorcé(e)',f_widowed:'Veuf/Veuve',f_very:'Très engagé (Salafi)',f_practicing:'Pratiquant',f_learning:'En apprentissage',f_new:'Nouveau musulman',start_title:'Fitra & Sakina',start_sub:'Scène cinématographique • Audio et récitation<br>Cliquez et activez le son 🔊',start_btn:'Commencer 🪔'},
+  no:{scene1_title:'Ekteskap kontrakt på Sunnah',scene1_sub:'I en ørkentelt, under varmt lys, skrives den hellige pakten',scene2_title:'Skriving av kontrakt',scene2_sub:'Sheikhen skriver Allahs bok mellom brudeparet foran ham',scene3_title:'Ijab og Qabul',scene3_sub:'Brudgommen med full tykk skjegg, bruden i komplett beskjeden drakt',scene4_title:'Maghrib og fest',scene4_sub:'Solen går ned, de ber Maghrib i menighet på sanden, deretter festmåltid',cta:'Bli med på plattformen 🌿',scroll:'Bla ned',rules_title:'Sharia retningslinjer',rules_sub:'En ekteskapsplattform på Ahl al-Sunnahs metodikk, med strenge Sharia-regler',r1_h:'Full skjegg',r1_p:'La skjeggen vokse fullt uten trimming, som Salaf forsto',r2_h:'Ingen blanding',r2_p:'Fullstendig adskillelse mellom menn og kvinner i alle faser',r3_h:'Sharia formynderskap',r3_p:'Inget ekteskap uten rettferdig wali, kjent mahr og rettferdige vitner',r4_h:'Ærlighet og tillit',r4_p:'Løfte om sannhet i data, med umiddelbar ansvar for løgn',r5_h:'Sinnelig råd',r5_p:'Veiledning på salafi-metoden, oppmuntrende til kyskhet',r6_h:'Måtehold i mahr',r6_p:'Forenkle rimelig mahr uten overflod — større velsignelse',how_title:'Hvordan det fungerer',how_sub:'En klar reise fra registrering til ekteskap på Allahs vei',s1_h:'Sharia registrering',s1_p:'Fyll ut et skjema med dine Sharia-data: skjegg, engasjement, status',s2_h:'Gjennomgang og matching',s2_p:'Et Sharia-team gjennomgår din profil og søker en match',s3_h:'Kontakt via wali',s3_p:'Kommunikasjon mellom parter kun gjennom walis, ingen blanding',s4_h:'Kontrakt på Sunnah',s4_p:'Med wali, kjent mahr og rettferdige vitner, på Allahs bok',join_title:'Bli med på plattformen',join_sub:'Vær blant de første pionerene av salafi ekteskapsplattformen',pioneer:'🌿 Første pionerer',form_title:'Sharia søknadsskjema',f_name:'Navn (privat)',f_gender:'Kjønn',f_age:'Alder',f_status:'Status',f_children:'Barn',f_city:'By',f_deen:'Engasjementsnivå',f_wali:'Wali (for søstre)',f_bio:'Om meg',f_seeking:'Søker',f_submit:'Lagre og finn match ✓',f_choose:'Velg',f_male:'Mann',f_female:'Kvinne',f_single:'Ugift',f_divorced:'Skilt',f_widowed:'Enke/Enkemann',f_very:'Veldig forpliktet (Salafi)',f_practicing:'Praktiserende',f_learning:'Lærende',f_new:'Ny muslim',start_title:'Fitra & Sakina',start_sub:'Levende filmscene • Lyd og resitasjon<br>Klikk og aktiver lyd 🔊',start_btn:'Start scenen 🪔'}
 };
 
 window.setLang=function(l){
@@ -320,7 +455,6 @@ window.setLang=function(l){
     var key=el.getAttribute('data-i18n');
     if(I18N[l]&&I18N[l][key]){el.innerHTML=I18N[l][key]}
   });
-  // update current scene label
   var sc=scenes[curScene];
   if(sc){var label=document.getElementById('sceneLabel');
     label.querySelector('.title').textContent=I18N[l][sc.label+'_title']||I18N.ar[sc.label+'_title'];
@@ -352,9 +486,6 @@ window.aiSend=function(){
     var ai=document.createElement('div');ai.className='am ai';ai.textContent=r;msgs.appendChild(ai);msgs.scrollTop=msgs.scrollHeight;
   },700);
 };
-
-// INIT
-document.getElementById('reg_gender').addEventListener('change',function(){document.getElementById('waliField').style.display=this.value==='female'?'block':'none'});
 })();
 </script>
 </body>
