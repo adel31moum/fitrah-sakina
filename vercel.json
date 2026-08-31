@@ -1,6 +1,6 @@
 {
   "framework": null,
-  "buildCommand": null,
+  "buildCommand": "exit 0",
   "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": false,
