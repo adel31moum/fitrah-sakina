@@ -22,12 +22,12 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
 .cinema{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1;overflow:hidden;touch-action:none}
 .scene{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 1.8s ease-in-out;display:flex;align-items:center;justify-content:center}
 .scene.active{opacity:1;z-index:2}
-.scene-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
-.scene::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(5,4,2,0.2) 0%,rgba(5,4,2,0.05) 30%,rgba(5,4,2,0.35) 70%,rgba(5,4,2,0.92) 100%);pointer-events:none}
+.scene-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.scene::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;background:linear-gradient(180deg,rgba(5,4,2,0.2) 0%,rgba(5,4,2,0.05) 30%,rgba(5,4,2,0.35) 70%,rgba(5,4,2,0.92) 100%);pointer-events:none}
 
 /* ===== CSS SCENE BACKGROUNDS (Act 1 - The Decline) ===== */
 /* Scene 1: City night - dark, cold, neon */
-.css-city{position:absolute;top:0;left:0;width:100%;height:100%;
+.css-city{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;
   background:linear-gradient(180deg,#0a0a14 0%,#12141e 30%,#0a0a0e 100%)}
 .css-city::before{content:'';position:absolute;bottom:0;left:0;width:100%;height:50%;
   background:
@@ -51,7 +51,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
 @keyframes neonFlicker{0%,100%{opacity:.6}50%{opacity:.3}}
 
 /* Scene 2: Laws - cold, bureaucratic */
-.css-laws{position:absolute;top:0;left:0;width:100%;height:100%;
+.css-laws{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;
   background:linear-gradient(180deg,#0e0a14 0%,#141420 50%,#0a080e 100%)}
 /* Falling documents */
 .doc-rain{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden}
@@ -61,7 +61,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
 @keyframes docFall{0%{transform:translateY(-60px) rotate(0deg);opacity:0}10%{opacity:.6}100%{transform:translateY(110vh) rotate(360deg);opacity:0}}
 
 /* Scene 3: Phone destruction - glowing screens */
-.css-phone{position:absolute;top:0;left:0;width:100%;height:100%;
+.css-phone{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;
   background:radial-gradient(ellipse at center,#0a0a14 0%,#050508 70%)}
 .phone-glow{position:absolute;border-radius:12px;background:rgba(50,80,120,0.08);border:1px solid rgba(50,80,120,0.15);animation:phonePulse 4s ease-in-out infinite}
 .phone-glow::after{content:'';position:absolute;top:20%;left:10%;width:80%;height:60%;background:linear-gradient(180deg,rgba(50,80,120,0.1),transparent);border-radius:4px}
@@ -71,7 +71,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
 @keyframes glitch{0%{top:0%;opacity:0}10%{opacity:.5}20%{top:20%;opacity:0}30%{opacity:.6}40%{top:40%;opacity:0}50%{top:60%;opacity:.4}60%{opacity:0}70%{top:80%;opacity:.5}80%{opacity:0}100%{top:100%;opacity:0}}
 
 /* Scene 4: Broken home - rain, emptiness */
-.css-rain{position:absolute;top:0;left:0;width:100%;height:100%;
+.css-rain{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;
   background:linear-gradient(180deg,#0a0a0e 0%,#0e0e14 50%,#060608 100%)}
 .rain-drop{position:absolute;width:1px;background:linear-gradient(180deg,transparent,rgba(150,160,180,0.2),transparent);animation:rainFall linear infinite}
 @keyframes rainFall{0%{transform:translateY(-100px);opacity:0}10%{opacity:.6}100%{transform:translateY(110vh);opacity:0}}
@@ -80,7 +80,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
 
 /* ===== CSS SCENE BACKGROUNDS (Act 2 - The Return) ===== */
 /* Scene 5: Desert dawn - warm, hopeful */
-.css-dawn{position:absolute;top:0;left:0;width:100%;height:100%;
+.css-dawn{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;
   background:linear-gradient(180deg,#1a0e08 0%,#2a1a0e 20%,#3a2818 40%,#4a3020 55%,#3a2010 75%,#1a0a04 100%)}
 .css-dawn::before{content:'';position:absolute;bottom:0;left:0;width:100%;height:35%;
   background:linear-gradient(180deg,transparent 0%,rgba(80,50,30,0.3) 50%,rgba(40,25,15,0.6) 100%)}
@@ -90,7 +90,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
 @keyframes sunRise{0%,100%{opacity:.5;transform:translateX(-50%) translateY(20px)}50%{opacity:.8;transform:translateX(-50%) translateY(-10px)}}
 
 /* Scene 6: Tent interior - warm, intimate */
-.tent-interior{position:absolute;top:0;left:0;width:100%;height:100%;
+.tent-interior{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;
   background:radial-gradient(ellipse at 50% 30%,#1a0e06 0%,#0e0804 40%,#050302 100%)}
 .tent-fabric-bg{position:absolute;top:0;left:0;width:100%;height:100%;
   background:repeating-linear-gradient(90deg,transparent 0px,transparent 50px,rgba(60,40,20,0.08) 50px,rgba(60,40,20,0.08) 52px,transparent 52px,transparent 100px,rgba(50,30,15,0.06) 100px,rgba(50,30,15,0.06) 102px)}
@@ -128,25 +128,26 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
 .tent-floor{position:absolute;bottom:0;left:0;width:100%;height:70px;background:linear-gradient(180deg,transparent,rgba(20,12,4,0.85) 30%,rgba(10,6,2,0.95) 100%)}
 
 /* Scene 7: Stars - peaceful night */
-.css-stars{position:absolute;top:0;left:0;width:100%;height:100%;
+.css-stars{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;
   background:linear-gradient(180deg,#050810 0%,#0a0c18 30%,#0e0a08 70%,#0a0604 100%)}
 .star{position:absolute;width:2px;height:2px;background:rgba(255,255,220,0.8);border-radius:50%;animation:starTwinkle ease-in-out infinite}
 @keyframes starTwinkle{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:1;transform:scale(1.5)}}
 .milky-way{position:absolute;top:20%;left:0;width:100%;height:40%;background:linear-gradient(45deg,transparent,rgba(100,80,120,0.04) 40%,rgba(80,60,100,0.06) 50%,rgba(100,80,120,0.04) 60%,transparent);transform:rotate(-15deg)}
 
 /* Scene 8: Sunset - golden hour */
-.css-sunset{position:absolute;top:0;left:0;width:100%;height:100%;
+.css-sunset{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;
   background:linear-gradient(180deg,#1a0a08 0%,#2a1408 20%,#4a2810 40%,#6a3a18 55%,#4a2410 70%,#2a1208 85%,#0e0604 100%)}
 .css-sunset::before{content:'';position:absolute;bottom:30%;left:50%;transform:translateX(-50%);width:180px;height:180px;
   background:radial-gradient(circle,rgba(255,160,60,0.3) 0%,rgba(255,120,40,0.1) 40%,transparent 60%);animation:sunsetPulse 8s ease-in-out infinite}
 @keyframes sunsetPulse{0%,100%{opacity:.5}50%{opacity:.8}}
 
 /* ===== SCENE NARRATION OVERLAY ===== */
-.narration{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:15;text-align:center;pointer-events:none;width:90%;max-width:500px}
+.narration{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:20;text-align:center;pointer-events:none;width:90%;max-width:500px}
 .narr-icon{font-size:2.5rem;margin-bottom:12px;filter:drop-shadow(0 4px 20px rgba(0,0,0,0.8));opacity:0;transition:opacity 1s}
 .narr-title{font-family:'Amiri',serif;font-size:1.5rem;color:var(--gold);text-shadow:0 4px 30px rgba(0,0,0,0.9);margin-bottom:8px;opacity:0;transition:opacity 1s;transition-delay:.3s}
 .narr-sub{font-size:.82rem;color:var(--muted);line-height:1.8;text-shadow:0 2px 10px rgba(0,0,0,0.9);opacity:0;transition:opacity 1s;transition-delay:.6s;max-width:380px;margin:0 auto}
-.narration.show .narr-icon,.narration.show .narr-title,.narration.show .narr-sub{opacity:1}
+.narration.show .narr-icon{opacity:1}
+.narr-title,.narr-sub{display:none!important}
 
 /* Voice indicator */
 .voice-ind{position:absolute;bottom:18%;left:50%;transform:translateX(-50%);z-index:16;display:flex;align-items:center;gap:6px;opacity:0;transition:opacity .5s}
@@ -185,6 +186,11 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
 
 /* Scene counter */
 .scene-counter{position:fixed;bottom:15px;right:15px;z-index:100;font-size:.65rem;color:var(--muted);background:rgba(5,4,2,0.5);padding:4px 10px;border-radius:10px;border:1px solid var(--border)}
+
+/* Share button */
+.share-btn{position:fixed;bottom:15px;left:50%;transform:translateX(-50%);z-index:999;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border:none;border-radius:20px;padding:8px 18px;font-size:.72rem;cursor:pointer;font-family:'Cairo';font-weight:700;box-shadow:0 3px 12px rgba(37,211,102,0.3);display:none}
+.share-btn.show{display:flex;align-items:center;gap:5px}
+.share-btn svg{width:16px;height:16px;fill:#fff}
 
 /* ===== START OVERLAY ===== */
 .start-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at center,#0a0806 0%,#050402 100%)}
@@ -315,7 +321,9 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
     <button class="lang-btn" onclick="setLang('no')">NO</button>
   </div>
   <div class="ctrl-group">
-    <button class="ctrl-btn skip" onclick="skipScene()">تخطي ⏭</button>
+    <button class="ctrl-btn" onclick="prevScene()" style="font-size:1rem">‹</button>
+    <button class="ctrl-btn skip" onclick="nextScene()">التالي ❯</button>
+    <button class="ctrl-btn skip" onclick="skipAll()" style="font-size:.7rem">تخطي ⏭</button>
     <button class="ctrl-btn" id="soundBtn" onclick="toggleSound()">🔊</button>
   </div>
 </div>
@@ -547,6 +555,9 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
   <button class="start-btn" onclick="startFilm()" data-i18n="start_btn">ابدأ الرحلة 🪔</button>
 </div>
 
+<!-- SHARE -->
+<button class="share-btn" id="shareBtn" onclick="shareFilm()"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 2.99.97 4.29L2 22l5.71-.97C9.01 21.64 10.46 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg> شارك الفيلم الدعوي</button>
+
 <!-- AI SUPPORT -->
 <button class="ai-btn" onclick="aiToggle()"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 2.99.97 4.29L2 22l5.71-.97C9.01 21.64 10.46 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg></button>
 <div class="ai-panel" id="aiPanel"><div class="ai-h"><span>🤖 الدعم الفني</span><button class="ai-x" onclick="aiToggle()">×</button></div><div class="ai-m" id="aiMsgs"><div class="am ai">السلام عليكم 🤝 كيف يمكنني مساعدتك؟</div></div><div class="ai-i"><input type="text" id="aiInput" placeholder="اكتب رسالتك..." onkeydown="if(event.key==='Enter')aiSend()"><button class="ai-s" onclick="aiSend()">إرسال</button></div></div>
@@ -583,38 +594,36 @@ function startAmbient(type){
   lfo.connect(lg);lg.connect(g.gain);src.connect(f);f.connect(g);g.connect(audioCtx.destination);
   src.start();lfo.start();ambientN={src:src,lfo:lfo};
 }
-function stopAmbient(){if(ambientN){try{ambientN.src.stop()}catch(e){}try{ambientN.lfo.stop()}catch(e){}ambientN=null}}
+function stopAmbient(){if(ambientN){try{ambientN.src.stop()}catch(e){}try{ambientN.src.disconnect()}catch(e){}try{ambientN.lfo.stop()}catch(e){}try{ambientN.lfo.disconnect()}catch(e){}ambientN=null}}
 
 /* Full Quran recitation - plays complete ayah */
 function playAyah(surah,ayah,onDone){
   if(!soundOn){if(onDone)setTimeout(onDone,5000);return}
   initAudio();stopAyah();
   var url='https://everyayah.com/data/Alafasy_128kbps/'+String(surah).padStart(3,'0')+String(ayah).padStart(3,'0')+'.mp3';
-  var a=new Audio();qAudio=a;
-  a.crossOrigin='anonymous';
-  a.onloadedmetadata=function(){
-    var dur=a.duration;
-    if(dur&&!isNaN(dur)){
-      // Add extra time after recitation
-      a.onended=function(){if(onDone)setTimeout(onDone,2000)};
-      a.play().catch(function(){if(onDone)setTimeout(onDone,dur*1000+2000)});
-    }else{
-      a.onended=function(){if(onDone)setTimeout(onDone,2000)};
-      a.play().catch(function(){if(onDone)setTimeout(onDone,8000)});
-    }
+  var a=new Audio();qAudio=a;var done=false;
+  function finish(){if(done)return;done=true;if(onDone)setTimeout(onDone,2000)}
+  // P3 FIX: 12s timeout fallback — if metadata doesn't load, skip
+  var timeout=setTimeout(function(){if(!done){console.warn('Ayah timeout:',url);finish()}},12000);
+  a.onloadedmeta=function(){
+    clearTimeout(timeout);
+    a.onended=function(){finish()};
+    a.play().catch(function(){finish()});
   };
+  a.onloadeddata=a.onloadedmetadata;
   a.onerror=function(){
-    // Fallback: try different reciter
+    clearTimeout(timeout);
+    // Fallback: try Husary reciter
     var url2='https://everyayah.com/data/Husary_128kbps/'+String(surah).padStart(3,'0')+String(ayah).padStart(3,'0')+'.mp3';
-    var a2=new Audio();qAudio=a2;
-    a2.onended=function(){if(onDone)setTimeout(onDone,2000)};
-    a2.onerror=function(){if(onDone)setTimeout(onDone,5000)};
+    var a2=new Audio();qAudio=a2;var t2=setTimeout(function(){if(!done){finish()}},12000);
+    a2.onended=function(){clearTimeout(t2);finish()};
+    a2.onerror=function(){clearTimeout(t2);finish()};
     a2.src=url2;
-    a2.play().catch(function(){if(onDone)setTimeout(onDone,5000)});
+    a2.play().catch(function(){clearTimeout(t2);finish()});
   };
   a.src=url;
 }
-function stopAyah(){if(qAudio){qAudio.pause();qAudio.onerror=null;qAudio.onended=null;qAudio.src='';qAudio=null}}
+function stopAyah(){if(qAudio){try{qAudio.pause()}catch(e){}try{qAudio.onloadedmetadata=null}catch(e){}try{qAudio.onloadeddata=null}catch(e){}try{qAudio.onerror=null}catch(e){}try{qAudio.onended=null}catch(e){}try{qAudio.src=''}catch(e){}qAudio=null}}
 
 /* Arabic voice narration via Web Speech API */
 function speakArabic(text,onDone){
@@ -635,7 +644,7 @@ function speakArabic(text,onDone){
 
 /* ===== SCENES ===== */
 var scenes=[
-  {act:1,ambient:'city',narration:'حين تخلّى البشر عن شريعة الله التي شرعها لحماية الأسرة، واستبدلوا بها قوانين وضعية يشرعها البشر بأنفسهم، كانت النتيجة دماراً يشهد عليه كل بيت مكسور. قانون يبيح ما حرم الله، ويحرم ما أحل الله، فسادت به الأسر وتشردت به الأطفال.',
+  {act:1,ambient:'city',hadith:'قال النبي ﷺ: «لم يترك بعد فتنة أضر على الرجال من النساء» — رواه البخاري ومسلم',narration:'حين تخلّى البشر عن شريعة الله التي شرعها لحماية الأسرة، واستبدلوا بها قوانين وضعية يشرعها البشر بأنفسهم، كانت النتيجة دماراً يشهد عليه كل بيت مكسور. قانون يبيح ما حرم الله، ويحرم ما أحل الله، فسادت به الأسر وتشردت به الأطفال.',
    ayah:{s:5,a:44},ayahDur:8000,narrDur:18000},
   {act:1,ambient:'laws',narration:'قوانين لعبت بها الأهواء. محاكم تقرر مصير أطفال بلا أب. امرأة تتحاكم لقانون أجنبي لتنزع بيتها وتنهب مال زوجها بدل الصبر والإصلاح. كل هذا باسم العدالة، والعدالة الحقيقية في شرع الله وحده.',
    ayah:{s:4,a:35},ayahDur:7000,narrDur:17000},
@@ -643,13 +652,13 @@ var scenes=[
    ayah:{s:17,a:32},ayahDur:6000,narrDur:18000},
   {act:1,ambient:'rain',narration:'والنتيجة؟ بيوت خاوية. أطفال بلا آباء. آباء بلا أولاد. عزلة قاتلة في مدن مكتظة. اكتئاب. طلاق. انتحار. هذه ثمرة البعد عن منهج الله. لكن الفجر يأتي بعد العتمة.',
    ayah:{s:65,a:12},ayahDur:6000,narrDur:16000},
-  {act:2,ambient:'wind',narration:'وفي رحاب الصحراء، حيث لا قانون إلا شرع الله، يعود المسلم إلى فطرته. هنا لا محاكم ولا قوانين أجنبية. فقط ميثاق الله. عقد على سنة رسوله. بولي مرضي وصداق معلوم وشهود عدول.',
+  {act:2,ambient:'wind',hadith:'قال النبي ﷺ: «يا معشر الشباب من استطاع منكم الباءة فليتزوج» — رواه البخاري ومسلم عن ابن مسعود',narration:'وفي رحاب الصحراء، حيث لا قانون إلا شرع الله، يعود المسلم إلى فطرته. هنا لا محاكم ولا قوانين أجنبية. فقط ميثاق الله. عقد على سنة رسوله. بولي مرضي وصداق معلوم وشهود عدول.',
    ayah:{s:30,a:21},ayahDur:9000,narrDur:18000},
-  {act:2,ambient:'fire',narration:'في خيمة صحراء، تحت إضاءة دافئة، يجلس الشيخ يكتب الميثاق الغليظ. العريس بلحية كثيفة كاملة، والعروس بلباس ساتر. لا اختلاط. لا موسيقى. فقط كتابة العقد على سنة رسول الله صلى الله عليه وسلم.',
+  {act:2,ambient:'fire',hadith:'قال النبي ﷺ: «اتقوا الله في النساء، فإنهن عوان عندكم» — رواه مسلم',narration:'في خيمة صحراء، تحت إضاءة دافئة، يجلس الشيخ يكتب الميثاق الغليظ. العريس بلحية كثيفة كاملة، والعروس بلباس ساتر. لا اختلاط. لا موسيقى. فقط كتابة العقد على سنة رسول الله صلى الله عليه وسلم.',
    ayah:{s:24,a:32},ayahDur:8000,narrDur:18000},
   {act:2,ambient:'wind',narration:'والبيت المسلم بناء للدين. سكون تحت النجوم. رحمة بين الزوجين. ذرية صالحة تحمل الأمانة. هذا هو السكين الذي أنزله الله. لا تشريعاً من عند أنفسنا. بل اتباعاً لما شرع الحكيم الخبير.',
    ayah:{s:25,a:74},ayahDur:7000,narrDur:17000},
-  {act:2,ambient:'fire',narration:'الآن دورك. تخلّ عن قوانين البشر التي أفسدت الأسر. وعُد إلى ميثاق الله. منصة فطرة وسكينة تقدم لك زواجاً على المنهج السلفي بضوابط شرعية صارمة. ابدأ رحلتك نحو السكينة.',
+  {act:2,ambient:'fire',hadith:'قال النبي ﷺ: «ثلاثة حق على الله عونهم: الناكح يريد العفاف» — رواه الترمذي والنسائي',narration:'الآن دورك. تخلّ عن قوانين البشر التي أفسدت الأسر. وعُد إلى ميثاق الله. منصة فطرة وسكينة تقدم لك زواجاً على المنهج السلفي بضوابط شرعية صارمة. ابدأ رحلتك نحو السكينة.',
    ayah:{s:49,a:13},ayahDur:8000,narrDur:18000}
 ];
 
@@ -701,18 +710,35 @@ function showScene(i){
   // Voice indicator
   document.getElementById('voiceInd').classList.add('show');
 
-  // Play narration (voice)
+  // Play narration (voice) — S1: hadith spoken separately from Quran
   speakArabic(sc.narration,function(){
     document.getElementById('voiceInd').classList.remove('show');
-    // After narration, play Quran recitation
-    setTimeout(function(){
-      document.getElementById('voiceInd').classList.add('show');
-      playAyah(sc.ayah.s,sc.ayah.a,function(){
-        document.getElementById('voiceInd').classList.remove('show');
-        // Move to next scene
-        sceneTimer=setTimeout(function(){showScene(i+1)},2000);
-      });
-    },1000);
+    // After narration, play hadith if exists (as hadith, NOT as Quran)
+    if(sc.hadith){
+      setTimeout(function(){
+        document.getElementById('voiceInd').classList.add('show');
+        speakArabic(sc.hadith,function(){
+          document.getElementById('voiceInd').classList.remove('show');
+          // Then play Quran recitation (clearly separated from hadith)
+          setTimeout(function(){
+            document.getElementById('voiceInd').classList.add('show');
+            playAyah(sc.ayah.s,sc.ayah.a,function(){
+              document.getElementById('voiceInd').classList.remove('show');
+              sceneTimer=setTimeout(function(){showScene(i+1)},2000);
+            });
+          },800);
+        });
+      },800);
+    } else {
+      // No hadith — go straight to Quran
+      setTimeout(function(){
+        document.getElementById('voiceInd').classList.add('show');
+        playAyah(sc.ayah.s,sc.ayah.a,function(){
+          document.getElementById('voiceInd').classList.remove('show');
+          sceneTimer=setTimeout(function(){showScene(i+1)},2000);
+        });
+      },1000);
+    }
   });
 }
 
@@ -730,14 +756,31 @@ window.startFilm=function(){
   setTimeout(function(){showScene(0)},1000);
 };
 
-window.skipScene=function(){
+window.nextScene=function(){
   if(!active)return;
   stopAyah();window.speechSynthesis&&window.speechSynthesis.cancel();
   document.getElementById('voiceInd').classList.remove('show');
   if(sceneTimer)clearTimeout(sceneTimer);
   showScene(curScene+1);
-  // Track current scene
 };
+window.prevScene=function(){
+  if(!active||curScene<=0)return;
+  stopAyah();window.speechSynthesis&&window.speechSynthesis.cancel();
+  document.getElementById('voiceInd').classList.remove('show');
+  if(sceneTimer)clearTimeout(sceneTimer);
+  showScene(curScene-1);
+};
+window.skipAll=function(){
+  if(!active)return;
+  stopAyah();stopAmbient();window.speechSynthesis&&window.speechSynthesis.cancel();
+  document.getElementById('voiceInd').classList.remove('show');
+  if(sceneTimer)clearTimeout(sceneTimer);
+  document.getElementById('cinema').style.position='relative';
+  document.getElementById('cinema').style.height='100vh';
+  document.getElementById('shareBtn').classList.add('show');
+  window.scrollTo({top:window.innerHeight,behavior:'smooth'});
+};
+window.skipScene=window.nextScene;
 // Track current scene
 var _origShow=showScene;
 
@@ -746,6 +789,12 @@ window.toggleSound=function(){
   document.getElementById('soundBtn').textContent=soundOn?'🔊':'🔇';
   if(!soundOn){stopAyah();stopAmbient();window.speechSynthesis&&window.speechSynthesis.cancel();document.getElementById('voiceInd').classList.remove('show')}
   else{var sc=scenes[curScene];if(sc)startAmbient(sc.ambient)}
+};
+
+window.shareFilm=function(){
+  var url='https://fitrah-sakina.vercel.app';
+  var text='🌿 شاهد رحلة العودة إلى الزواج على السنة — فطرة وسكينة\n'+url;
+  window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');
 };
 
 /* Track current scene for skip */
@@ -783,7 +832,7 @@ window.aiToggle=function(){document.getElementById('aiPanel').classList.toggle('
 window.aiSend=function(){
   var inp=document.getElementById('aiInput'),txt=inp.value.trim();if(!txt)return;
   var msgs=document.getElementById('aiMsgs'),u=document.createElement('div');u.className='am user';u.textContent=txt;msgs.appendChild(u);inp.value='';msgs.scrollTop=msgs.scrollHeight;
-  setTimeout(function(){var r='تم استلام رسالتك. سأحللها وأرسلها للفريق.';if(txt.match(/صوت|سمع/))r='للسيطرة على الصوت: اضغط 🔊 في الأعلى.';if(txt.match(/تسجيل|register/))r='انتقل إلى قسم الانضمام أسفل الصفحة واملأ الاستمارة.';if(txt.match(/ولي|ولاية/))r='في حال عدم وجود وليّ، تُوجَّه للمحكمة الشرعية المختصة.';var ai=document.createElement('div');ai.className='am ai';ai.textContent=r;msgs.appendChild(ai);msgs.scrollTop=msgs.scrollHeight},700);
+  setTimeout(function(){var r='تم استلام رسالتك. سأحللها وأرسلها للفريق.';if(txt.match(/صوت|سمع/))r='للسيطرة على الصوت: اضغط 🔊 في الأعلى.';if(txt.match(/تسجيل|register/))r='انتقل إلى قسم الانضمام أسفل الصفحة واملأ الاستمارة.';if(txt.match(/ولي|ولاية/))r='في حال عدم وجود وليّ شرعي، تُوجَّه للمحكمة الشرعية أو القاضي الشرعي المختص، إذ السلطان وليّ من لا ولي له. (رواه أبو داود والترمذي)';var ai=document.createElement('div');ai.className='am ai';ai.textContent=r;msgs.appendChild(ai);msgs.scrollTop=msgs.scrollHeight},700);
 };
 
 /* Experts */
