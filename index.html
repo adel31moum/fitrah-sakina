@@ -23,12 +23,12 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
 .scene{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 1.8s ease-in-out;display:flex;align-items:center;justify-content:center}
 .scene.active{opacity:1;z-index:2}
 .scene-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1}
-.scene::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;background:linear-gradient(180deg,rgba(5,4,2,0.2) 0%,rgba(5,4,2,0.05) 30%,rgba(5,4,2,0.35) 70%,rgba(5,4,2,0.92) 100%);pointer-events:none}
+.scene::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;background:linear-gradient(180deg,rgba(5,4,2,0.1) 0%,rgba(5,4,2,0.02) 30%,rgba(5,4,2,0.15) 70%,rgba(5,4,2,0.6) 100%);pointer-events:none}
 
 /* ===== CSS SCENE BACKGROUNDS (Act 1 - The Decline) ===== */
 /* Scene 1: City night - dark, cold, neon */
 .css-city{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;
-  background:linear-gradient(180deg,#0a0a14 0%,#12141e 30%,#0a0a0e 100%)}
+  background:linear-gradient(180deg,#0e0e1c 0%,#1a1a2e 30%,#0e0e14 100%)}
 .css-city::before{content:'';position:absolute;bottom:0;left:0;width:100%;height:50%;
   background:
     linear-gradient(180deg,transparent 0%,#060610 100%),
@@ -52,7 +52,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
 
 /* Scene 2: Laws - cold, bureaucratic */
 .css-laws{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;
-  background:linear-gradient(180deg,#0e0a14 0%,#141420 50%,#0a080e 100%)}
+  background:linear-gradient(180deg,#141020 0%,#1e1c30 50%,#100e14 100%)}
 /* Falling documents */
 .doc-rain{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden}
 .doc-piece{position:absolute;width:40px;height:55px;background:rgba(200,190,170,0.06);border:1px solid rgba(200,190,170,0.1);top:-60px;animation:docFall linear infinite}
@@ -62,7 +62,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
 
 /* Scene 3: Phone destruction - glowing screens */
 .css-phone{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;
-  background:radial-gradient(ellipse at center,#0a0a14 0%,#050508 70%)}
+  background:radial-gradient(ellipse at center,#141420 0%,#080810 70%)}
 .phone-glow{position:absolute;border-radius:12px;background:rgba(50,80,120,0.08);border:1px solid rgba(50,80,120,0.15);animation:phonePulse 4s ease-in-out infinite}
 .phone-glow::after{content:'';position:absolute;top:20%;left:10%;width:80%;height:60%;background:linear-gradient(180deg,rgba(50,80,120,0.1),transparent);border-radius:4px}
 @keyframes phonePulse{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}
@@ -72,7 +72,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
 
 /* Scene 4: Broken home - rain, emptiness */
 .css-rain{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;
-  background:linear-gradient(180deg,#0a0a0e 0%,#0e0e14 50%,#060608 100%)}
+  background:linear-gradient(180deg,#0e0e14 0%,#141420 50%,#080810 100%)}
 .rain-drop{position:absolute;width:1px;background:linear-gradient(180deg,transparent,rgba(150,160,180,0.2),transparent);animation:rainFall linear infinite}
 @keyframes rainFall{0%{transform:translateY(-100px);opacity:0}10%{opacity:.6}100%{transform:translateY(110vh);opacity:0}}
 /* Empty window */
@@ -347,7 +347,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
       <div class="neon neon2">§</div>
     </div>
     <div class="narration" id="narr0">
-      <div class="narr-icon">⚖️</div>
+      <div class="narr-icon" style="font-family:Amiri,serif;font-size:1.8rem;color:#d4af64;text-shadow:0 4px 30px rgba(0,0,0,0.9);opacity:0;transition:opacity 1s">⚖︎ القانون</div>
       <div class="narr-title" data-i18n="s0_title">حينَ تخلّى البشرُ عن شريعةِ الله</div>
       <div class="narr-sub" data-i18n="s0_sub">استبدلوا أحكامَ الربِّ بقوانينَ وضعيةٍ ضعيفةٍ تُشرّعها أهواءُ البشر، فكانت النتيجةُ ما نراه اليوم</div>
     </div>
@@ -359,7 +359,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
       <div class="doc-rain" id="docRain"></div>
     </div>
     <div class="narration" id="narr1">
-      <div class="narr-icon">📜</div>
+      <div class="narr-icon" style="font-family:Amiri,serif;font-size:1.8rem;color:#d4af64;text-shadow:0 4px 30px rgba(0,0,0,0.9);opacity:0;transition:opacity 1s">المحاكم</div>
       <div class="narr-title" data-i18n="s1_title">قوانينُ تُلعَبُ بها كالدُمى</div>
       <div class="narr-sub" data-i18n="s1_sub">أصبحت المحاكمُ ساحاتٍ لانتزاعِ الأطفالِ ونهبِ المال، والمرأةُ تتحاكمُ لقانونٍ أجنبيٍّ لتدميرِ بيتها بدلَ الصبرِ والإصلاح</div>
     </div>
@@ -376,7 +376,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
       <div class="glitch-line" style="animation-delay:1s"></div>
     </div>
     <div class="narration" id="narr2">
-      <div class="narr-icon">📱</div>
+      <div class="narr-icon" style="font-family:Amiri,serif;font-size:1.8rem;color:#d4af64;text-shadow:0 4px 30px rgba(0,0,0,0.9);opacity:0;transition:opacity 1s">الهواتف</div>
       <div class="narr-title" data-i18n="s2_title">الهواتفُ والحريةُ الزائفة</div>
       <div class="narr-sub" data-i18n="s2_sub">شاشاتٌ تُهدمُ البيوتَ في لحظة، وحريةٌ زائفةٌ قادت إلى الفاحشةِ والعداوةِ بين الأقارب، حتى أصبحَ الزنا عادياً والعياذُ بالله</div>
     </div>
@@ -388,7 +388,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
       <div class="empty-window"></div>
     </div>
     <div class="narration" id="narr3">
-      <div class="narr-icon">🌧️</div>
+      <div class="narr-icon" style="font-family:Amiri,serif;font-size:1.8rem;color:#d4af64;text-shadow:0 4px 30px rgba(0,0,0,0.9);opacity:0;transition:opacity 1s">البيوت الخاوية</div>
       <div class="narr-title" data-i18n="s3_title">بيوتٌ خاويةٌ وقلوبٌ مكسورة</div>
       <div class="narr-sub" data-i18n="s3_sub">أطفالٌ بلا آباء، وآباءُ بلا أولاد، وعزلةٌ قاتلةٌ في مدنٍ مكتظة. هذه نتيجةُ البعدِ عن منهجِ الله</div>
     </div>
@@ -401,7 +401,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
   <div class="scene" id="scene4">
     <video class="scene-video" loop muted playsinline><source src="https://assets.mixkit.co/videos/4149/4149-720.mp4" type="video/mp4"></video>
     <div class="narration" id="narr4">
-      <div class="narr-icon">🌅</div>
+      <div class="narr-icon" style="font-family:Amiri,serif;font-size:1.8rem;color:#d4af64;text-shadow:0 4px 30px rgba(0,0,0,0.9);opacity:0;transition:opacity 1s">الفجر</div>
       <div class="narr-title" data-i18n="s4_title">والفجرُ يأتي بعدَ العتمة</div>
       <div class="narr-sub" data-i18n="s4_sub">هنا، في رحابِ الصحراء، يعودُ المسلمُ إلى فطرته. لا قانونَ إلا شرعَ الله، لا عقدَ إلا على سنةِ رسوله</div>
     </div>
@@ -421,7 +421,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
       <div class="tent-floor"></div>
     </div>
     <div class="narration" id="narr5">
-      <div class="narr-icon">🕌</div>
+      <div class="narr-icon" style="font-family:Amiri,serif;font-size:1.8rem;color:#d4af64;text-shadow:0 4px 30px rgba(0,0,0,0.9);opacity:0;transition:opacity 1s">العقد</div>
       <div class="narr-title" data-i18n="s5_title">عقدُ النكاحِ على السنة</div>
       <div class="narr-sub" data-i18n="s5_sub">بوليٍّ مرضيٍّ وصداقٍ معلومٍ وشهودٍ عدول، يُكتبُ الميثاقُ الغليظُ كما أمرَ اللهُ ورسوله</div>
     </div>
@@ -432,7 +432,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
     <video class="scene-video" loop muted playsinline><source src="https://assets.mixkit.co/videos/30063/30063-720.mp4" type="video/mp4"></video>
     <div class="css-stars"><div class="milky-way"></div></div>
     <div class="narration" id="narr6">
-      <div class="narr-icon">⭐</div>
+      <div class="narr-icon" style="font-family:Amiri,serif;font-size:1.8rem;color:#d4af64;text-shadow:0 4px 30px rgba(0,0,0,0.9);opacity:0;transition:opacity 1s">السكينة</div>
       <div class="narr-title" data-i18n="s6_title">سكونٌ تحتَ النجوم</div>
       <div class="narr-sub" data-i18n="s6_sub">البيتُ المسلمُ بناءٌ للدين، ورحمةٌ بين الزوجين، وذريّةٌ صالحةٌ تحملُ الأمانة</div>
     </div>
@@ -443,7 +443,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overf
     <video class="scene-video" loop muted playsinline><source src="https://assets.mixkit.co/videos/46061/46061-720.mp4" type="video/mp4"></video>
     <div class="css-sunset"></div>
     <div class="narration" id="narr7">
-      <div class="narr-icon">🌿</div>
+      <div class="narr-icon" style="font-family:Amiri,serif;font-size:1.8rem;color:#d4af64;text-shadow:0 4px 30px rgba(0,0,0,0.9);opacity:0;transition:opacity 1s">ابدأ الآن</div>
       <div class="narr-title" data-i18n="s7_title">ابدأْ رحلتكَ الآن</div>
       <div class="narr-sub" data-i18n="s7_sub">منصةُ زواجٍ سلفيةٍ بضوابطَ شرعيةٍ صارمة. تخلَّ عن قوانينِ البشر، وعُدْ إلى ميثاقِ الله</div>
     </div>
