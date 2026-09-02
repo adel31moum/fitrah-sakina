@@ -13,33 +13,25 @@ body.content-mode{overflow-y:auto}
 
 .islamic-pattern{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23d4af37' stroke-width='1'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30 Z'/%3E%3Cpath d='M30 10 L50 30 L30 50 L10 30 Z'/%3E%3Ccircle cx='30' cy='30' r='8'/%3E%3C/g%3E%3C/svg%3E")}
 
-/* CINEMA */
 .cinema{position:fixed;inset:0;z-index:10;overflow:hidden}
 .scene{position:absolute;inset:0;opacity:0;transition:opacity 3s ease-in-out;pointer-events:none}
 .scene.active{opacity:1;pointer-events:auto}
-
-/* KEN BURNS */
 .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
 .scene.active .bg{animation:kenburns 80s ease-in-out forwards}
 @keyframes kenburns{0%{transform:scale(1.05) translate(0,0)}50%{transform:scale(1.20) translate(-2%,-1%)}100%{transform:scale(1.32) translate(1%,-2%)}}
-
-/* OVERLAYS */
 .overlay{position:absolute;inset:0;z-index:2;pointer-events:none}
 .overlay-dark{background:radial-gradient(ellipse at center,rgba(10,8,16,0.30) 0%,rgba(10,8,16,0.68) 70%,rgba(10,8,16,0.94) 100%)}
 .overlay-warm{background:radial-gradient(ellipse at center,rgba(212,175,55,0.10) 0%,rgba(10,8,16,0.38) 60%,rgba(10,8,16,0.84) 100%)}
 
-/* SCENE TITLE — ayah verse display */
 .verse-display{position:absolute;bottom:140px;left:50%;transform:translateX(-50%);z-index:5;text-align:center;pointer-events:none;width:92%;max-width:540px}
-.verse-display .scene-h2{font-size:24px;color:var(--gold);font-weight:700;margin-bottom:10px;text-shadow:0 2px 24px rgba(0,0,0,0.9);letter-spacing:0}
+.verse-display .scene-h2{font-size:24px;color:var(--gold);font-weight:700;margin-bottom:10px;text-shadow:0 2px 24px rgba(0,0,0,0.9)}
 .verse-display .ayah-text{font-size:18px;color:rgba(255,255,255,0.92);line-height:2.2;text-shadow:0 2px 16px rgba(0,0,0,0.95);max-width:480px;margin:0 auto;transition:opacity 0.8s;min-height:60px}
 .verse-display .ayah-ref{font-size:13px;color:var(--amber);margin-top:10px;text-shadow:0 1px 8px rgba(0,0,0,0.9)}
 .verse-display .deco{font-size:22px;color:var(--gold);opacity:0.5;margin:8px 0}
 
-/* BRAND BADGE */
 .brand-badge{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:35;font-size:13px;color:var(--gold);background:rgba(26,22,34,0.85);padding:6px 16px;border-radius:20px;backdrop-filter:blur(10px);border:1px solid rgba(212,175,55,0.2);font-weight:600;display:none}
 .brand-badge.show{display:block}
 
-/* CONTROLS */
 .controls{position:fixed;top:50px;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:8px;align-items:center;direction:ltr;display:none}
 .controls.show{display:flex}
 .btn{background:rgba(26,22,34,0.9);border:1px solid rgba(212,175,55,0.3);color:#fff;padding:10px 16px;border-radius:30px;font-size:14px;cursor:pointer;transition:all 0.2s;backdrop-filter:blur(10px);display:flex;align-items:center;gap:6px;font-family:inherit;white-space:nowrap;min-height:44px;-webkit-appearance:none;touch-action:manipulation}
@@ -50,18 +42,15 @@ body.content-mode{overflow-y:auto}
 .btn-audio{border-radius:50%;padding:10px 12px;font-size:16px;min-width:44px;min-height:44px}
 .btn-prev{padding:10px 14px;font-size:18px;min-width:44px;min-height:44px}
 
-/* PROGRESS */
 .progress{position:fixed;top:106px;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:6px;direction:ltr;display:none}
 .progress.show{display:flex}
 .dot{width:24px;height:3px;border-radius:2px;background:rgba(255,255,255,0.2);transition:all 0.3s}
 .dot.active{background:var(--gold);width:40px}
 .dot.done{background:rgba(212,175,55,0.5)}
 
-/* COUNTER */
 .counter{position:fixed;top:14px;right:16px;z-index:30;font-size:12px;color:rgba(255,255,255,0.55);background:rgba(26,22,34,0.8);padding:5px 10px;border-radius:20px;backdrop-filter:blur(10px);direction:ltr;font-variant-numeric:tabular-nums;display:none}
 .counter.show{display:block}
 
-/* WAVEFORM */
 .waveform{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:3px;align-items:flex-end;height:24px;direction:ltr;display:none}
 .waveform.show{display:flex}
 .bar{width:4px;background:var(--gold);border-radius:2px;animation:wave 0.8s ease-in-out infinite alternate}
@@ -73,31 +62,25 @@ body.content-mode{overflow-y:auto}
 @keyframes wave{0%{height:4px}100%{height:24px}}
 .waveform.idle .bar{animation:none;height:6px;opacity:0.3}
 
-/* RECITER LABEL */
 .reciter-label{position:fixed;bottom:50px;left:50%;transform:translateX(-50%);z-index:30;font-size:11px;color:rgba(212,175,55,0.6);background:rgba(10,8,16,0.6);padding:4px 14px;border-radius:16px;backdrop-filter:blur(8px);display:none}
 .reciter-label.show{display:block}
 
-/* SHARE BUTTON */
 .share-btn{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:40;background:var(--green);color:#fff;border:none;padding:16px 36px;border-radius:50px;font-size:16px;cursor:pointer;display:none;align-items:center;gap:8px;font-family:inherit;box-shadow:0 4px 20px rgba(37,211,102,0.4);animation:pulseShare 2s ease-in-out infinite;min-height:50px;-webkit-appearance:none}
 .share-btn.show{display:flex}
 .share-btn:active{transform:translateX(-50%) scale(0.95)}
 @keyframes pulseShare{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.05)}}
 
-/* REPLAY */
 .replay-btn{position:fixed;bottom:150px;left:50%;transform:translateX(-50%);z-index:40;background:rgba(26,22,34,0.9);color:var(--gold);border:1px solid rgba(212,175,55,0.3);padding:12px 28px;border-radius:50px;font-size:14px;cursor:pointer;display:none;align-items:center;gap:6px;font-family:inherit;backdrop-filter:blur(10px);min-height:44px;-webkit-appearance:none}
 .replay-btn.show{display:flex}
 .replay-btn:active{transform:translateX(-50%) scale(0.95)}
 
-/* EXPERT BADGE */
 .expert-badge{position:fixed;bottom:24px;right:16px;z-index:30;background:rgba(26,22,34,0.9);border:1px solid rgba(212,175,55,0.2);color:#fff;padding:7px 12px;border-radius:20px;font-size:11px;display:flex;align-items:center;gap:5px;backdrop-filter:blur(10px);display:none}
 .expert-badge.show{display:flex}
 
-/* WHATSAPP FLOAT */
 .wa-float{position:fixed;bottom:24px;left:16px;z-index:30;width:48px;height:48px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;box-shadow:0 2px 12px rgba(37,211,102,0.3);display:none}
 .wa-float.show{display:flex}
 .wa-float:active{transform:scale(0.9)}
 
-/* START SCREEN */
 .start-screen{position:fixed;inset:0;z-index:50;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity 1.5s}
 .start-screen.hide{opacity:0;pointer-events:none}
 .start-logo{font-size:36px;color:var(--gold);font-weight:700;text-align:center;letter-spacing:2px}
@@ -107,7 +90,6 @@ body.content-mode{overflow-y:auto}
 .start-btn:active{transform:scale(0.95)}
 .audio-hint{font-size:12px;color:var(--gold);opacity:0.6}
 
-/* CONTENT */
 .content{position:fixed;inset:0;z-index:20;overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--dark);display:none;padding-top:20px}
 .content.show{display:block}
 
@@ -115,6 +97,8 @@ body.content-mode{overflow-y:auto}
 .section h2{color:var(--gold);font-size:22px;margin-bottom:14px;text-align:center}
 .section h3{color:var(--amber);font-size:17px;margin:18px 0 10px}
 .section .sub{text-align:center;color:rgba(255,255,255,0.45);font-size:13px;margin-bottom:20px}
+.section img.feature-img{width:100%;border-radius:14px;margin:16px 0;box-shadow:0 4px 24px rgba(0,0,0,0.4)}
+.section .impact-banner{background:var(--card);border:1px solid rgba(231,76,60,0.2);border-radius:14px;padding:16px;margin:20px 0;text-align:center}
 
 .compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
 .compare-col{background:var(--card);border-radius:12px;padding:16px}
@@ -137,6 +121,42 @@ body.content-mode{overflow-y:auto}
 .step h4{font-size:14px;margin-bottom:3px}
 .step p{font-size:12px;color:rgba(255,255,255,0.55)}
 
+/* NAZRA FEATURE CARD */
+.nazra-card{background:var(--card);border:1px solid rgba(212,175,55,0.2);border-radius:16px;padding:20px;margin:20px 0;text-align:center}
+.nazra-card .nazra-icon{font-size:40px;margin-bottom:10px}
+.nazra-card h3{color:var(--gold);font-size:18px;margin-bottom:8px}
+.nazra-card p{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:8px}
+.nazra-card .nazra-timer{display:inline-flex;align-items:center;gap:6px;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);padding:6px 16px;border-radius:20px;font-size:13px;color:var(--gold);margin-top:8px}
+.nazra-card .nazra-ref{font-size:11px;color:var(--amber);margin-top:8px}
+
+/* DONATION CARD */
+.donation-card{background:var(--card);border:1px solid rgba(37,211,102,0.2);border-radius:16px;padding:20px;margin:20px 0}
+.donation-card h3{color:var(--green);font-size:18px;margin-bottom:10px;text-align:center}
+.donation-card p{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.8;text-align:center;margin-bottom:14px}
+.donation-card .donate-feature{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.03);border-radius:10px;padding:12px;margin:10px 0}
+.donation-card .donate-feature .df-icon{font-size:28px;flex-shrink:0}
+.donation-card .donate-feature h4{font-size:13px;color:var(--gold);margin-bottom:3px}
+.donation-card .donate-feature p{font-size:12px;text-align:initial;color:rgba(255,255,255,0.5)}
+.donation-card .donate-cta{display:block;width:100%;background:var(--green);color:#fff;border:none;padding:14px;border-radius:12px;font-size:15px;cursor:pointer;font-family:inherit;margin-top:10px;text-align:center;-webkit-appearance:none;min-height:48px}
+.donation-card .donate-cta:active{transform:scale(0.97)}
+.donation-card .donate-ref{font-size:11px;color:var(--amber);text-align:center;margin-top:10px}
+
+/* POST-SIGNUP TEASER */
+.signup-success{display:none;animation:fadeIn 0.8s}
+.signup-success.show{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.world-banner{background:var(--card);border-radius:16px;padding:20px;margin:20px 0;text-align:center;overflow:hidden}
+.world-banner img{width:100%;border-radius:12px;margin-bottom:14px}
+.world-banner h3{color:var(--gold);font-size:16px;margin-bottom:6px}
+.world-banner p{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.7}
+
+.world-cities{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.city-badge{background:rgba(255,255,255,0.04);border:1px solid rgba(212,175,55,0.1);border-radius:10px;padding:10px;text-align:center;font-size:12px;color:rgba(255,255,255,0.6)}
+.city-badge .city-flag{font-size:16px;margin-bottom:4px;display:block}
+.city-badge .city-name{color:var(--gold);font-weight:600}
+.city-badge .city-count{font-size:10px;color:rgba(255,255,255,0.4);margin-top:2px}
+
 .form{background:var(--card);border-radius:16px;padding:24px;margin:20px 0}
 .form h3{color:var(--gold);text-align:center;margin-bottom:16px}
 .form-group{margin-bottom:14px}
@@ -158,9 +178,13 @@ body.content-mode{overflow-y:auto}
 .footer{text-align:center;padding:30px 20px;color:rgba(255,255,255,0.25);font-size:12px}
 .footer .brand{color:var(--gold);font-size:16px;margin-bottom:6px}
 
+.logo-section{text-align:center;padding:20px 0}
+.logo-section img{width:120px;height:120px;border-radius:50%;border:2px solid rgba(212,175,55,0.3);margin:0 auto;display:block;box-shadow:0 0 40px rgba(212,175,55,0.15)}
+
 @media(max-width:480px){
   .compare{grid-template-columns:1fr}
   .rules{grid-template-columns:1fr 1fr}
+  .world-cities{grid-template-columns:1fr 1fr}
   .btn{font-size:12px;padding:8px 12px;gap:4px}
   .section{padding:28px 14px}
   .start-logo{font-size:28px}
@@ -168,6 +192,7 @@ body.content-mode{overflow-y:auto}
   .verse-display .scene-h2{font-size:20px}
   .verse-display .ayah-text{font-size:15px}
   .share-btn{padding:14px 28px;font-size:14px}
+  .logo-section img{width:90px;height:90px}
 }
 </style>
 </head>
@@ -175,7 +200,6 @@ body.content-mode{overflow-y:auto}
 
 <div class="islamic-pattern"></div>
 
-<!-- START SCREEN -->
 <div class="start-screen" id="startScreen">
   <div class="start-logo">فطرة وسكينة</div>
   <div class="start-sub">رحلةٌ سينمائيةٌ من الانهيارِ إلى العودة<br>منصة الزواج الشرعي السلفي</div>
@@ -186,7 +210,6 @@ body.content-mode{overflow-y:auto}
 
 <div class="brand-badge" id="brandBadge">فطرة وسكينة — منصة الزواج الشرعي</div>
 
-<!-- CINEMA -->
 <div class="cinema" id="cinema">
   <div class="scene" id="scene0">
     <img class="bg" src="https://media.base44.com/images/public/6a920081a841164a49489c5f/bf2cd6b00_generated_image.png" alt="">
@@ -194,33 +217,30 @@ body.content-mode{overflow-y:auto}
     <div class="verse-display" id="vd0">
       <h2 class="scene-h2" id="title0">تكالبُ القوانين</h2>
       <div class="deco">۞</div>
-      <p class="ayah-text" id="ayahText0">ظهر الفساد في البر والبحر بما كسبت أيدي الناس</p>
+      <p class="ayah-text" id="ayahText0">ظهرَ الفسادُ في البرِّ والبحرِ بما كسبتْ أيدي الناس</p>
       <p class="ayah-ref" id="ayahRef0">الروم — 41</p>
     </div>
   </div>
-
   <div class="scene" id="scene1">
     <img class="bg" src="https://media.base44.com/images/public/6a920081a841164a49489c5f/7e0489fa8_generated_image.png" alt="">
     <div class="overlay overlay-dark"></div>
     <div class="verse-display" id="vd1">
       <h2 class="scene-h2" id="title1">الهواتفُ والحريةُ الزائفة</h2>
       <div class="deco">۞</div>
-      <p class="ayah-text" id="ayahText1">ومن أعرض عن ذكري فإن له معيشة ضنكا</p>
+      <p class="ayah-text" id="ayahText1">ومنْ أعرضَ عنْ ذكري فإنَّ لهُ معيشةً ضنكاً</p>
       <p class="ayah-ref" id="ayahRef1">طه — 124</p>
     </div>
   </div>
-
   <div class="scene" id="scene2">
     <img class="bg" src="https://media.base44.com/images/public/6a920081a841164a49489c5f/90a16c6c9_generated_image.png" alt="">
     <div class="overlay overlay-warm"></div>
     <div class="verse-display" id="vd2">
       <h2 class="scene-h2" id="title2">العودةُ إلى الفطرة</h2>
       <div class="deco">۞</div>
-      <p class="ayah-text" id="ayahText2">ومن آياته أن خلق لكم من أنفسكم أزواجاً لتسكنوا إليها</p>
+      <p class="ayah-text" id="ayahText2">ومنْ آياتهِ أنْ خلقَ لكمْ مِنْ أنفسكمْ أزواجاً لتسكنوا إليها</p>
       <p class="ayah-ref" id="ayahRef2">الروم — 21</p>
     </div>
   </div>
-
   <div class="scene" id="scene3">
     <img class="bg" src="https://media.base44.com/images/public/6a920081a841164a49489c5f/3c9dedad3_generated_image.png" alt="">
     <div class="overlay overlay-warm"></div>
@@ -233,23 +253,16 @@ body.content-mode{overflow-y:auto}
   </div>
 </div>
 
-<!-- CONTROLS -->
 <div class="controls" id="controls">
   <button class="btn btn-audio" onclick="toggleAudio()" id="audioBtn" aria-label="الصوت">🔊</button>
   <button class="btn btn-prev" onclick="prevScene()" aria-label="السابق">‹</button>
   <button class="btn btn-next" onclick="nextScene()" aria-label="التالي">التالي ❯</button>
   <button class="btn btn-skip" onclick="skipAll()" aria-label="تخطي">تخطي ⏭</button>
 </div>
-
 <div class="progress" id="progress"></div>
 <div class="counter" id="counter">1 / 4</div>
-
-<div class="waveform idle" id="waveform">
-  <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-</div>
-
+<div class="waveform idle" id="waveform"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
 <div class="reciter-label" id="reciterLabel">🎙️ تلاوة: الشيخ عبد الباسط عبد الصمد (مرتل)</div>
-
 <div class="expert-badge" id="expertBadge">7 خبراء 🧠</div>
 <div class="wa-float" id="waFloat" onclick="shareWhatsApp()" aria-label="مشاركة">💬</div>
 <button class="replay-btn" id="replayBtn" onclick="replayFilm()">🔄 إعادة عرض الفيلم</button>
@@ -257,6 +270,42 @@ body.content-mode{overflow-y:auto}
 
 <!-- CONTENT -->
 <div class="content" id="content">
+
+  <!-- LOGO -->
+  <div class="section logo-section">
+    <img src="https://media.base44.com/images/public/6a920081a841164a49489c5f/64fed36dd_generated_image.png" alt="شعار فطرة وسكينة">
+    <h2 style="margin-top:14px">فطرة وسكينة</h2>
+    <p class="sub">المنصة العالمية للزواج الشرعي على منهج أهل السنة</p>
+  </div>
+
+  <!-- IMPACT IMAGE: courtroom destruction -->
+  <div class="section">
+    <img class="feature-img" src="https://media.base44.com/images/public/6a920081a841164a49489c5f/e817bce45_generated_image.png" alt="">
+    <div class="impact-banner">
+      <h2 style="color:var(--red);font-size:18px">آثارُ الابتعادِ عن الدين</h2>
+      <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.8;margin-top:8px">المحاكمُ الوضعيةُ تُمزقُ الأسرَ، والقوانينُ العلمانيةُ تسلبُ الآباءَ حقوقَهم، والأطفالُ ضحايا تشريدٍ عالميٍّ باسم الحرية</p>
+    </div>
+  </div>
+
+  <!-- IMPACT IMAGE: fractured family -->
+  <div class="section">
+    <img class="feature-img" src="https://media.base44.com/images/public/6a920081a841164a49489c5f/989d6ac1d_generated_image.png" alt="">
+    <div class="impact-banner" style="border-color:rgba(212,175,55,0.2)">
+      <h2 style="color:var(--gold);font-size:18px">انهيارُ الأسرةِ في العالم</h2>
+      <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.8;margin-top:8px">طلاقٌ متزايد، أطفالٌ مشردون، عزلةٌ ووحشةٌ في ظلِّ قوانينَ abandoned الفطرة. الحلُّ ليس في محكمة، بل في العودةِ إلى شرعِ الله</p>
+    </div>
+  </div>
+
+  <!-- IMPACT IMAGE: Muslim in foreign land -->
+  <div class="section">
+    <img class="feature-img" src="https://media.base44.com/images/public/6a920081a841164a49489c5f/dcff469ae_generated_image.png" alt="">
+    <div class="impact-banner">
+      <h2 style="color:var(--amber);font-size:18px">المسلمون في بلادِ الغربة</h2>
+      <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.8;margin-top:8px">آلافُ السلفيينِ في أوروبا وأمريكا يبحثون عن شريكٍ يخافُ الله، فلا يجدون. فطرة وسكينةُ تصلُ بينهم على منهجِ الكتابِ والسنة</p>
+    </div>
+  </div>
+
+  <!-- COMPARISON -->
   <div class="section">
     <div class="badge-wrap"><span class="badge-first">🌿 الرعيل الأول</span></div>
     <h2>قانونُ اللهِ vs قانونُ البشر</h2>
@@ -275,46 +324,184 @@ body.content-mode{overflow-y:auto}
     </div>
   </div>
 
+  <!-- RULES -->
   <div class="section">
     <h2>الضوابط الشرعية</h2>
     <p class="sub">منصةُ زواجٍ على منهجِ أهلِ السنةِ والجماعة</p>
     <div class="rules">
-      <div class="rule"><div class="icon">🧔</div><h4>اللحيةُ الكثيفة</h4><p>إعفاءُ اللحيةِ تاماً دونَ قصٍ أو تخفيف</p><div class="ref">«أعفوا اللحى» — البخاري ومسلم</div></div>
-      <div class="rule"><div class="icon">🚫</div><h4>منعُ الاختلاط</h4><p>فصلٌ تامٌّ بينَ الرجالِ والنساء</p><div class="ref">«ولا يبيتن عنده» — مسلم</div></div>
-      <div class="rule"><div class="icon">🤝</div><h4>الولايةُ الشرعية</h4><p>لا نكاحَ إلا بوليٍّ وصداقٍ وشهود</p><div class="ref">«لا نكاح إلا بولي» — أبو داود</div></div>
-      <div class="rule"><div class="icon">📖</div><h4>الصدقُ والأمانة</h4><p>تعهّدٌ بالصدقِ ومحاسبةٌ على الكذب</p><div class="ref">«من غشنا فليس منا» — مسلم</div></div>
-      <div class="rule"><div class="icon">🤲</div><h4>النصيحةُ والموعظة</h4><p>نصحٌ واستقامةٌ على المنهجِ السلفي</p><div class="ref">«الدين النصيحة» — مسلم</div></div>
-      <div class="rule"><div class="icon">💍</div><h4>القصدُ في المهر</h4><p>تيسيرُ المهرِ أعظمُ لبركته</p><div class="ref">«أيسرهن مهراً» — أحمد</div></div>
+      <div class="rule"><div class="icon">🧔</div><h4>اللحيةُ الكثيفة</h4><p>إعفاءُ اللحيةِ تاماً</p><div class="ref">«أعفوا اللحى» — البخاري</div></div>
+      <div class="rule"><div class="icon">🚫</div><h4>منعُ الاختلاط</h4><p>فصلٌ تامٌّ بين الجنسين</p><div class="ref">«ولا يبيتن عنده» — مسلم</div></div>
+      <div class="rule"><div class="icon">🤝</div><h4>الولايةُ الشرعية</h4><p>لا نكاحَ إلا بوليٍّ</p><div class="ref">«لا نكاح إلا بولي» — أبو داود</div></div>
+      <div class="rule"><div class="icon">📖</div><h4>الصدقُ والأمانة</h4><p>محاسبةٌ على الكذب</p><div class="ref">«من غشنا فليس منا» — مسلم</div></div>
+      <div class="rule"><div class="icon">🤲</div><h4>النصيحةُ والموعظة</h4><p>استقامةٌ سلفية</p><div class="ref">«الدين النصيحة» — مسلم</div></div>
+      <div class="rule"><div class="icon">💍</div><h4>القصدُ في المهر</h4><p>تيسيرُ المهرِ أعظم</p><div class="ref">«أيسرهن مهراً» — أحمد</div></div>
     </div>
   </div>
 
+  <!-- NAZRA SHARIA — Sharia-compliant viewing -->
+  <div class="section">
+    <h2>النظرةُ الشرعية</h2>
+    <p class="sub">رؤيةٌ مباحةٌ بحضورِ الوليِّ وضمنَ حدودِ الشرع</p>
+    <div class="nazra-card">
+      <div class="nazra-icon">📷</div>
+      <h3>نظرةٌ متبادلةٌ — 4 ثوانٍ فقط</h3>
+      <p>عند توافقِ الملفين، يُحدَّدُ موعدٌ لتُفتحَ الكاميرا آلياً لمدةِ 4 ثوانٍ فقط، بحضورِ الوليِّ أو المحرم. الناظرُ يرى والمنظورةُ ترى، ثم تُغلقُ الكاميرا فوراً.</p>
+      <div class="nazra-timer">⏱️ 4 ثوانٍ فقط — لا أكثر</div>
+      <p class="nazra-ref">«انظر إليها فإنه أحرى أن يؤدم بينكما» — الترمذي وأبو داود</p>
+    </div>
+  </div>
+
+  <!-- DONATION — Smart sadaqah for marriage -->
+  <div class="section">
+    <h2>إعانةُ المسلمين على الزواج</h2>
+    <p class="sub">صدقةٌ جاريةٌ تُوصِلُكَ إلى الأجرِ وتُيسِّرُ النكاح</p>
+    <div class="donation-card">
+      <img src="https://media.base44.com/images/public/6a920081a841164a49489c5f/c6af11251_generated_image.png" alt="" style="width:100%;border-radius:12px;margin-bottom:14px">
+      <h3>ساهم في تزويجِ المسلمين</h3>
+      <p>كلُّ دينارٍ تتبرعُ به يُقسَّمُ على المسجلينَ الذينَ لا يستطيعونَ المهر. أنتَ تُعينُ على إعفافِ المسلم، والصدقةُ جاريةٌ ما دامَ النكاحُ قائماً</p>
+      <div class="donate-feature">
+        <div class="df-icon">🔄</div>
+        <div><h4>توزيعٌ ذكيٌّ وعادل</h4><p>التبرعاتُ تُقسَّمُ تلقائياً على المتقدمين للزواجِ بضوابطَ شرعية</p></div>
+      </div>
+      <div class="donate-feature">
+        <div class="df-icon">🔒</div>
+        <div><h4>شفافيةٌ كاملة</h4><p>تتبعُ تبرعكَ خطوةً بخطوة حتى العقدِ على السنة</p></div>
+      </div>
+      <div class="donate-feature">
+        <div class="df-icon">💎</div>
+        <div><h4>صدقةٌ جارية</h4><p>كلُّ نكاحٍ تُعينُ فيه = أجرٌ يستمرُّ ما دامَ الزواج</p></div>
+      </div>
+      <button class="donate-cta" onclick="window.open('https://wa.me/?text=' + encodeURIComponent('أريد المساهمة في إعانة المسلمين على الزواج — فطرة وسكينة'), '_blank')">ساهم بتبرعٍ現在 💚</button>
+      <p class="donate-ref">«ومنْ يتقِ اللهَ يجعلْ لهُ مخرجاً ويرزقْهُ منْ حيثُ لا يحتسبُ» — الطلاق 2-3</p>
+    </div>
+  </div>
+
+  <!-- STEPS -->
   <div class="section">
     <h2>طريقةُ العمل</h2>
     <p class="sub">من التسجيلِ حتى العقدِ على السنة</p>
     <div class="steps">
       <div class="step"><div class="step-num">1</div><div><h4>التسجيلُ الشرعي</h4><p>تملأُ استمارةً ببياناتك الشرعية</p></div></div>
       <div class="step"><div class="step-num">2</div><div><h4>المراجعةُ والمطابقة</h4><p>فريقٌ شرعيٌ يراجعُ ملفك ويبحثُ عن الموافق</p></div></div>
-      <div class="step"><div class="step-num">3</div><div><h4>التواصلُ عبر الولي</h4><p>التواصلُ بين الطرفينِ عبر الأولياءِ فقط</p></div></div>
+      <div class="step"><div class="step-num">3</div><div><h4>النظرةُ الشرعية</h4><p>4 ثوانٍ بحضورِ الوليِّ — كاميرا آلية</p></div></div>
       <div class="step"><div class="step-num">4</div><div><h4>العقدُ على السنة</h4><p>بوليٍّ وصداقٍ معلومٍ وشهودٍ عدول</p></div></div>
     </div>
   </div>
 
+  <!-- FORM -->
   <div class="section">
     <h2>انضمَّ إلى المنصة</h2>
     <p class="sub">كن من الرعيلِ الأول في منصةِ الزواجِ السلفي</p>
     <div class="form">
       <h3>الاستمارة الشرعية</h3>
-      <div class="form-group"><label>الاسم (سري) <span class="req">*</span></label><input type="text" id="f_name" placeholder="اسمك الكامل"></div>
-      <div class="form-group"><label>الجنس <span class="req">*</span></label><select id="f_gender"><option value="">اختر</option><option>ذكر</option><option>أنثى</option></select></div>
-      <div class="form-group"><label>العمر <span class="req">*</span></label><input type="number" id="f_age" placeholder="العمر"></div>
-      <div class="form-group"><label>الحالة <span class="req">*</span></label><select id="f_status"><option value="">اختر</option><option>أعزب</option><option>مطلق</option><option>أرمل</option></select></div>
-      <div class="form-group"><label>الأولاد</label><input type="number" id="f_kids" placeholder="عدد الأولاد"></div>
-      <div class="form-group"><label>المدينة <span class="req">*</span></label><input type="text" id="f_city" placeholder="مدينتك"></div>
-      <div class="form-group"><label>مستوى الالتزام <span class="req">*</span></label><select id="f_commit"><option value="">اختر</option><option>ملتزم جداً (سلفي)</option><option>ملتزم</option><option>في طريق الالتزام</option><option>مسلم جديد</option></select></div>
-      <div class="form-group"><label>نبذة عني <span class="req">*</span></label><textarea id="f_about" placeholder="اكتب نبذة مختصرة عنك"></textarea></div>
-      <div class="form-group"><label>أبحث عن <span class="req">*</span></label><textarea id="f_seek" placeholder="صفات الشريك الذي تبحث عنه"></textarea></div>
+      <div class="form-group">
+        <label>الاسم (سري) <span class="req">*</span></label>
+        <input type="text" id="f_name" placeholder="اسمك الكامل">
+      </div>
+      <div class="form-group">
+        <label>الجنس <span class="req">*</span></label>
+        <select id="f_gender"><option value="">اختر</option><option value="male">ذكر</option><option value="female">أنثى</option></select>
+      </div>
+      <div class="form-group">
+        <label>العمر <span class="req">*</span></label>
+        <input type="number" id="f_age" placeholder="العمر">
+      </div>
+      <div class="form-group">
+        <label>الحالة <span class="req">*</span></label>
+        <select id="f_status"><option value="">اختر</option><option>أعزب</option><option>مطلق</option><option>أرمل</option></select>
+      </div>
+      <div class="form-group">
+        <label>الأولاد</label>
+        <input type="number" id="f_kids" placeholder="عدد الأولاد">
+      </div>
+      <div class="form-group">
+        <label>البلد <span class="req">*</span></label>
+        <select id="f_country"><option value="">اختر بلدك</option>
+          <option>الجزائر</option><option>المغرب</option><option>تونس</option><option>ليبيا</option>
+          <option>مصر</option><option>السودان</option><option>السعودية</option><option>الإمارات</option>
+          <option>قطر</option><option>الكويت</option><option>البحرين</option><option>عمان</option>
+          <option>اليمن</option><option>الأردن</option><option>سوريا</option><option>لبنان</option>
+          <option>العراق</option><option>فلسطين</option><option>تركيا</option><option>باكستان</option>
+          <option>أفغانستان</option><option>السند</option><option>إندونيسيا</option><option>ماليزيا</option>
+          <option>نيجيريا</option><option>مالي</option><option>تشاد</option><option>السنغال</option>
+          <option>النيجر</option><option>أوغندا</option><option>تنزانيا</option><option>جيبوتي</option>
+          <option>الصومال</option><option>جزر القمر</option><option>موريتانيا</option>
+          <option>فرنسا</option><option>ألمانيا</option><option>بريطانيا</option><option>بلجيكا</option>
+          <option>هولندا</option><option>إسبانيا</option><option>إيطاليا</option><option>السويد</option>
+          <option>أمريكا</option><option>كندا</option><option>أستراليا</option>
+          <option value="other">بلد آخر</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>المدينة <span class="req">*</span></label>
+        <input type="text" id="f_city" placeholder="مدينتك">
+      </div>
+      <div class="form-group">
+        <label>مستوى الالتزام <span class="req">*</span></label>
+        <select id="f_commit"><option value="">اختر</option><option>ملتزم جداً (سلفي)</option><option>ملتزم</option><option>في طريق الالتزام</option><option>مسلم جديد</option></select>
+      </div>
+      <div class="form-group">
+        <label>نبذة عني <span class="req">*</span></label>
+        <textarea id="f_about" placeholder="اكتب نبذة مختصرة عنك"></textarea>
+      </div>
+      <div class="form-group">
+        <label>أبحث عن <span class="req">*</span></label>
+        <textarea id="f_seek" placeholder="صفات الشريك الذي تبحث عنه"></textarea>
+      </div>
       <button class="form-submit" onclick="submitForm(event)">حفظ والبحث عن الموافق ✓</button>
       <div class="form-msg" id="formMsg"></div>
+    </div>
+  </div>
+
+  <!-- POST SIGNUP TEASER — appears after form submission -->
+  <div class="signup-success" id="signupSuccess">
+    <div class="section">
+      <div class="logo-section">
+        <img src="https://media.base44.com/images/public/6a920081a841164a49489c5f/64fed36dd_generated_image.png" alt="شعار فطرة وسكينة">
+      </div>
+      <h2>مرحباً بك في الرعيلِ الأول 🌿</h2>
+      <p class="sub">أنتَ الآن ضمن أوائلِ المنصةِ السلفيةِ للزواجِ الشرعي</p>
+    </div>
+
+    <div class="section">
+      <div class="world-banner">
+        <img src="https://media.base44.com/images/public/6a920081a841164a49489c5f/c4b8b6cc7_generated_image.png" alt="">
+        <h3>العالمُ الإسلاميُّ ينتظرُك</h3>
+        <p>من مكةَ إلى جاكرتا، ومن القاهرةِ إلى لندن — آلافُ السلفيين يبحثون عن شريكٍ على المنهج</p>
+      </div>
+
+      <div class="world-cities">
+        <div class="city-badge"><span class="city-flag">🇩🇿</span><span class="city-name">الجزائر</span><div class="city-count">127 مسجل</div></div>
+        <div class="city-badge"><span class="city-flag">🇸🇦</span><span class="city-name">السعودية</span><div class="city-count">89 مسجل</div></div>
+        <div class="city-badge"><span class="city-flag">🇪🇬</span><span class="city-name">مصر</span><div class="city-count">156 مسجل</div></div>
+        <div class="city-badge"><span class="city-flag">🇲🇦</span><span class="city-name">المغرب</span><div class="city-count">72 مسجل</div></div>
+        <div class="city-badge"><span class="city-flag">🇫🇷</span><span class="city-name">فرنسا</span><div class="city-count">43 مسجل</div></div>
+        <div class="city-badge"><span class="city-flag">🇾🇪</span><span class="city-name">اليمن</span><div class="city-count">38 مسجل</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <img class="feature-img" src="https://media.base44.com/images/public/6a920081a841164a49489c5f/b210f12e3_generated_image.png" alt="">
+      <h2 style="margin-top:14px">خطوتكَ التالية</h2>
+      <p class="sub">ما الذي يحدثُ بعد تسجيلك؟</p>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div><h4>المراجعةُ الشرعية</h4><p id="reviewMsg">فريقُنا الشرعيُّ يراجعُ ملفك خلال 48 ساعة</p></div></div>
+        <div class="step"><div class="step-num">2</div><div><h4>المطابقةُ الذكية</h4><p>نبحثُ عن الموافقِ لك بضوابطَ شرعيةٍ دقيقة</p></div></div>
+        <div class="step"><div class="step-num">3</div><div><h4>النظرةُ الشرعية</h4><p>4 ثوانٍ فقط بكاميرا آلية، بحضورِ الوليِّ أو المحرم</p></div></div>
+        <div class="step"><div class="step-num">4</div><div><h4>العقدُ على السنة</h4><p>بوليٍّ وصداقٍ وشهود — على كتابِ الله وسنةِ رسوله</p></div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="donation-card">
+        <h3>💡 هل تريدُ أنْ يكونَ أجرُكَ جارياً؟</h3>
+        <p>ساهم في تزويجِ المسلمين الذين لا يستطيعون. كلُّ تبرعٍ يُقسَّمُ على المسجلين، وكلُّ نكاحٍ يكونُ به إعانتك = صدقةٌ جاريةٌ لكَ ما دامَ الزواج</p>
+        <button class="donate-cta" onclick="window.open('https://wa.me/?text=' + encodeURIComponent('أريد المساهمة في إعانة المسلمين على الزواج — فطرة وسكينة'), '_blank')">ساهم الآن 💚</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <button class="form-submit" onclick="shareWhatsApp()" style="background:var(--green)">شارك المنصة مع إخوانك 📤</button>
     </div>
   </div>
 
@@ -322,18 +509,12 @@ body.content-mode{overflow-y:auto}
 </div>
 
 <script>
-// === KHUTBAH SYSTEM — Real Quran recitation by Abdul Basit ===
-// Each scene = a short khutbah: 2-3 sequential ayahs
-// Scene auto-advances when all ayahs finish
-
 const RECITER = "Abdul_Basit_Murattal_192kbps";
 const RECITER_FALLBACK = "Alafasy_128kbps";
-
 const TOTAL_SCENES = 4;
 
 const scenes = [
   {
-    // Scene 1: تكالب القوانين — Corruption from man-made laws
     ayahs: [
       { surah: 30, ayah: 41, text: "ظهرَ الفسادُ في البرِّ والبحرِ بما كسبتْ أيدي الناس", ref: "الروم — 41" },
       { surah: 30, ayah: 42, text: "قلْ سيروا في الأرضِ فانظروا كيفَ كانَ عاقبةُ الذينَ منْ قبلُ", ref: "الروم — 42" },
@@ -341,7 +522,6 @@ const scenes = [
     ]
   },
   {
-    // Scene 2: الهواتف والحرية الزائفة — False freedom, spiritual bankruptcy
     ayahs: [
       { surah: 20, ayah: 124, text: "ومنْ أعرضَ عنْ ذكري فإنَّ لهُ معيشةً ضنكاً", ref: "طه — 124" },
       { surah: 20, ayah: 125, text: "ونحشرُهُ يومَ القيامةِ أعمى قالَ ربِّ لِمَ حشرتني أعمى", ref: "طه — 125" },
@@ -349,26 +529,17 @@ const scenes = [
     ]
   },
   {
-    // Scene 3: العودة إلى الفطرة — Return to fitrah, marriage in Islam
     ayahs: [
       { surah: 30, ayah: 21, text: "ومنْ آياتهِ أنْ خلقَ لكمْ مِنْ أنفسكمْ أزواجاً لتسكنوا إليها وجعلَ بينكمْ مودةً ورحمةً", ref: "الروم — 21" },
       { surah: 24, ayah: 32, text: "وأنكحوا الأيامى منكمْ والصالحينَ منْ عبادكمْ وإمائكمْ إنْ يكونوا فقراءَ يُغنِهمُ اللهُ منْ فضلهِ", ref: "النور — 32" }
     ]
   },
   {
-    // Scene 4: العقد على السنة — The marriage contract
     ayahs: [
       { surah: 25, ayah: 74, text: "والذينَ يقولونَ ربنا هبْ لنا منْ أزواجنا وذرياتنا قرةَ أعينٍ واجعلنا للمتقينَ إماماً", ref: "الفرقان — 74" },
       { surah: 7, ayah: 189, text: "هوَ الذي خلقكمْ منْ نفسٍ واحدةٍ وجعلَ منها زوجها ليسكنَ إليها", ref: "الأعراف — 189" }
     ]
   }
-];
-
-const sceneTitles = [
-  "تكالبُ القوانين",
-  "الهواتفُ والحريةُ الزائفة",
-  "العودةُ إلى الفطرة",
-  "العقدُ على السنة"
 ];
 
 let currentScene = 0;
@@ -379,7 +550,6 @@ let currentAudio = null;
 let audioEnabled = true;
 let isTransitioning = false;
 
-// === START ===
 function startFilm() {
   document.getElementById('startScreen').classList.add('hide');
   setTimeout(() => {
@@ -402,7 +572,6 @@ function hideAllUI() {
   });
 }
 
-// === AUDIO INIT ===
 function initAudio() {
   try {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -410,23 +579,17 @@ function initAudio() {
   } catch(e) {}
 }
 
-// === SHOW SCENE ===
 function showScene(idx) {
   if (idx < 0 || idx >= TOTAL_SCENES) return;
   if (isTransitioning) return;
-  
   isTransitioning = true;
   stopAllAudio();
-  
   document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
   document.getElementById('scene' + idx).classList.add('active');
-  
   currentScene = idx;
   currentAyahIdx = 0;
   updateProgress();
   updateCounter();
-  
-  // Start ambient + first ayah after scene transition
   setTimeout(() => {
     isTransitioning = false;
     startAmbient(idx);
@@ -434,123 +597,74 @@ function showScene(idx) {
   }, 3000);
 }
 
-// === PLAY AYAH SEQUENCE — the core khutbah engine ===
 function playAyahSequence(sceneIdx, ayahIdx) {
   const scene = scenes[sceneIdx];
   if (!audioEnabled) {
-    // If audio disabled, use a timer to advance
     setTimeout(() => {
-      if (ayahIdx < scene.ayahs.length - 1) {
-        playAyahSequence(sceneIdx, ayahIdx + 1);
-      } else {
-        advanceScene();
-      }
+      if (ayahIdx < scene.ayahs.length - 1) playAyahSequence(sceneIdx, ayahIdx + 1);
+      else advanceScene();
     }, 8000);
     return;
   }
-  
-  if (ayahIdx >= scene.ayahs.length) {
-    // All ayahs for this scene finished → advance
-    advanceScene();
-    return;
-  }
-  
+  if (ayahIdx >= scene.ayahs.length) { advanceScene(); return; }
   const ayah = scene.ayahs[ayahIdx];
   currentAyahIdx = ayahIdx;
-  
-  // Update on-screen verse display
   updateVerseDisplay(sceneIdx, ayahIdx);
-  
   const surahStr = String(ayah.surah).padStart(3, '0');
   const ayahStr = String(ayah.ayah).padStart(3, '0');
   const url = `https://everyayah.com/data/${RECITER}/${surahStr}${ayahStr}.mp3`;
-  
   document.getElementById('waveform').classList.remove('idle');
-  
   currentAudio = new Audio(url);
   currentAudio.crossOrigin = 'anonymous';
-  
   currentAudio.onended = function() {
-    // Small pause between ayahs, then next ayah or advance scene
-    const pauseMs = 1200;
     setTimeout(() => {
-      if (ayahIdx < scene.ayahs.length - 1) {
-        playAyahSequence(sceneIdx, ayahIdx + 1);
-      } else {
-        advanceScene();
-      }
-    }, pauseMs);
+      if (ayahIdx < scene.ayahs.length - 1) playAyahSequence(sceneIdx, ayahIdx + 1);
+      else advanceScene();
+    }, 1200);
   };
-  
   currentAudio.onerror = function() {
-    // Fallback to Alafasy
     const fallbackUrl = `https://everyayah.com/data/${RECITER_FALLBACK}/${surahStr}${ayahStr}.mp3`;
     currentAudio = new Audio(fallbackUrl);
-    currentAudio.onended = currentAudio.onended;
     currentAudio.onended = function() {
       setTimeout(() => {
-        if (ayahIdx < scene.ayahs.length - 1) {
-          playAyahSequence(sceneIdx, ayahIdx + 1);
-        } else {
-          advanceScene();
-        }
+        if (ayahIdx < scene.ayahs.length - 1) playAyahSequence(sceneIdx, ayahIdx + 1);
+        else advanceScene();
       }, 1200);
     };
     currentAudio.onerror = function() {
-      // Skip this ayah, try next
-      if (ayahIdx < scene.ayahs.length - 1) {
-        setTimeout(() => playAyahSequence(sceneIdx, ayahIdx + 1), 1000);
-      } else {
-        advanceScene();
-      }
+      if (ayahIdx < scene.ayahs.length - 1) setTimeout(() => playAyahSequence(sceneIdx, ayahIdx + 1), 1000);
+      else advanceScene();
     };
     currentAudio.play().catch(() => {
-      if (ayahIdx < scene.ayahs.length - 1) {
-        setTimeout(() => playAyahSequence(sceneIdx, ayahIdx + 1), 2000);
-      } else {
-        advanceScene();
-      }
+      if (ayahIdx < scene.ayahs.length - 1) setTimeout(() => playAyahSequence(sceneIdx, ayahIdx + 1), 2000);
+      else advanceScene();
     });
   };
-  
   currentAudio.play().catch(() => {
-    // Try fallback
     const fallbackUrl = `https://everyayah.com/data/${RECITER_FALLBACK}/${surahStr}${ayahStr}.mp3`;
     currentAudio = new Audio(fallbackUrl);
     currentAudio.onended = function() {
       setTimeout(() => {
-        if (ayahIdx < scene.ayahs.length - 1) {
-          playAyahSequence(sceneIdx, ayahIdx + 1);
-        } else {
-          advanceScene();
-        }
+        if (ayahIdx < scene.ayahs.length - 1) playAyahSequence(sceneIdx, ayahIdx + 1);
+        else advanceScene();
       }, 1200);
     };
     currentAudio.onerror = function() {
-      if (ayahIdx < scene.ayahs.length - 1) {
-        setTimeout(() => playAyahSequence(sceneIdx, ayahIdx + 1), 1000);
-      } else {
-        advanceScene();
-      }
+      if (ayahIdx < scene.ayahs.length - 1) setTimeout(() => playAyahSequence(sceneIdx, ayahIdx + 1), 1000);
+      else advanceScene();
     };
     currentAudio.play().catch(() => {
-      if (ayahIdx < scene.ayahs.length - 1) {
-        setTimeout(() => playAyahSequence(sceneIdx, ayahIdx + 1), 2000);
-      } else {
-        advanceScene();
-      }
+      if (ayahIdx < scene.ayahs.length - 1) setTimeout(() => playAyahSequence(sceneIdx, ayahIdx + 1), 2000);
+      else advanceScene();
     });
   });
 }
 
-// === UPDATE VERSE DISPLAY ===
 function updateVerseDisplay(sceneIdx, ayahIdx) {
   const ayah = scenes[sceneIdx].ayahs[ayahIdx];
   const textEl = document.getElementById('ayahText' + sceneIdx);
   const refEl = document.getElementById('ayahRef' + sceneIdx);
-  
   if (textEl) {
-    // Fade transition
     textEl.style.opacity = '0';
     setTimeout(() => {
       textEl.textContent = ayah.text;
@@ -560,17 +674,12 @@ function updateVerseDisplay(sceneIdx, ayahIdx) {
   }
 }
 
-// === ADVANCE SCENE ===
 function advanceScene() {
   document.getElementById('waveform').classList.add('idle');
-  if (currentScene < TOTAL_SCENES - 1) {
-    setTimeout(() => nextScene(), 1500);
-  } else {
-    setTimeout(() => showEndScreen(), 2000);
-  }
+  if (currentScene < TOTAL_SCENES - 1) setTimeout(() => nextScene(), 1500);
+  else setTimeout(() => showEndScreen(), 2000);
 }
 
-// === AMBIENT SOUND ===
 function startAmbient(idx) {
   if (!audioCtx || !audioEnabled) return;
   try {
@@ -579,36 +688,27 @@ function startAmbient(idx) {
       ambientNode.gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.5);
       setTimeout(() => { try { ambientNode.osc.stop(); } catch(e){} }, 600);
     }
-    
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     const filter = audioCtx.createBiquadFilter();
-    
     osc.type = idx < 2 ? 'sine' : 'triangle';
     osc.frequency.value = idx < 2 ? 55 : 80;
     filter.type = 'lowpass';
     filter.frequency.value = 140;
-    
     gain.gain.setValueAtTime(0, audioCtx.currentTime);
     gain.gain.linearRampToValueAtTime(0.02, audioCtx.currentTime + 5);
-    
     osc.connect(filter);
     filter.connect(gain);
     gain.connect(audioCtx.destination);
     osc.start();
-    
     ambientNode = { osc, gain, filter };
   } catch(e) {}
 }
 
-// === STOP ALL AUDIO ===
 function stopAllAudio() {
-  if (currentAudio) {
-    try { currentAudio.pause(); currentAudio.onended = null; currentAudio = null; } catch(e){}
-  }
+  if (currentAudio) { try { currentAudio.pause(); currentAudio.onended = null; currentAudio = null; } catch(e){} }
   if (ambientNode) {
-    try {
-      ambientNode.gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.5);
+    try { ambientNode.gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.5);
       setTimeout(() => { try { ambientNode.osc.stop(); } catch(e){} }, 600);
     } catch(e){}
     ambientNode = null;
@@ -616,21 +716,10 @@ function stopAllAudio() {
   document.getElementById('waveform').classList.add('idle');
 }
 
-// === NAVIGATION ===
-function nextScene() {
-  if (currentScene < TOTAL_SCENES - 1) showScene(currentScene + 1);
-  else showEndScreen();
-}
+function nextScene() { if (currentScene < TOTAL_SCENES - 1) showScene(currentScene + 1); else showEndScreen(); }
+function prevScene() { if (currentScene > 0) showScene(currentScene - 1); }
+function skipAll() { showEndScreen(); }
 
-function prevScene() {
-  if (currentScene > 0) showScene(currentScene - 1);
-}
-
-function skipAll() {
-  showEndScreen();
-}
-
-// === END SCREEN ===
 function showEndScreen() {
   stopAllAudio();
   document.getElementById('cinema').style.display = 'none';
@@ -642,18 +731,17 @@ function showEndScreen() {
   document.getElementById('content').scrollTop = 0;
 }
 
-// === REPLAY ===
 function replayFilm() {
   document.getElementById('shareBtn').classList.remove('show');
   document.getElementById('replayBtn').classList.remove('show');
   document.getElementById('content').classList.remove('show');
+  document.getElementById('signupSuccess').classList.remove('show');
   document.body.classList.remove('content-mode');
   document.getElementById('cinema').style.display = 'block';
   showAllUI();
   showScene(0);
 }
 
-// === PROGRESS ===
 function updateProgress() {
   const prog = document.getElementById('progress');
   prog.innerHTML = '';
@@ -668,13 +756,11 @@ function updateCounter() {
   document.getElementById('counter').textContent = (currentScene + 1) + ' / ' + TOTAL_SCENES;
 }
 
-// === TOGGLE AUDIO ===
 function toggleAudio() {
   audioEnabled = !audioEnabled;
   document.getElementById('audioBtn').textContent = audioEnabled ? '🔊' : '🔇';
-  if (!audioEnabled) {
-    stopAllAudio();
-  } else {
+  if (!audioEnabled) stopAllAudio();
+  else {
     if (document.getElementById('cinema').style.display !== 'none') {
       initAudio();
       startAmbient(currentScene);
@@ -683,20 +769,20 @@ function toggleAudio() {
   }
 }
 
-// === SHARE ===
 function shareWhatsApp() {
   const url = window.location.href;
   const text = 'فطرة وسكينة — منصة الزواج الشرعي السلفي\nرحلة سينمائية من الانهيار إلى العودة\nشاهد وشارك:\n' + url;
   window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
 }
 
-// === FORM VALIDATION ===
+// === FORM VALIDATION with gender-aware success message ===
 function submitForm(e) {
   e.preventDefault();
   const required = [
     { id: 'f_name', label: 'الاسم' }, { id: 'f_gender', label: 'الجنس' },
     { id: 'f_age', label: 'العمر' }, { id: 'f_status', label: 'الحالة' },
-    { id: 'f_city', label: 'المدينة' }, { id: 'f_commit', label: 'مستوى الالتزام' },
+    { id: 'f_country', label: 'البلد' }, { id: 'f_city', label: 'المدينة' },
+    { id: 'f_commit', label: 'مستوى الالتزام' },
     { id: 'f_about', label: 'نبذة عني' }, { id: 'f_seek', label: 'أبحث عن' }
   ];
   let errors = [], firstError = null;
@@ -721,12 +807,25 @@ function submitForm(e) {
     document.getElementById('f_age').focus();
     return;
   }
+
+  // Gender-aware success message
+  const gender = document.getElementById('f_gender').value;
   msg.classList.add('success');
-  msg.textContent = '✓ تم حفظ بياناتك بنجاح. سيتم التواصل معك عبر وليك الشرعي.';
+  if (gender === 'female') {
+    msg.textContent = '✓ تم حفظ بياناتكِ بنجاح. سنتواصل مع وليكِ الشرعي للمراجعة والمطابقة. حفظ اللهُ لكِ سترك.';
+  } else {
+    msg.textContent = '✓ تم حفظ بياناتك بنجاح. سيتواصل معك فريقنا الشرعي خلال 48 ساعة للمراجعة. أعانك الله على طاعته.';
+  }
   msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  // Show post-signup teaser after 2 seconds
+  setTimeout(() => {
+    const teaser = document.getElementById('signupSuccess');
+    teaser.classList.add('show');
+    teaser.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 2500);
 }
 
-// === KEYBOARD ===
 document.addEventListener('keydown', function(e) {
   if (document.getElementById('cinema').style.display === 'none') return;
   if (e.key === 'ArrowLeft') nextScene();
