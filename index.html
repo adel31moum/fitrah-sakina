@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>فطرة وسكينة — منصة الزواج الشرعي</title>
+<meta name="description" content="فطرة وسكينة — منصة الزواج الشرعي السلفي العالمية. زواج على كتاب الله وسنة رسوله بولاية وصداق وشهود. لا اختلاط، لا صور نساء، نظرة شرعية 4 ثوانٍ بحضور الولي.">
+<meta name="keywords" content="زواج شرعي, زواج سلفي, نكاح, إعانة الزواج, منصة زواج إسلامية, فطرة وسكينة, Islamic marriage, Salafi marriage, halal matchmaking">
+<meta property="og:title" content="فطرة وسكينة — منصة الزواج الشرعي السلفي">
+<meta property="og:description" content="زواجٌ على كتاب الله وسنة رسوله. لا اختلاط. نظرة شرعية. إعانة المسلمين على الزواج.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://media.base44.com/images/public/6a920081a841164a49489c5f/64fed36dd_generated_image.png">
+<meta property="og:locale" content="ar_AR">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{--gold:#d4af37;--amber:#e69138;--dark:#0a0810;--green:#25d366;--card:#1a1622;--red:#e74c3c}
@@ -137,9 +144,19 @@ body.content-mode{overflow-y:auto}
 .donation-card .donate-feature .df-icon{font-size:28px;flex-shrink:0}
 .donation-card .donate-feature h4{font-size:13px;color:var(--gold);margin-bottom:3px}
 .donation-card .donate-feature p{font-size:12px;text-align:initial;color:rgba(255,255,255,0.5)}
+.donate-amt{background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.3);color:var(--green);padding:10px 20px;border-radius:10px;font-size:14px;cursor:pointer;font-family:inherit;transition:all 0.2s;min-height:44px;-webkit-appearance:none}
+.donate-amt:active{transform:scale(0.95)}
+.donate-amt:hover{background:rgba(37,211,102,0.2)}
+
 .donation-card .donate-cta{display:block;width:100%;background:var(--green);color:#fff;border:none;padding:14px;border-radius:12px;font-size:15px;cursor:pointer;font-family:inherit;margin-top:10px;text-align:center;-webkit-appearance:none;min-height:48px}
 .donation-card .donate-cta:active{transform:scale(0.97)}
 .donation-card .donate-ref{font-size:11px;color:var(--amber);text-align:center;margin-top:10px}
+
+.sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:45;background:linear-gradient(to top,rgba(10,8,16,0.98),rgba(10,8,16,0.9));padding:12px 20px;display:none;align-items:center;justify-content:center;gap:10px;backdrop-filter:blur(10px);border-top:1px solid rgba(212,175,55,0.15)}
+.sticky-cta.show{display:flex}
+.sticky-cta button{background:var(--amber);color:#fff;border:none;padding:12px 32px;border-radius:50px;font-size:15px;cursor:pointer;font-family:inherit;box-shadow:0 4px 16px rgba(230,145,56,0.4);min-height:44px;-webkit-appearance:none}
+.sticky-cta button:active{transform:scale(0.96)}
+
 
 /* POST-SIGNUP TEASER */
 .signup-success{display:none;animation:fadeIn 0.8s}
@@ -292,7 +309,7 @@ body.content-mode{overflow-y:auto}
     <img class="feature-img" src="https://media.base44.com/images/public/6a920081a841164a49489c5f/989d6ac1d_generated_image.png" alt="">
     <div class="impact-banner" style="border-color:rgba(212,175,55,0.2)">
       <h2 style="color:var(--gold);font-size:18px">انهيارُ الأسرةِ في العالم</h2>
-      <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.8;margin-top:8px">طلاقٌ متزايد، أطفالٌ مشردون، عزلةٌ ووحشةٌ في ظلِّ قوانينَ abandoned الفطرة. الحلُّ ليس في محكمة، بل في العودةِ إلى شرعِ الله</p>
+      <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.8;margin-top:8px">طلاقٌ متزايد، أطفالٌ مشردون، عزلةٌ ووحشةٌ في ظلِّ قوانينَ غَلَبَتْ الفطرة. الحلُّ ليس في محكمة، بل في العودةِ إلى شرعِ الله</p>
     </div>
   </div>
 
@@ -305,6 +322,17 @@ body.content-mode{overflow-y:auto}
     </div>
   </div>
 
+  <!-- TRUST BADGES -->
+  <div class="section">
+    <h2>لماذا فطرة وسكينة؟</h2>
+    <p class="sub">لسنا تطبيق مواعدة. نحن منصةُ نكاحٍ شرعيٍّ بضوابطَ دقيقة</p>
+    <div class="rules">
+      <div class="rule"><div class="icon">🔒</div><h4>بياناتٌ سرية</h4><p>لا تُطّلعُ إلا من قِبَل الولي والفريق الشرعي</p></div>
+      <div class="rule"><div class="icon">🧕</div><h4>لا اختلاط</h4><p>تواصلٌ بين الأولياء فقط — لا محادثاتٍ مباشرة</p></div>
+      <div class="rule"><div class="icon">⚖️</div><h4>مراجعةٌ شرعية</h4><p>كل ملفٍ يمر على علماءٍ وطلابِ علم</p></div>
+      <div class="rule"><div class="icon">🌍</div><h4>انتشارٌ عالمي</h4><p>من الجزائر إلى أستراليا — لكل سلفيٍّ مكان</p></div>
+    </div>
+  </div>
   <!-- COMPARISON -->
   <div class="section">
     <div class="badge-wrap"><span class="badge-first">🌿 الرعيل الأول</span></div>
@@ -356,7 +384,7 @@ body.content-mode{overflow-y:auto}
     <h2>إعانةُ المسلمين على الزواج</h2>
     <p class="sub">صدقةٌ جاريةٌ تُوصِلُكَ إلى الأجرِ وتُيسِّرُ النكاح</p>
     <div class="donation-card">
-      <img src="https://media.base44.com/images/public/6a920081a841164a49489c5f/c6af11251_generated_image.png" alt="" style="width:100%;border-radius:12px;margin-bottom:14px">
+      <img src="https://media.base44.com/images/public/6a920081a841164a49489c5f/9b379ac46_generated_image.png" alt="" style="width:100%;border-radius:12px;margin-bottom:14px">
       <h3>ساهم في تزويجِ المسلمين</h3>
       <p>كلُّ دينارٍ تتبرعُ به يُقسَّمُ على المسجلينَ الذينَ لا يستطيعونَ المهر. أنتَ تُعينُ على إعفافِ المسلم، والصدقةُ جاريةٌ ما دامَ النكاحُ قائماً</p>
       <div class="donate-feature">
@@ -371,7 +399,14 @@ body.content-mode{overflow-y:auto}
         <div class="df-icon">💎</div>
         <div><h4>صدقةٌ جارية</h4><p>كلُّ نكاحٍ تُعينُ فيه = أجرٌ يستمرُّ ما دامَ الزواج</p></div>
       </div>
-      <button class="donate-cta" onclick="window.open('https://wa.me/?text=' + encodeURIComponent('أريد المساهمة في إعانة المسلمين على الزواج — فطرة وسكينة'), '_blank')">ساهم بتبرعٍ現在 💚</button>
+      <!-- suggested amounts -->
+      <div style="display:flex;gap:8px;justify-content:center;margin:14px 0;flex-wrap:wrap">
+        <button class="donate-amt" onclick="donate(50)">50 €</button>
+        <button class="donate-amt" onclick="donate(100)">100 €</button>
+        <button class="donate-amt" onclick="donate(200)">200 €</button>
+        <button class="donate-amt" onclick="donate(500)">500 €</button>
+      </div>
+      <button class="donate-cta" onclick="donate(0)">ساهم بمبلغٍ تختاره 💚</button>
       <p class="donate-ref">«ومنْ يتقِ اللهَ يجعلْ لهُ مخرجاً ويرزقْهُ منْ حيثُ لا يحتسبُ» — الطلاق 2-3</p>
     </div>
   </div>
@@ -422,7 +457,7 @@ body.content-mode{overflow-y:auto}
           <option>قطر</option><option>الكويت</option><option>البحرين</option><option>عمان</option>
           <option>اليمن</option><option>الأردن</option><option>سوريا</option><option>لبنان</option>
           <option>العراق</option><option>فلسطين</option><option>تركيا</option><option>باكستان</option>
-          <option>أفغانستان</option><option>السند</option><option>إندونيسيا</option><option>ماليزيا</option>
+          <option>أفغانستان</option><option>إندونيسيا</option><option>ماليزيا</option>
           <option>نيجيريا</option><option>مالي</option><option>تشاد</option><option>السنغال</option>
           <option>النيجر</option><option>أوغندا</option><option>تنزانيا</option><option>جيبوتي</option>
           <option>الصومال</option><option>جزر القمر</option><option>موريتانيا</option>
@@ -447,6 +482,9 @@ body.content-mode{overflow-y:auto}
       <div class="form-group">
         <label>أبحث عن <span class="req">*</span></label>
         <textarea id="f_seek" placeholder="صفات الشريك الذي تبحث عنه"></textarea>
+      </div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.35);text-align:center;margin-top:10px;line-height:1.7">
+        🔒 بياناتك محميةٌ لا تُشاركُ إلا مع الوليِّ الشرعي والفريقِ المختص. لا اختلاط، لا محادثاتٍ مباشرة.
       </div>
       <button class="form-submit" onclick="submitForm(event)">حفظ والبحث عن الموافق ✓</button>
       <div class="form-msg" id="formMsg"></div>
@@ -496,7 +534,7 @@ body.content-mode{overflow-y:auto}
       <div class="donation-card">
         <h3>💡 هل تريدُ أنْ يكونَ أجرُكَ جارياً؟</h3>
         <p>ساهم في تزويجِ المسلمين الذين لا يستطيعون. كلُّ تبرعٍ يُقسَّمُ على المسجلين، وكلُّ نكاحٍ يكونُ به إعانتك = صدقةٌ جاريةٌ لكَ ما دامَ الزواج</p>
-        <button class="donate-cta" onclick="window.open('https://wa.me/?text=' + encodeURIComponent('أريد المساهمة في إعانة المسلمين على الزواج — فطرة وسكينة'), '_blank')">ساهم الآن 💚</button>
+        <button class="donate-cta" onclick="donate(0)">ساهم بمبلغٍ تختاره 💚</button>
       </div>
     </div>
 
@@ -721,6 +759,7 @@ function prevScene() { if (currentScene > 0) showScene(currentScene - 1); }
 function skipAll() { showEndScreen(); }
 
 function showEndScreen() {
+  document.getElementById('stickyCta').classList.add('show');
   stopAllAudio();
   document.getElementById('cinema').style.display = 'none';
   hideAllUI();
@@ -732,6 +771,7 @@ function showEndScreen() {
 }
 
 function replayFilm() {
+  document.getElementById('stickyCta').classList.remove('show');
   document.getElementById('shareBtn').classList.remove('show');
   document.getElementById('replayBtn').classList.remove('show');
   document.getElementById('content').classList.remove('show');
@@ -769,9 +809,14 @@ function toggleAudio() {
   }
 }
 
+function donate(amount) {
+  var msg = amount > 0 ? 'أريد المساهمة بـ ' + amount + ' يورو في إعانة المسلمين على الزواج — فطرة وسكينة' : 'أريد المساهمة في إعانة المسلمين على الزواج — فطرة وسكينة';
+  window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+}
+
 function shareWhatsApp() {
   const url = window.location.href;
-  const text = 'فطرة وسكينة — منصة الزواج الشرعي السلفي\nرحلة سينمائية من الانهيار إلى العودة\nشاهد وشارك:\n' + url;
+  const text = '🌿 فطرة وسكينة — منصة الزواج الشرعي السلفي\n\nزرتُ موقعاً يصنعُ الفرق:\n✅ زواجٌ بولايةٍ وصداقٍ وشهود\n✅ لا اختلاط — تواصلٌ بين الأولياء فقط\n✅ نظرةٌ شرعيةٌ 4 ثوانٍ بحضورِ المحرم\n✅ مراجعةٌ شرعيةٌ لكل ملف\n✅ إعانةُ المسلمين على الزواج\n\nشاهد وشارك:\n' + url;
   window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
 }
 
@@ -826,6 +871,19 @@ function submitForm(e) {
   }, 2500);
 }
 
+// Sticky CTA scroll logic
+const contentEl = document.getElementById('content');
+contentEl.addEventListener('scroll', function() {
+  if (!contentEl.classList.contains('show')) return;
+  const formEl = document.querySelector('.form');
+  if (!formEl) return;
+  const formRect = formEl.getBoundingClientRect();
+  if (formRect.bottom < 0 && !document.getElementById('signupSuccess').classList.contains('show')) {
+    document.getElementById('stickyCta').classList.add('show');
+  } else {
+    document.getElementById('stickyCta').classList.remove('show');
+  }
+});
 document.addEventListener('keydown', function(e) {
   if (document.getElementById('cinema').style.display === 'none') return;
   if (e.key === 'ArrowLeft') nextScene();
@@ -834,5 +892,6 @@ document.addEventListener('keydown', function(e) {
   if (e.key === ' ') { e.preventDefault(); toggleAudio(); }
 });
 </script>
+<div class="sticky-cta" id="stickyCta"><button onclick="document.getElementById('f_name').scrollIntoView({behavior:'smooth'});">سجّل الآن — مجاناً ✓</button></div>
 </body>
 </html>
