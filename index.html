@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>فطرة وسكينة — منصة الزواج الشرعي</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{--gold:#d4af37;--amber:#e69138;--dark:#0a0810;--green:#25d366;--card:#1a1622;--red:#e74c3c}
-html,body{height:100%;overflow:hidden;background:var(--dark);font-family:'Segoe UI',system-ui,sans-serif;color:#fff}
+html,body{height:100%;background:var(--dark);font-family:'Segoe UI',system-ui,sans-serif;color:#fff}
+body{overflow:hidden}
+body.content-mode{overflow-y:auto}
 
 /* === ISLAMIC PATTERN OVERLAY === */
 .islamic-pattern{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23d4af37' stroke-width='1'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30 Z'/%3E%3Cpath d='M30 10 L50 30 L30 50 L10 30 Z'/%3E%3Ccircle cx='30' cy='30' r='8'/%3E%3C/g%3E%3C/svg%3E")}
@@ -32,39 +34,42 @@ html,body{height:100%;overflow:hidden;background:var(--dark);font-family:'Segoe 
 .overlay-warm{background:radial-gradient(ellipse at center,rgba(212,175,55,0.08) 0%,rgba(10,8,16,0.35) 60%,rgba(10,8,16,0.82) 100%)}
 .overlay-fade{background:linear-gradient(to bottom,rgba(10,8,16,0.5) 0%,transparent 25%,transparent 55%,rgba(10,8,16,0.85) 100%)}
 
-/* === VISIBLE SCENE TITLE (Islamic branding) === */
-.scene-title{position:absolute;bottom:120px;left:50%;transform:translateX(-50%);z-index:5;text-align:center;pointer-events:none;width:90%;max-width:500px}
-.scene-title h2{font-size:28px;color:var(--gold);font-weight:700;margin-bottom:8px;text-shadow:0 2px 20px rgba(0,0,0,0.8);letter-spacing:1px}
+/* === VISIBLE SCENE TITLE === */
+.scene-title{position:absolute;bottom:130px;left:50%;transform:translateX(-50%);z-index:5;text-align:center;pointer-events:none;width:90%;max-width:500px}
+.scene-title h2{font-size:28px;color:var(--gold);font-weight:700;margin-bottom:8px;text-shadow:0 2px 20px rgba(0,0,0,0.8);letter-spacing:0}
 .scene-title .verse{font-size:15px;color:rgba(255,255,255,0.75);line-height:1.8;text-shadow:0 1px 10px rgba(0,0,0,0.9);max-width:400px;margin:0 auto}
 .scene-title .ref{font-size:12px;color:var(--amber);margin-top:6px;text-shadow:0 1px 8px rgba(0,0,0,0.9)}
 .scene-title .deco{font-size:20px;color:var(--gold);opacity:0.5;margin:6px 0}
 
-/* === BRAND BADGE (top center, always visible) === */
-.brand-badge{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:35;font-size:14px;color:var(--gold);background:rgba(26,22,34,0.85);padding:6px 18px;border-radius:20px;backdrop-filter:blur(10px);border:1px solid rgba(212,175,55,0.2);font-weight:600;letter-spacing:1px;display:none}
+/* === BRAND BADGE === */
+.brand-badge{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:35;font-size:13px;color:var(--gold);background:rgba(26,22,34,0.85);padding:6px 16px;border-radius:20px;backdrop-filter:blur(10px);border:1px solid rgba(212,175,55,0.2);font-weight:600;letter-spacing:0;display:none}
 .brand-badge.show{display:block}
 
-/* === CONTROLS === */
-.controls{position:fixed;top:52px;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:6px;align-items:center;direction:ltr;display:none}
+/* === CONTROLS — bigger, more touchable === */
+.controls{position:fixed;top:50px;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:8px;align-items:center;direction:ltr;display:none}
 .controls.show{display:flex}
-.btn{background:rgba(26,22,34,0.85);border:1px solid rgba(212,175,55,0.3);color:#fff;padding:7px 12px;border-radius:24px;font-size:12px;cursor:pointer;transition:all 0.3s;backdrop-filter:blur(10px);display:flex;align-items:center;gap:4px;font-family:inherit;white-space:nowrap}
-.btn:hover{background:var(--amber);border-color:var(--amber)}
-.btn-skip{background:rgba(230,145,56,0.85);border-color:var(--amber)}
-.btn-audio{border-radius:50%;padding:7px 10px;font-size:14px;min-width:32px}
-.btn-prev{padding:7px 10px;font-size:14px;min-width:32px}
+.btn{background:rgba(26,22,34,0.9);border:1px solid rgba(212,175,55,0.3);color:#fff;padding:10px 16px;border-radius:30px;font-size:14px;cursor:pointer;transition:all 0.2s;backdrop-filter:blur(10px);display:flex;align-items:center;gap:6px;font-family:inherit;white-space:nowrap;min-height:44px;-webkit-appearance:none;touch-action:manipulation}
+.btn:active{transform:scale(0.92);background:var(--amber)}
+.btn:hover{background:rgba(230,145,56,0.9);border-color:var(--amber)}
+.btn-skip{background:rgba(230,145,56,0.9);border-color:var(--amber);font-weight:600}
+.btn-skip:active{transform:scale(0.92)}
+.btn-next{background:rgba(230,145,56,0.85);border-color:var(--amber);font-weight:600}
+.btn-audio{border-radius:50%;padding:10px 12px;font-size:16px;min-width:44px;min-height:44px}
+.btn-prev{padding:10px 14px;font-size:18px;min-width:44px;min-height:44px}
 
 /* === PROGRESS === */
-.progress{position:fixed;top:92px;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:6px;direction:ltr;display:none}
+.progress{position:fixed;top:106px;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:6px;direction:ltr;display:none}
 .progress.show{display:flex}
 .dot{width:24px;height:3px;border-radius:2px;background:rgba(255,255,255,0.2);transition:all 0.3s}
 .dot.active{background:var(--gold);width:40px}
 .dot.done{background:rgba(212,175,55,0.5)}
 
 /* === COUNTER === */
-.counter{position:fixed;top:16px;right:16px;z-index:30;font-size:12px;color:rgba(255,255,255,0.55);background:rgba(26,22,34,0.8);padding:5px 10px;border-radius:20px;backdrop-filter:blur(10px);direction:ltr;font-variant-numeric:tabular-nums;display:none}
+.counter{position:fixed;top:14px;right:16px;z-index:30;font-size:12px;color:rgba(255,255,255,0.55);background:rgba(26,22,34,0.8);padding:5px 10px;border-radius:20px;backdrop-filter:blur(10px);direction:ltr;font-variant-numeric:tabular-nums;display:none}
 .counter.show{display:block}
 
 /* === AUDIO WAVEFORM === */
-.waveform{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:3px;align-items:flex-end;height:20px;direction:ltr;display:none}
+.waveform{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:3px;align-items:flex-end;height:20px;direction:ltr;display:none}
 .waveform.show{display:flex}
 .bar{width:3px;background:var(--gold);border-radius:2px;animation:wave 0.8s ease-in-out infinite alternate}
 .bar:nth-child(1){animation-delay:0s;height:7px}
@@ -75,31 +80,42 @@ html,body{height:100%;overflow:hidden;background:var(--dark);font-family:'Segoe 
 @keyframes wave{0%{height:3px}100%{height:20px}}
 .waveform.idle .bar{animation:none;height:5px;opacity:0.3}
 
+/* === NARRATION SUBTITLE (live caption) === */
+.subtitle{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);z-index:28;max-width:90%;width:500px;text-align:center;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.9;text-shadow:0 2px 12px rgba(0,0,0,0.9);background:rgba(10,8,16,0.6);padding:12px 20px;border-radius:12px;backdrop-filter:blur(8px);border:1px solid rgba(212,175,55,0.1);display:none;opacity:0;transition:opacity 0.5s}
+.subtitle.show{display:block;opacity:1}
+
 /* === SHARE BUTTON === */
-.share-btn{position:fixed;bottom:60px;left:50%;transform:translateX(-50%);z-index:40;background:var(--green);color:#fff;border:none;padding:14px 32px;border-radius:50px;font-size:15px;cursor:pointer;display:none;align-items:center;gap:8px;font-family:inherit;box-shadow:0 4px 20px rgba(37,211,102,0.4);animation:pulseShare 2s ease-in-out infinite}
+.share-btn{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:40;background:var(--green);color:#fff;border:none;padding:16px 36px;border-radius:50px;font-size:16px;cursor:pointer;display:none;align-items:center;gap:8px;font-family:inherit;box-shadow:0 4px 20px rgba(37,211,102,0.4);animation:pulseShare 2s ease-in-out infinite;min-height:50px;-webkit-appearance:none}
 .share-btn.show{display:flex}
+.share-btn:active{transform:translateX(-50%) scale(0.95)}
 @keyframes pulseShare{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.05)}}
+
+/* === REPLAY BUTTON === */
+.replay-btn{position:fixed;bottom:140px;left:50%;transform:translateX(-50%);z-index:40;background:rgba(26,22,34,0.9);color:var(--gold);border:1px solid rgba(212,175,55,0.3);padding:12px 28px;border-radius:50px;font-size:14px;cursor:pointer;display:none;align-items:center;gap:6px;font-family:inherit;backdrop-filter:blur(10px);min-height:44px;-webkit-appearance:none}
+.replay-btn.show{display:flex}
+.replay-btn:active{transform:translateX(-50%) scale(0.95)}
 
 /* === EXPERT BADGE === */
 .expert-badge{position:fixed;bottom:24px;right:16px;z-index:30;background:rgba(26,22,34,0.9);border:1px solid rgba(212,175,55,0.2);color:#fff;padding:7px 12px;border-radius:20px;font-size:11px;display:flex;align-items:center;gap:5px;backdrop-filter:blur(10px);display:none}
 .expert-badge.show{display:flex}
 
 /* === WHATSAPP FLOAT === */
-.wa-float{position:fixed;bottom:24px;left:16px;z-index:30;width:44px;height:44px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;box-shadow:0 2px 12px rgba(37,211,102,0.3);display:none}
+.wa-float{position:fixed;bottom:24px;left:16px;z-index:30;width:48px;height:48px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;box-shadow:0 2px 12px rgba(37,211,102,0.3);display:none}
 .wa-float.show{display:flex}
+.wa-float:active{transform:scale(0.9)}
 
 /* === START SCREEN === */
 .start-screen{position:fixed;inset:0;z-index:50;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity 1.2s}
 .start-screen.hide{opacity:0;pointer-events:none}
-.start-logo{font-size:36px;color:var(--gold);font-weight:700;text-align:center;letter-spacing:3px}
+.start-logo{font-size:36px;color:var(--gold);font-weight:700;text-align:center;letter-spacing:2px}
 .start-sub{font-size:15px;color:rgba(255,255,255,0.55);text-align:center;max-width:340px;line-height:1.9}
 .start-tag{font-size:13px;color:var(--amber);background:rgba(230,145,56,0.1);padding:6px 18px;border-radius:20px;border:1px solid rgba(230,145,56,0.2)}
-.start-btn{background:var(--amber);color:#fff;border:none;padding:16px 48px;border-radius:50px;font-size:18px;cursor:pointer;font-family:inherit;box-shadow:0 4px 24px rgba(230,145,56,0.4);transition:transform 0.3s}
-.start-btn:hover{transform:scale(1.05)}
+.start-btn{background:var(--amber);color:#fff;border:none;padding:16px 48px;border-radius:50px;font-size:18px;cursor:pointer;font-family:inherit;box-shadow:0 4px 24px rgba(230,145,56,0.4);transition:transform 0.3s;min-height:52px;-webkit-appearance:none}
+.start-btn:active{transform:scale(0.95)}
 .audio-hint{font-size:12px;color:var(--gold);opacity:0.6}
 
 /* === CONTENT SECTION === */
-.content{position:fixed;inset:0;z-index:20;overflow-y:auto;background:var(--dark);display:none;padding-top:20px}
+.content{position:fixed;inset:0;z-index:20;overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--dark);display:none;padding-top:20px}
 .content.show{display:block}
 
 .section{padding:36px 20px;max-width:600px;margin:0 auto}
@@ -133,12 +149,13 @@ html,body{height:100%;overflow:hidden;background:var(--dark);font-family:'Segoe 
 .form-group{margin-bottom:14px}
 .form-group label{display:block;font-size:12px;color:rgba(255,255,255,0.55);margin-bottom:4px}
 .form-group label .req{color:var(--red)}
-.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px;color:#fff;font-size:14px;font-family:inherit}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px;color:#fff;font-size:14px;font-family:inherit;min-height:44px}
 .form-group input.error,.form-group select.error,.form-group textarea.error{border-color:var(--red);background:rgba(231,76,60,0.05)}
-.form-group textarea{height:60px;resize:none}
-.form-submit{width:100%;background:var(--amber);color:#fff;border:none;padding:14px;border-radius:12px;font-size:16px;cursor:pointer;font-family:inherit;margin-top:8px}
+.form-group textarea{height:70px;resize:none}
+.form-submit{width:100%;background:var(--amber);color:#fff;border:none;padding:16px;border-radius:12px;font-size:16px;cursor:pointer;font-family:inherit;margin-top:8px;min-height:50px;-webkit-appearance:none}
+.form-submit:active{transform:scale(0.97)}
 .form-submit:hover{background:#f0a050}
-.form-msg{text-align:center;margin-top:12px;font-size:13px;padding:10px;border-radius:8px;display:none}
+.form-msg{text-align:center;margin-top:12px;font-size:13px;padding:12px;border-radius:8px;display:none}
 .form-msg.error{display:block;background:rgba(231,76,60,0.15);color:var(--red);border:1px solid rgba(231,76,60,0.3)}
 .form-msg.success{display:block;background:rgba(37,211,102,0.15);color:var(--green);border:1px solid rgba(37,211,102,0.3)}
 
@@ -151,12 +168,14 @@ html,body{height:100%;overflow:hidden;background:var(--dark);font-family:'Segoe 
 @media(max-width:480px){
   .compare{grid-template-columns:1fr}
   .rules{grid-template-columns:1fr 1fr}
-  .btn{font-size:10px;padding:5px 9px}
+  .btn{font-size:12px;padding:8px 12px;gap:4px}
   .section{padding:28px 14px}
   .start-logo{font-size:28px}
   .start-sub{font-size:13px}
   .scene-title h2{font-size:22px}
   .scene-title .verse{font-size:13px}
+  .subtitle{font-size:13px;padding:10px 14px}
+  .share-btn{padding:14px 28px;font-size:14px}
 }
 </style>
 </head>
@@ -234,12 +253,15 @@ html,body{height:100%;overflow:hidden;background:var(--dark);font-family:'Segoe 
 
 </div>
 
+<!-- LIVE SUBTITLE (narration caption) -->
+<div class="subtitle" id="subtitle"></div>
+
 <!-- CONTROLS -->
 <div class="controls" id="controls">
-  <button class="btn btn-audio" onclick="toggleAudio()" id="audioBtn">🔊</button>
-  <button class="btn btn-prev" onclick="prevScene()">‹</button>
-  <button class="btn" onclick="nextScene()">التالي ❯</button>
-  <button class="btn btn-skip" onclick="skipAll()">تخطي ⏭</button>
+  <button class="btn btn-audio" onclick="toggleAudio()" id="audioBtn" aria-label="الصوت">🔊</button>
+  <button class="btn btn-prev" onclick="prevScene()" aria-label="السابق">‹</button>
+  <button class="btn btn-next" onclick="nextScene()" aria-label="التالي">التالي ❯</button>
+  <button class="btn btn-skip" onclick="skipAll()" aria-label="تخطي">تخطي ⏭</button>
 </div>
 
 <!-- PROGRESS -->
@@ -257,10 +279,13 @@ html,body{height:100%;overflow:hidden;background:var(--dark);font-family:'Segoe 
 <div class="expert-badge" id="expertBadge">7 خبراء 🧠</div>
 
 <!-- WHATSAPP FLOAT -->
-<div class="wa-float" id="waFloat" onclick="shareWhatsApp()">💬</div>
+<div class="wa-float" id="waFloat" onclick="shareWhatsApp()" aria-label="مشاركة">💬</div>
+
+<!-- REPLAY BUTTON -->
+<button class="replay-btn" id="replayBtn" onclick="replayFilm()">🔄 إعادة عرض الفيلم</button>
 
 <!-- SHARE BUTTON -->
-<button class="share-btn" id="shareBtn" onclick="shareWhatsApp()">شارك الفيلم الدعوي</button>
+<button class="share-btn" id="shareBtn" onclick="shareWhatsApp()">شارك الفيلم الدعوي 📤</button>
 
 <!-- CONTENT SECTION -->
 <div class="content" id="content">
@@ -420,27 +445,57 @@ html,body{height:100%;overflow:hidden;background:var(--dark);font-family:'Segoe 
 
 <script>
 // === CONFIG ===
-const SCENE_DURATION = 55000;
+const SCENE_DURATION = 60000;
 const TOTAL_SCENES = 4;
 
+// Narration split into sentences for dramatic, paced delivery
 const scenes = [
   {
-    narration: "عندما تكالبت القوانين الوضعية على الأسر، وضلت الفطرة في ظلمات الشاشات، تمزقت البيوت، وغدا الحلال عسيراً والحرام يسيراً. القانونُ يُشرعُ الحريةَ الزائفة، والمرأةُ تتبارى في المطالبةِ بحقوقٍ تهدمُ بيتها، والقضاءُ يسلخُ الولدَ من أبيه.",
+    sentences: [
+      "عندما تكالبت القوانين الوضعية على الأسر.",
+      "وضلت الفطرة في ظلمات الشاشات.",
+      "تمزقت البيوت، وغدا الحلال عسيراً والحرام يسيراً.",
+      "القانونُ يُشرعُ الحريةَ الزائفة.",
+      "والمرأةُ تتبارى في المطالبةِ بحقوقٍ تهدمُ بيتها.",
+      "والقضاءُ يسلخُ الولدَ من أبيه."
+    ],
     ayah: { surah: 30, ayah: 41 },
     hadith: null
   },
   {
-    narration: "الهاتفُ في كلِّ يد، والحريةُ في كلِّ شارع، والزنا في كلِّ نظرة. أُفرغت البيوتُ من الحياء، وامتلأت بالغربةِ والوحشة. إن الإعراضَ عن منهجِ الله ليس اختياراً، بل انحدارٌ نحو معيشةِ الضنكِ وخرابِ الديار.",
+    sentences: [
+      "الهاتفُ في كلِّ يد.",
+      "والحريةُ في كلِّ شارع.",
+      "والزنا في كلِّ نظرة.",
+      "أُفرغت البيوتُ من الحياء.",
+      "وامتلأت بالغربةِ والوحشة.",
+      "إن الإعراضَ عن منهجِ الله ليس اختياراً.",
+      "بل انحدارٌ نحو معيشةِ الضنكِ وخرابِ الديار."
+    ],
     ayah: { surah: 20, ayah: 124 },
     hadith: { text: "يا معشر الشباب، من استطاع منكم الباءة فليتزوج، فإنه أغض للبصر وأحصن للفرج", ref: "البخاري ومسلم" }
   },
   {
-    narration: "لكن طوقَ النجاةِ قائم. العودةُ إلى الشرعِ والسنةِ هي المخرج. يوم نعودُ إلى الفطرة، ونيسرُ المهور، ونقيمُ الزواجَ على كتابِ اللهِ وسنةِ رسوله، يومها تسكنُ القلوبُ وتطمئنُ الأرواح.",
+    sentences: [
+      "لكن طوقَ النجاةِ قائم.",
+      "العودةُ إلى الشرعِ والسنةِ هي المخرج.",
+      "يوم نعودُ إلى الفطرة.",
+      "ونيسرُ المهور.",
+      "ونقيمُ الزواجَ على كتابِ اللهِ وسنةِ رسوله.",
+      "يومها تسكنُ القلوبُ وتطمئنُ الأرواح."
+    ],
     ayah: { surah: 30, ayah: 21 },
     hadith: null
   },
   {
-    narration: "هذا هو العقدُ الشرعي. في خيمةٍ بدوية، شيخٌ جليلٌ بلحيةٍ بيضاء، يكتبُ الكتاب. بوليٍّ راضٍ، وصداقٍ معلوم، وشهودٍ عدول. لا اختلاط، لا موسيقى، لا تبذير. زواجٌ على كتابِ اللهِ وسنةِ رسوله.",
+    sentences: [
+      "هذا هو العقدُ الشرعي.",
+      "في خيمةٍ بدوية، شيخٌ جليلٌ بلحيةٍ بيضاء.",
+      "يكتبُ الكتاب بوقارٍ وسكينة.",
+      "بوليٍّ راضٍ، وصداقٍ معلوم، وشهودٍ عدول.",
+      "لا اختلاط، لا موسيقى، لا تبذير.",
+      "زواجٌ على كتابِ اللهِ وسنةِ رسوله."
+    ],
     ayah: null,
     hadith: { text: "بارك الله لكما وبارك عليكما وجمع بينكما في خير", ref: "أبو داود والترمذي" }
   }
@@ -452,30 +507,46 @@ let ambientNode = null;
 let sceneTimer = null;
 let ayahAudio = null;
 let audioEnabled = true;
-let narrationInProgress = false;
+let sentenceQueue = [];
+let isPlaying = false;
 
 // === START ===
 function startFilm() {
   document.getElementById('startScreen').classList.add('hide');
   setTimeout(() => {
     document.getElementById('startScreen').style.display = 'none';
-    // Show UI elements
-    document.getElementById('controls').classList.add('show');
-    document.getElementById('progress').classList.add('show');
-    document.getElementById('counter').classList.add('show');
-    document.getElementById('waveform').classList.add('show');
-    document.getElementById('expertBadge').classList.add('show');
-    document.getElementById('waFloat').classList.add('show');
-    document.getElementById('brandBadge').classList.add('show');
+    showAllUI();
     initAudio();
     showScene(0);
   }, 1200);
+}
+
+function showAllUI() {
+  document.getElementById('controls').classList.add('show');
+  document.getElementById('progress').classList.add('show');
+  document.getElementById('counter').classList.add('show');
+  document.getElementById('waveform').classList.add('show');
+  document.getElementById('expertBadge').classList.add('show');
+  document.getElementById('waFloat').classList.add('show');
+  document.getElementById('brandBadge').classList.add('show');
+}
+
+function hideAllUI() {
+  document.getElementById('controls').classList.remove('show');
+  document.getElementById('progress').classList.remove('show');
+  document.getElementById('counter').classList.remove('show');
+  document.getElementById('waveform').classList.remove('show');
+  document.getElementById('expertBadge').classList.remove('show');
+  document.getElementById('waFloat').classList.remove('show');
+  document.getElementById('brandBadge').classList.remove('show');
+  document.getElementById('subtitle').classList.remove('show');
 }
 
 // === AUDIO INIT ===
 function initAudio() {
   try {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
   } catch(e) {}
   if (window.speechSynthesis) {
     window.speechSynthesis.getVoices();
@@ -494,7 +565,7 @@ function showScene(idx) {
   updateCounter();
   
   stopAllAudio();
-  setTimeout(() => playSceneAudio(idx), 2000);
+  setTimeout(() => playSceneAudio(idx), 2500);
   
   clearTimeout(sceneTimer);
   sceneTimer = setTimeout(() => {
@@ -503,7 +574,7 @@ function showScene(idx) {
   }, SCENE_DURATION);
 }
 
-// === PLAY SCENE AUDIO (SEQUENCED - no overlap) ===
+// === PLAY SCENE AUDIO — sequenced: sentences → Quran → hadith ===
 function playSceneAudio(idx) {
   const data = scenes[idx];
   if (!audioEnabled) return;
@@ -511,34 +582,92 @@ function playSceneAudio(idx) {
   document.getElementById('waveform').classList.remove('idle');
   startAmbient(idx);
   
-  // Step 1: Narration first. When it ENDS, play Quran. Then Hadith.
-  speakNarration(data.narration, function() {
-    // Narration finished → play Quran
+  // Play sentences one by one with pauses, then Quran, then hadith
+  playSentences(data.sentences.slice(), function() {
     if (data.ayah) {
       playAyah(data.ayah.surah, data.ayah.ayah, function() {
-        // Quran finished → play Hadith if any
-        if (data.hadith) {
-          speakHadith(data.hadith);
-        }
+        if (data.hadith) speakHadith(data.hadith);
+        else onSceneAudioEnd();
       });
     } else if (data.hadith) {
-      // No ayah, play hadith directly
       speakHadith(data.hadith);
+    } else {
+      onSceneAudioEnd();
     }
   });
 }
 
-// === NARRATION with onend callback ===
-function speakNarration(text, onDone) {
-  if (!audioEnabled || !window.speechSynthesis) { if(onDone) onDone(); return; }
+function onSceneAudioEnd() {
+  document.getElementById('waveform').classList.add('idle');
+  document.getElementById('subtitle').classList.remove('show');
+}
+
+// === DRAMATIC SENTENCE-BY-SENTENCE NARRATION ===
+function playSentences(sentences, onAllDone) {
+  if (!audioEnabled || !window.speechSynthesis) {
+    if (onAllDone) onAllDone();
+    return;
+  }
   
-  narrationInProgress = true;
+  if (sentences.length === 0) {
+    document.getElementById('subtitle').classList.remove('show');
+    if (onAllDone) onAllDone();
+    return;
+  }
+  
+  const sentence = sentences.shift();
+  
+  // Show subtitle
+  const sub = document.getElementById('subtitle');
+  sub.textContent = sentence;
+  sub.classList.add('show');
+  
   window.speechSynthesis.cancel();
   
-  const utter = new SpeechSynthesisUtterance(text);
+  const utter = new SpeechSynthesisUtterance(sentence);
   utter.lang = 'ar-SA';
-  utter.rate = 0.75;
-  utter.pitch = 1;
+  utter.rate = 0.62;      // SLOW — contemplative, sheikh-like
+  utter.pitch = 0.55;     // DEEP — authoritative, grave
+  utter.volume = 1;
+  
+  const voices = window.speechSynthesis.getVoices();
+  // Prefer male Arabic voice
+  const arabicVoice = voices.find(v => v.lang.startsWith('ar')) ||
+                      voices.find(v => v.lang.includes('AR'));
+  if (arabicVoice) utter.voice = arabicVoice;
+  
+  utter.onend = function() {
+    // Pause between sentences for dramatic effect
+    const pauseDuration = sentence.length < 30 ? 600 : 900;
+    setTimeout(() => {
+      playSentences(sentences, onAllDone);
+    }, pauseDuration);
+  };
+  
+  utter.onerror = function() {
+    setTimeout(() => {
+      playSentences(sentences, onAllDone);
+    }, 500);
+  };
+  
+  window.speechSynthesis.speak(utter);
+}
+
+// === HADITH narration — even deeper and slower ===
+function speakHadith(hadith) {
+  if (!audioEnabled || !window.speechSynthesis) {
+    onSceneAudioEnd();
+    return;
+  }
+  
+  const sub = document.getElementById('subtitle');
+  sub.textContent = "قال النبي ﷺ: " + hadith.text;
+  sub.classList.add('show');
+  
+  const utter = new SpeechSynthesisUtterance("قال النبي صلى الله عليه وسلم: " + hadith.text + " — " + hadith.ref);
+  utter.lang = 'ar-SA';
+  utter.rate = 0.58;      // Very slow for hadith
+  utter.pitch = 0.5;      // Deepest pitch
   utter.volume = 1;
   
   const voices = window.speechSynthesis.getVoices();
@@ -546,30 +675,14 @@ function speakNarration(text, onDone) {
   if (arabicVoice) utter.voice = arabicVoice;
   
   utter.onend = function() {
-    narrationInProgress = false;
-    if (onDone) onDone();
+    setTimeout(() => {
+      onSceneAudioEnd();
+    }, 1000);
   };
   
   utter.onerror = function() {
-    narrationInProgress = false;
-    if (onDone) onDone();
+    onSceneAudioEnd();
   };
-  
-  window.speechSynthesis.speak(utter);
-}
-
-// === HADITH narration ===
-function speakHadith(hadith) {
-  if (!audioEnabled || !window.speechSynthesis) return;
-  
-  const utter = new SpeechSynthesisUtterance("قال النبي صلى الله عليه وسلم: " + hadith.text + " — " + hadith.ref);
-  utter.lang = 'ar-SA';
-  utter.rate = 0.75;
-  utter.pitch = 1;
-  
-  const voices = window.speechSynthesis.getVoices();
-  const arabicVoice = voices.find(v => v.lang.startsWith('ar'));
-  if (arabicVoice) utter.voice = arabicVoice;
   
   window.speechSynthesis.speak(utter);
 }
@@ -582,6 +695,9 @@ function playAyah(surah, ayah, onDone) {
   const ayahStr = String(ayah).padStart(3, '0');
   const url = `https://everyayah.com/data/Alafasy_128kbps/${surahStr}${ayahStr}.mp3`;
   
+  // Hide subtitle during Quran — the verse is already on screen
+  document.getElementById('subtitle').classList.remove('show');
+  
   ayahAudio = new Audio(url);
   ayahAudio.crossOrigin = 'anonymous';
   
@@ -590,7 +706,6 @@ function playAyah(surah, ayah, onDone) {
   };
   
   ayahAudio.onerror = function() {
-    // Try fallback reciter
     const fallback = `https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/${surahStr}${ayahStr}.mp3`;
     ayahAudio = new Audio(fallback);
     ayahAudio.onended = function() { if(onDone) onDone(); };
@@ -599,7 +714,6 @@ function playAyah(surah, ayah, onDone) {
   };
   
   ayahAudio.play().catch(() => {
-    // Try fallback
     const fallback = `https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/${surahStr}${ayahStr}.mp3`;
     ayahAudio = new Audio(fallback);
     ayahAudio.onended = function() { if(onDone) onDone(); };
@@ -612,18 +726,20 @@ function playAyah(surah, ayah, onDone) {
 function startAmbient(idx) {
   if (!audioCtx || !audioEnabled) return;
   try {
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     const filter = audioCtx.createBiquadFilter();
     
-    osc.type = 'sine';
-    osc.frequency.value = idx < 2 ? 70 : 110;
+    osc.type = idx < 2 ? 'sine' : 'triangle';
+    osc.frequency.value = idx < 2 ? 65 : 95;
     
     filter.type = 'lowpass';
-    filter.frequency.value = 180;
+    filter.frequency.value = 160;
     
     gain.gain.setValueAtTime(0, audioCtx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.025, audioCtx.currentTime + 3);
+    gain.gain.linearRampToValueAtTime(0.03, audioCtx.currentTime + 4);
     
     osc.connect(filter);
     filter.connect(gain);
@@ -645,8 +761,8 @@ function stopAllAudio() {
     } catch(e){}
     ambientNode = null;
   }
-  narrationInProgress = false;
   document.getElementById('waveform').classList.add('idle');
+  document.getElementById('subtitle').classList.remove('show');
 }
 
 // === NAVIGATION ===
@@ -669,17 +785,24 @@ function showEndScreen() {
   stopAllAudio();
   
   document.getElementById('cinema').style.display = 'none';
-  document.getElementById('controls').classList.remove('show');
-  document.getElementById('progress').classList.remove('show');
-  document.getElementById('counter').classList.remove('show');
-  document.getElementById('waveform').classList.remove('show');
-  document.getElementById('brandBadge').classList.remove('show');
-  document.getElementById('expertBadge').classList.remove('show');
-  document.getElementById('waFloat').classList.remove('show');
+  hideAllUI();
   
   document.getElementById('shareBtn').classList.add('show');
+  document.getElementById('replayBtn').classList.add('show');
   document.getElementById('content').classList.add('show');
+  document.body.classList.add('content-mode');
   document.getElementById('content').scrollTop = 0;
+}
+
+// === REPLAY ===
+function replayFilm() {
+  document.getElementById('shareBtn').classList.remove('show');
+  document.getElementById('replayBtn').classList.remove('show');
+  document.getElementById('content').classList.remove('show');
+  document.body.classList.remove('content-mode');
+  document.getElementById('cinema').style.display = 'block';
+  showAllUI();
+  showScene(0);
 }
 
 // === PROGRESS ===
@@ -701,8 +824,14 @@ function updateCounter() {
 function toggleAudio() {
   audioEnabled = !audioEnabled;
   document.getElementById('audioBtn').textContent = audioEnabled ? '🔊' : '🔇';
-  if (!audioEnabled) stopAllAudio();
-  if (audioEnabled && document.getElementById('cinema').style.display !== 'none') playSceneAudio(currentScene);
+  if (!audioEnabled) {
+    stopAllAudio();
+  } else {
+    if (document.getElementById('cinema').style.display !== 'none') {
+      initAudio();
+      playSceneAudio(currentScene);
+    }
+  }
 }
 
 // === SHARE ===
@@ -730,13 +859,11 @@ function submitForm(e) {
   let errors = [];
   let firstError = null;
   
-  // Clear previous errors
   required.forEach(r => {
     const el = document.getElementById(r.id);
     el.classList.remove('error');
   });
   
-  // Check each field
   required.forEach(r => {
     const el = document.getElementById(r.id);
     const val = el.value.trim();
@@ -757,7 +884,6 @@ function submitForm(e) {
     return;
   }
   
-  // Validate age
   const age = parseInt(document.getElementById('f_age').value);
   if (isNaN(age) || age < 18 || age > 99) {
     document.getElementById('f_age').classList.add('error');
@@ -767,11 +893,8 @@ function submitForm(e) {
     return;
   }
   
-  // Success
   msg.classList.add('success');
   msg.textContent = '✓ تم حفظ بياناتك بنجاح. سيتم التواصل معك عبر وليك الشرعي.';
-  
-  // Scroll to message
   msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
@@ -780,7 +903,18 @@ if (window.speechSynthesis) {
   window.speechSynthesis.onvoiceschanged = () => {
     window.speechSynthesis.getVoices();
   };
+  // Pre-load voices
+  window.speechSynthesis.getVoices();
 }
+
+// === KEYBOARD NAVIGATION ===
+document.addEventListener('keydown', function(e) {
+  if (document.getElementById('cinema').style.display === 'none') return;
+  if (e.key === 'ArrowLeft') nextScene();   // RTL: left = next
+  if (e.key === 'ArrowRight') prevScene();  // RTL: right = prev
+  if (e.key === 'Escape') skipAll();
+  if (e.key === ' ') { e.preventDefault(); toggleAudio(); }
+});
 </script>
 </body>
 </html>
