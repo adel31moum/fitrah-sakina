@@ -271,6 +271,16 @@ body.content-mode{overflow-y:auto}
 .lang-pills button{background:rgba(26,22,34,0.85);border:1px solid rgba(212,175,55,0.25);color:var(--gold);font-size:10px;padding:5px 8px;border-radius:8px;cursor:pointer;font-family:inherit;min-height:26px}
 .lang-pills button.on{background:var(--gold);color:#14100a;border-color:var(--gold)}
 @media(max-width:480px){.deck-stage{aspect-ratio:4/5}.deck-body h3{font-size:16px}.deck-ayah{font-size:15px}.mystery-body h3{font-size:16px}}
+
+/* ===== PERSONA GATEWAY ===== */
+.path-hidden{display:none !important}
+.gw-grid{display:flex;flex-direction:column;gap:14px;max-width:520px;margin:22px auto 0}
+.gw-card{display:flex;flex-direction:column;align-items:center;gap:8px;background:linear-gradient(160deg,#1a1622,#0f0d14);border:1px solid rgba(212,175,55,0.3);border-radius:16px;padding:22px 18px;cursor:pointer;transition:all 0.25s;font-family:inherit;text-align:center}
+.gw-card:hover{border-color:var(--gold);box-shadow:0 0 40px rgba(212,175,55,0.15);transform:translateY(-2px)}
+.gw-card:active{transform:scale(0.97)}
+.gw-icon{font-size:30px}
+.gw-t{font-size:16px;font-weight:700;color:#fff}
+.gw-d{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.7}
 </style>
 </head>
 <body>
@@ -355,8 +365,32 @@ body.content-mode{overflow-y:auto}
     <p class="sub" data-i18n="logoSub">المنصة العالمية للزواج الشرعي على منهج أهل السنة</p>
   </div>
 
+
+  <!-- PERSONA GATEWAY: one decision, one path -->
+  <div class="section" id="gatewaySection" style="text-align:center">
+    <h2 data-i18n="gwTitle">قبل أنْ تُكمل… مَن أنت؟</h2>
+    <p class="sub" data-i18n="gwSub">لن نُلقِ عليكَ كلَّ شيء — بل الطريقَ الذي يخصُّكَ وحدَك</p>
+    <div class="gw-grid">
+      <button class="gw-card" onclick="choosePath('a')">
+        <span class="gw-icon">💍</span>
+        <span class="gw-t" data-i18n="gw1">مسلمٌ أبحثُ عن زواجٍ شرعي</span>
+        <span class="gw-d" data-i18n="gw1d">الضماناتُ الشرعيةُ ثمَّ الاستمارة — دقيقتان</span>
+      </button>
+      <button class="gw-card" onclick="choosePath('b')">
+        <span class="gw-icon">🌿</span>
+        <span class="gw-t" data-i18n="gw2">مسلمٌ أريدُ العودةَ إلى الله</span>
+        <span class="gw-d" data-i18n="gw2d">لماذا انهارَ كلُّ شيء — ثمَّ أوّلُ خطوةِ عودة</span>
+      </button>
+      <button class="gw-card" onclick="choosePath('c')">
+        <span class="gw-icon">✦</span>
+        <span class="gw-t" data-i18n="gw3">لستُ مسلماً — أريدُ أنْ أفهم</span>
+        <span class="gw-d" data-i18n="gw3d">شيءٌ غريبٌ ينتظرُك — دقيقةٌ واحدة</span>
+      </button>
+    </div>
+  </div>
+
   <!-- COLLAPSE DECK: sequenced visual narrative -->
-  <div class="section" id="deckSection">
+  <div class="section" id="deckSection" data-paths="b">
     <h2 data-i18n="deckH">سلسلةُ الانهيار — حينَ تُهجَرُ الفطرة</h2>
     <p class="sub" data-i18n="deckS">ليست قائمةً طويلةً تُقرأ — بل متوالياتٍ تُشاهَد</p>
     <div class="deck-wrap">
@@ -425,8 +459,17 @@ body.content-mode{overflow-y:auto}
     </div>
   </div>
 
+  <!-- PATH B BRIDGE: the return begins with a house upon taqwa -->
+  <div class="section" data-paths="b" style="text-align:center">
+    <div style="background:linear-gradient(135deg,rgba(212,175,55,0.12),rgba(26,22,34,0.9));border:1px solid rgba(212,175,55,0.35);border-radius:16px;padding:26px 20px;max-width:600px;margin:0 auto">
+      <h3 style="margin:0 0 10px" data-i18n="bTitle">العودةُ لا تحتاجُ خطبةً — تحتاجُ قراراً</h3>
+      <p style="font-size:14px;line-height:2;color:rgba(255,255,255,0.78);margin:0 0 18px" data-i18n="bLine">وأوّلُ قرارٍ يبنى عليهِ الباقي: بيتٌ على ذكرِ الله. زواجٌ شرعيٌّ يُعيدُ للقلبِ سكينتَه — نحنُ معكَ من أوّلِ خطوة.</p>
+      <button class="donate-cta" onclick="smartRegister()" data-i18n="bBtn">ابدأْ ببيتٍ على تقوى — سجّل 💍</button>
+    </div>
+  </div>
+
   <!-- TRUST BADGES -->
-  <div class="section">
+  <div class="section" data-paths="a">
     <h2 data-i18n="trustH">لماذا فطرة وسكينة؟</h2>
     <p class="sub" data-i18n="trustS">لسنا تطبيق مواعدة. نحن منصةُ نكاحٍ شرعيٍّ بضوابطَ دقيقة</p>
     <div class="rules">
@@ -437,7 +480,7 @@ body.content-mode{overflow-y:auto}
     </div>
   </div>
   <!-- MYSTERY TEASER: curiosity-driven da'wah -->
-  <div class="section" id="mysterySection">
+  <div class="section" id="mysterySection" data-paths="c">
     <div class="mystery-card" onclick="openDawah()">
       <img src="https://media.base44.com/images/public/6a920081a841164a49489c5f/c5d0db722_generated_image.png" alt="">
       <div class="mystery-shade"></div>
@@ -469,7 +512,7 @@ body.content-mode{overflow-y:auto}
   </div>
 
   <!-- RULES -->
-  <div class="section">
+  <div class="section" data-paths="a">
     <h2 data-i18n="prH">الضوابط الشرعية</h2>
     <p class="sub" data-i18n="prS">منصةُ زواجٍ على منهجِ أهلِ السنةِ والجماعة</p>
     <div class="rules">
@@ -483,7 +526,7 @@ body.content-mode{overflow-y:auto}
   </div>
 
   <!-- NAZRA SHARIA — Sharia-compliant viewing -->
-  <div class="section">
+  <div class="section" data-paths="a">
     <h2 data-i18n="lookH">النظرةُ الشرعية</h2>
     <p class="sub" data-i18n="lookS">رؤيةٌ مباحةٌ بحضورِ الوليِّ وضمنَ حدودِ الشرع</p>
     <div class="nazra-card">
@@ -495,40 +538,19 @@ body.content-mode{overflow-y:auto}
     </div>
   </div>
 
-  <!-- DONATION — Smart sadaqah for marriage -->
-  <div class="section">
+  <!-- HONEST DONATION: direct human contact, no fake checkout -->
+  <div class="section" data-paths="a b">
     <h2 data-i18n="donH">إعانةُ المسلمين على الزواج</h2>
-    <p class="sub" data-i18n="donS">صدقةٌ جاريةٌ تُوصِلُكَ إلى الأجرِ وتُيسِّرُ النكاح</p>
-    <div class="donation-card">
-      <img src="https://media.base44.com/images/public/6a920081a841164a49489c5f/9b379ac46_generated_image.png" alt="" style="width:100%;border-radius:12px;margin-bottom:14px">
-      <h3>ساهم في تزويجِ المسلمين</h3>
-      <p>كلُّ دينارٍ تتبرعُ به يُقسَّمُ على المسجلينَ الذينَ لا يستطيعونَ المهر. أنتَ تُعينُ على إعفافِ المسلم، والصدقةُ جاريةٌ ما دامَ النكاحُ قائماً</p>
-      <div class="donate-feature">
-        <div class="df-icon">🔄</div>
-        <div><h4>توزيعٌ ذكيٌّ وعادل</h4><p>التبرعاتُ تُقسَّمُ تلقائياً على المتقدمين للزواجِ بضوابطَ شرعية</p></div>
-      </div>
-      <div class="donate-feature">
-        <div class="df-icon">🔒</div>
-        <div><h4>شفافيةٌ كاملة</h4><p>تتبعُ تبرعكَ خطوةً بخطوة حتى العقدِ على السنة</p></div>
-      </div>
-      <div class="donate-feature">
-        <div class="df-icon">💎</div>
-        <div><h4>صدقةٌ جارية</h4><p>كلُّ نكاحٍ تُعينُ فيه = أجرٌ يستمرُّ ما دامَ الزواج</p></div>
-      </div>
-      <!-- suggested amounts -->
-      <div style="display:flex;gap:8px;justify-content:center;margin:14px 0;flex-wrap:wrap">
-        <button class="donate-amt" onclick="donate(50)">50 €</button>
-        <button class="donate-amt" onclick="donate(100)">100 €</button>
-        <button class="donate-amt" onclick="donate(200)">200 €</button>
-        <button class="donate-amt" onclick="donate(500)">500 €</button>
-      </div>
-      <button class="donate-cta" onclick="donate(0)" data-i18n="donateChoose">ساهم بمبلغٍ تختاره 💚</button>
+    <p class="sub" data-i18n="donS">صدقةٌ جاريةٌ ما دامَ النكاحُ قائماً</p>
+    <div class="donation-card" style="text-align:center">
+      <p style="font-size:14px;line-height:2.2;color:rgba(255,255,255,0.78);margin-top:0" data-i18n="donHonest">💛 لا يوجدُ هنا دفعٌ آليٌّ ولا أرقامُ بطاقاتٍ ولا "بوابةُ دفع". نحنُ منصةٌ شرعيةٌ يُديرُها فريقٌ يخافُ الله: تواصلْ معنا مباشرةً عبرَ واتساب، ونرافقُكَ خطوةً بخطوةٍ حتى تصلَ صدقتُكَ إلى مستحقِّها — بشفافيةٍ كاملةٍ وشهودٍ عدول.</p>
+      <button class="donate-cta" onclick="donate(0)" data-i18n="donWaliBtn">أريدُ المساهمة — حوارٌ مباشرٌ عبرَ واتساب 💬</button>
       <p class="donate-ref">«ومنْ يتقِ اللهَ يجعلْ لهُ مخرجاً ويرزقْهُ منْ حيثُ لا يحتسبُ» — الطلاق 2-3</p>
     </div>
   </div>
 
   <!-- STEPS -->
-  <div class="section">
+  <div class="section" data-paths="a">
     <h2 data-i18n="stepsH">طريقةُ العمل</h2>
     <p class="sub" data-i18n="stepsS">من التسجيلِ حتى العقدِ على السنة</p>
     <div class="steps">
@@ -540,7 +562,7 @@ body.content-mode{overflow-y:auto}
   </div>
 
   <!-- FORM -->
-  <div class="section">
+  <div class="section" data-paths="a b">
     <h2 data-i18n="joinH">انضمَّ إلى المنصة</h2>
     <p class="sub" data-i18n="joinS">كن من المؤسسينَ الأوائل لمنصةِ الزواجِ السلفي</p>
     <div class="form">
@@ -970,11 +992,11 @@ function shareWhatsApp() {
 function submitForm(e) {
   e.preventDefault();
   const required = [
-    { id: 'f_name', label: 'الاسم' }, { id: 'f_gender', label: 'الجنس' }, { id: 'f_seek_gender', label: 'الجنس المطلوب' },
-    { id: 'f_age', label: 'العمر' }, { id: 'f_status', label: 'الحالة' },
-    { id: 'f_country', label: 'البلد' }, { id: 'f_city', label: 'المدينة' },
-    { id: 'f_commit', label: 'مستوى الالتزام' },
-    { id: 'f_about', label: 'نبذة عني' }, { id: 'f_seek', label: 'أبحث عن' }
+    { id: 'f_name', label: 'fName' }, { id: 'f_gender', label: 'fGender' }, { id: 'f_seek_gender', label: 'fSeek' },
+    { id: 'f_age', label: 'fAge' }, { id: 'f_status', label: 'fStatus' },
+    { id: 'f_country', label: 'fCountry' }, { id: 'f_city', label: 'fCity' },
+    { id: 'f_commit', label: 'fCommit' },
+    { id: 'f_about', label: 'fAbout' }, { id: 'f_seek', label: 'fSeekAbout' }
   ];
   let errors = [], firstError = null;
   required.forEach(r => { document.getElementById(r.id).classList.remove('error'); });
@@ -1107,7 +1129,20 @@ const I18N = {
     msgSuccessFNoW: "✓ Enregistré ! Pas de tuteur ? Pas d'inquiétude : nous suivrons avec vous la voie légale et chercherons un tuteur juste.",
     shareText: "🌿 Fitra wa Sakina — la plateforme du mariage halal salafi\n\nUn site qui fait la différence :\n✅ Mariage avec tuteur, dot et témoins\n✅ Aucun mélange — contact entre tuteurs uniquement\n✅ Regard licite de 4 secondes en présence du mahram\n✅ Revue religieuse de chaque dossier\n✅ Aider les musulmans à se marier\n\nRegardez et partagez :",
     dwRead: "Lire le Coran", dwContact: "Nous contacter", dwRegister: "Je suis musulman — m'inscrire 💍",
-    dwContactMsg: "Bonjour, je visite votre site et j'aimerais en savoir plus sur l'Islam"
+    dwContactMsg: "Bonjour, je visite votre site et j'aimerais en savoir plus sur l'Islam",
+    gwTitle: "Avant de continuer… qui es-tu ?",
+    gwSub: "Nous ne te noierons pas d'informations — juste le chemin qui est le tien",
+    gw1: "Musulman en quête d'un mariage halal",
+    gw1d: "Les garanties de la Charia, puis le formulaire — 2 minutes",
+    gw2: "Musulman — je veux revenir à Allah",
+    gw2d: "Pourquoi tout s'est effondré — puis le premier pas du retour",
+    gw3: "Non-musulman — je veux comprendre",
+    gw3d: "Quelque chose d'étrange t'attend — une minute",
+    bTitle: "Revenir ne demande pas un sermon — mais une décision",
+    bLine: "Et la première décision : un foyer bâti sur le rappel d'Allah. Un mariage halal qui rend au cœur sa sérénité — nous sommes avec toi dès la première étape.",
+    bBtn: "Commencer par un foyer sur la piété — s'inscrire 💍",
+    donHonest: "💛 Ici, pas de paiement automatique, pas de numéros de carte, pas de « passerelle de paiement ». Une plateforme religieuse gérée par une équipe qui craint Allah : contacte-nous directement sur WhatsApp, et nous t'accompagnerons pas à pas jusqu'à ce que ton aumône atteigne celui qui la mérite — en toute transparence, avec des témoins dignes de foi.",
+    donWaliBtn: "Je veux contribuer — dialogue direct via WhatsApp 💬",
   },
   en: {
     startSub: "A cinematic journey — from collapse to return<br>The Salafi halal marriage platform",
@@ -1166,7 +1201,20 @@ const I18N = {
     msgSuccessFNoW: "✓ Saved! No wali? Don't worry — we will take the Sharia path with you and seek a just guardian for you.",
     shareText: "🌿 Fitra wa Sakina — the Salafi halal marriage platform\n\nA site that makes a difference:\n✅ Marriage with wali, mahr and witnesses\n✅ No free mixing — guardians communicate only\n✅ Permissible 4-second look with a mahram present\n✅ Sharia review of every file\n✅ Helping Muslims get married\n\nWatch and share:",
     dwRead: "Read the Quran", dwContact: "Talk to us", dwRegister: "I'm Muslim — register 💍",
-    dwContactMsg: "Hello, I'm visiting your site and would like to learn more about Islam"
+    dwContactMsg: "Hello, I'm visiting your site and would like to learn more about Islam",
+    gwTitle: "Before you continue… who are you?",
+    gwSub: "We won't dump everything on you — only the path that is yours",
+    gw1: "A Muslim seeking halal marriage",
+    gw1d: "The Sharia safeguards, then the form — 2 minutes",
+    gw2: "A Muslim — I want to return to Allah",
+    gw2d: "Why everything collapsed — then the first step back",
+    gw3: "Not a Muslim — I want to understand",
+    gw3d: "Something strange awaits you — one minute",
+    bTitle: "Returning doesn't need a sermon — it needs a decision",
+    bLine: "And the first decision: a home built on the remembrance of Allah. A halal marriage that returns serenity to the heart — we are with you from the very first step.",
+    bBtn: "Start with a home upon taqwa — register 💍",
+    donHonest: "💛 No automatic payments here, no card numbers, no 'payment gateway'. A Sharia platform run by a team that fears Allah: contact us directly on WhatsApp, and we'll walk with you step by step until your charity reaches the one who deserves it — full transparency, trustworthy witnesses.",
+    donWaliBtn: "I want to contribute — direct conversation via WhatsApp 💬",
   },
   es: {
     startSub: "Un viaje cinematográfico — del colapso al regreso<br>La plataforma de matrimonio halal salafí",
@@ -1225,7 +1273,20 @@ const I18N = {
     msgSuccessFNoW: "✓ ¡Guardado! ¿Sin tutor? No te preocupes — seguiremos contigo el camino legal.",
     shareText: "🌿 Fitra wa Sakina — la plataforma de matrimonio halal salafí\n\nUn sitio que marca la diferencia:\n✅ Matrimonio con tutor, mahr y testigos\n✅ Sin mezcla — comunicación solo entre tutores\n✅ Mirada lícita de 4 segundos con el mahram presente\n✅ Revisión legal de cada expediente\n✅ Ayudar a los musulmanes a casarse\n\nMira y comparte:",
     dwRead: "Leer el Corán", dwContact: "Háblanos", dwRegister: "Soy musulmán — registrarme 💍",
-    dwContactMsg: "Hola, visito su sitio y me gustaría saber más sobre el Islam"
+    dwContactMsg: "Hola, visito su sitio y me gustaría saber más sobre el Islam",
+    gwTitle: "Antes de continuar… ¿quién eres?",
+    gwSub: "No te saturaremos con todo — solo el camino que es tuyo",
+    gw1: "Musulmán que busca matrimonio halal",
+    gw1d: "Las garantías de la sharia y el formulario — 2 minutos",
+    gw2: "Musulmán — quiero volver a Allah",
+    gw2d: "Por qué todo colapsó — y el primer paso del regreso",
+    gw3: "No musulmán — quiero entender",
+    gw3d: "Algo extraño te espera — un minuto",
+    bTitle: "Volver no necesita un sermón — necesita una decisión",
+    bLine: "Y la primera decisión: un hogar construido sobre el recuerdo de Allah. Un matrimonio halal que devuelve la serenidad al corazón — estamos contigo desde el primer paso.",
+    bBtn: "Empieza con un hogar sobre el temor de Allah — regístrate 💍",
+    donHonest: "💛 Aquí no hay pagos automáticos, ni números de tarjeta, ni 'pasarela de pago'. Una plataforma religiosa dirigida por un equipo que teme a Allah: contáctanos directamente por WhatsApp y te acompañaremos paso a paso hasta que tu caridad llegue a quien la merece — con total transparencia y testigos dignos.",
+    donWaliBtn: "Quiero contribuir — conversación directa por WhatsApp 💬",
   }
 };
 
@@ -1389,6 +1450,37 @@ function renderDawah() {
 function dawahNext() { const steps = DAWAH[curLang] || DAWAH.ar; if (dawahStep < steps.length - 1) { dawahStep++; renderDawah(); } }
 function dawahContact() { window.open('https://wa.me/?text=' + encodeURIComponent(T('dwContactMsg')), '_blank'); }
 function dawahRegister() { closeDawah(); const el = document.getElementById('f_name'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
+
+
+// ==================== PERSONA PATHS ====================
+let chosenPath = null;
+function choosePath(p) {
+  chosenPath = p;
+  document.querySelectorAll('#content .section[data-paths]').forEach(sec => {
+    const paths = (sec.getAttribute('data-paths') || '').split(' ');
+    sec.classList.toggle('path-hidden', !paths.includes(p));
+  });
+  const gw = document.getElementById('gatewaySection');
+  if (gw) gw.classList.add('path-hidden');
+  // hide path sections is done; scroll to first one of this path
+  const firsts = Array.from(document.querySelectorAll('#content .section[data-paths]')).filter(s => !s.classList.contains('path-hidden'));
+  if (firsts.length) firsts[0].scrollIntoView({ behavior: 'smooth' });
+}
+function smartRegister() {
+  const formEl = document.getElementById('f_name');
+  if (!chosenPath) {
+    const gw = document.getElementById('gatewaySection');
+    if (gw) { gw.classList.remove('path-hidden'); gw.scrollIntoView({ behavior: 'smooth' }); }
+    return;
+  }
+  const formSection = formEl.closest('.section');
+  if (formSection && formSection.classList.contains('path-hidden')) choosePath('a');
+  formEl.scrollIntoView({ behavior: 'smooth' });
+}
+// on load: hide all path sections until the user chooses (clean canvas, zero scatter)
+(function () {
+  document.querySelectorAll('#content .section[data-paths]').forEach(sec => sec.classList.add('path-hidden'));
+})();
 
 </script>
 
