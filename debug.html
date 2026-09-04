@@ -738,6 +738,34 @@ body.app-mode .signup-success{position:fixed;inset:0;z-index:55;overflow-y:auto;
   <div class="footer"><div class="brand">فطرة وسكينة</div><div data-i18n="footerTxt">المنصة العالمية للزواج الشرعي — 2026</div></div>
 </div>
 
+<div class="lang-pills" id="langPills">
+  <button onclick="setLang('ar')" id="lp-ar">ع</button>
+  <button onclick="setLang('fr')" id="lp-fr">FR</button>
+  <button onclick="setLang('en')" id="lp-en">EN</button>
+  <button onclick="setLang('es')" id="lp-es">ES</button>
+</div>
+
+
+<div class="app-nav" id="appNav">
+  <button id="navPrev" onclick="slidePrev()" aria-label="prev">‹</button>
+  <div id="navDots"></div>
+  <button id="navNext" onclick="slideNext()" aria-label="next">›</button>
+</div>
+
+<div class="dawah-overlay" id="dawahOverlay" onclick="if(event.target===this)closeDawah()">
+  <div class="dawah-box">
+    <button class="dawah-close" onclick="closeDawah()" aria-label="close">✕</button>
+    <div class="dawah-langs">
+      <button onclick="setLang('ar')" id="dw-ar">ع</button>
+      <button onclick="setLang('fr')" id="dw-fr">FR</button>
+      <button onclick="setLang('en')" id="dw-en">EN</button>
+      <button onclick="setLang('es')" id="dw-es">ES</button>
+    </div>
+    <div class="dawah-progress"><div id="dawahBar" style="width:20%"></div></div>
+    <div id="dawahBody"></div>
+  </div>
+</div>
+
 <script>
 window.addEventListener('error', function(e){
   var d=document.getElementById('dbgErr')||document.createElement('div');
@@ -1574,33 +1602,6 @@ function smartRegister() {
 })();
 </script>
 
-<div class="lang-pills" id="langPills">
-  <button onclick="setLang('ar')" id="lp-ar">ع</button>
-  <button onclick="setLang('fr')" id="lp-fr">FR</button>
-  <button onclick="setLang('en')" id="lp-en">EN</button>
-  <button onclick="setLang('es')" id="lp-es">ES</button>
-</div>
-
-
-<div class="app-nav" id="appNav">
-  <button id="navPrev" onclick="slidePrev()" aria-label="prev">‹</button>
-  <div id="navDots"></div>
-  <button id="navNext" onclick="slideNext()" aria-label="next">›</button>
-</div>
-
-<div class="dawah-overlay" id="dawahOverlay" onclick="if(event.target===this)closeDawah()">
-  <div class="dawah-box">
-    <button class="dawah-close" onclick="closeDawah()" aria-label="close">✕</button>
-    <div class="dawah-langs">
-      <button onclick="setLang('ar')" id="dw-ar">ع</button>
-      <button onclick="setLang('fr')" id="dw-fr">FR</button>
-      <button onclick="setLang('en')" id="dw-en">EN</button>
-      <button onclick="setLang('es')" id="dw-es">ES</button>
-    </div>
-    <div class="dawah-progress"><div id="dawahBar" style="width:20%"></div></div>
-    <div id="dawahBody"></div>
-  </div>
-</div>
 
 </body>
 </html>

@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>فطرة وسكينة — منصة الزواج الشرعي</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#d4af37;--amber:#e69138;--dark:#0a0810;--green:#25d366;--card:#1a1622;--red:#e74c3c}
+html,body{height:100%;overflow:hidden;background:var(--dark);font-family:'Segoe UI',system-ui,sans-serif;color:#fff}
+
+/* === ISLAMIC PATTERN OVERLAY === */
+.islamic-pattern{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23d4af37' stroke-width='1'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30 Z'/%3E%3Cpath d='M30 10 L50 30 L30 50 L10 30 Z'/%3E%3Ccircle cx='30' cy='30' r='8'/%3E%3C/g%3E%3C/svg%3E")}
+
+/* === CINEMA CONTAINER === */
+.cinema{position:fixed;inset:0;z-index:10;overflow:hidden}
+.scene{position:absolute;inset:0;opacity:0;transition:opacity 2.5s ease-in-out;pointer-events:none}
+.scene.active{opacity:1;pointer-events:auto}
+
+/* === KEN BURNS BACKDROPS === */
+.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.scene.active .bg{animation:kenburns 60s ease-in-out forwards}
+@keyframes kenburns{
+  0%{transform:scale(1.05) translate(0,0)}
+  50%{transform:scale(1.18) translate(-2%,-1%)}
+  100%{transform:scale(1.28) translate(1%,-2%)}
+}
+
+/* === GRADIENT OVERLAYS === */
+.overlay{position:absolute;inset:0;z-index:2;pointer-events:none}
+.overlay-dark{background:radial-gradient(ellipse at center,rgba(10,8,16,0.25) 0%,rgba(10,8,16,0.65) 70%,rgba(10,8,16,0.92) 100%)}
+.overlay-warm{background:radial-gradient(ellipse at center,rgba(212,175,55,0.08) 0%,rgba(10,8,16,0.35) 60%,rgba(10,8,16,0.82) 100%)}
+.overlay-fade{background:linear-gradient(to bottom,rgba(10,8,16,0.5) 0%,transparent 25%,transparent 55%,rgba(10,8,16,0.85) 100%)}
+
+/* === VISIBLE SCENE TITLE (Islamic branding) === */
+.scene-title{position:absolute;bottom:120px;left:50%;transform:translateX(-50%);z-index:5;text-align:center;pointer-events:none;width:90%;max-width:500px}
+.scene-title h2{font-size:28px;color:var(--gold);font-weight:700;margin-bottom:8px;text-shadow:0 2px 20px rgba(0,0,0,0.8);letter-spacing:1px}
+.scene-title .verse{font-size:15px;color:rgba(255,255,255,0.75);line-height:1.8;text-shadow:0 1px 10px rgba(0,0,0,0.9);max-width:400px;margin:0 auto}
+.scene-title .ref{font-size:12px;color:var(--amber);margin-top:6px;text-shadow:0 1px 8px rgba(0,0,0,0.9)}
+.scene-title .deco{font-size:20px;color:var(--gold);opacity:0.5;margin:6px 0}
+
+/* === BRAND BADGE (top center, always visible) === */
+.brand-badge{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:35;font-size:14px;color:var(--gold);background:rgba(26,22,34,0.85);padding:6px 18px;border-radius:20px;backdrop-filter:blur(10px);border:1px solid rgba(212,175,55,0.2);font-weight:600;letter-spacing:1px;display:none}
+.brand-badge.show{display:block}
+
+/* === CONTROLS === */
+.controls{position:fixed;top:52px;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:6px;align-items:center;direction:ltr;display:none}
+.controls.show{display:flex}
+.btn{background:rgba(26,22,34,0.85);border:1px solid rgba(212,175,55,0.3);color:#fff;padding:7px 12px;border-radius:24px;font-size:12px;cursor:pointer;transition:all 0.3s;backdrop-filter:blur(10px);display:flex;align-items:center;gap:4px;font-family:inherit;white-space:nowrap}
+.btn:hover{background:var(--amber);border-color:var(--amber)}
+.btn-skip{background:rgba(230,145,56,0.85);border-color:var(--amber)}
+.btn-audio{border-radius:50%;padding:7px 10px;font-size:14px;min-width:32px}
+.btn-prev{padding:7px 10px;font-size:14px;min-width:32px}
+
+/* === PROGRESS === */
+.progress{position:fixed;top:92px;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:6px;direction:ltr;display:none}
+.progress.show{display:flex}
+.dot{width:24px;height:3px;border-radius:2px;background:rgba(255,255,255,0.2);transition:all 0.3s}
+.dot.active{background:var(--gold);width:40px}
+.dot.done{background:rgba(212,175,55,0.5)}
+
+/* === COUNTER === */
+.counter{position:fixed;top:16px;right:16px;z-index:30;font-size:12px;color:rgba(255,255,255,0.55);background:rgba(26,22,34,0.8);padding:5px 10px;border-radius:20px;backdrop-filter:blur(10px);direction:ltr;font-variant-numeric:tabular-nums;display:none}
+.counter.show{display:block}
+
+/* === AUDIO WAVEFORM === */
+.waveform{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:3px;align-items:flex-end;height:20px;direction:ltr;display:none}
+.waveform.show{display:flex}
+.bar{width:3px;background:var(--gold);border-radius:2px;animation:wave 0.8s ease-in-out infinite alternate}
+.bar:nth-child(1){animation-delay:0s;height:7px}
+.bar:nth-child(2){animation-delay:0.1s;height:14px}
+.bar:nth-child(3){animation-delay:0.2s;height:18px}
+.bar:nth-child(4){animation-delay:0.3s;height:12px}
+.bar:nth-child(5){animation-delay:0.4s;height:9px}
+@keyframes wave{0%{height:3px}100%{height:20px}}
+.waveform.idle .bar{animation:none;height:5px;opacity:0.3}
+
+/* === SHARE BUTTON === */
+.share-btn{position:fixed;bottom:60px;left:50%;transform:translateX(-50%);z-index:40;background:var(--green);color:#fff;border:none;padding:14px 32px;border-radius:50px;font-size:15px;cursor:pointer;display:none;align-items:center;gap:8px;font-family:inherit;box-shadow:0 4px 20px rgba(37,211,102,0.4);animation:pulseShare 2s ease-in-out infinite}
+.share-btn.show{display:flex}
+@keyframes pulseShare{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.05)}}
+
+/* === EXPERT BADGE === */
+.expert-badge{position:fixed;bottom:24px;right:16px;z-index:30;background:rgba(26,22,34,0.9);border:1px solid rgba(212,175,55,0.2);color:#fff;padding:7px 12px;border-radius:20px;font-size:11px;display:flex;align-items:center;gap:5px;backdrop-filter:blur(10px);display:none}
+.expert-badge.show{display:flex}
+
+/* === WHATSAPP FLOAT === */
+.wa-float{position:fixed;bottom:24px;left:16px;z-index:30;width:44px;height:44px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;box-shadow:0 2px 12px rgba(37,211,102,0.3);display:none}
+.wa-float.show{display:flex}
+
+/* === START SCREEN === */
+.start-screen{position:fixed;inset:0;z-index:50;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity 1.2s}
+.start-screen.hide{opacity:0;pointer-events:none}
+.start-logo{font-size:36px;color:var(--gold);font-weight:700;text-align:center;letter-spacing:3px}
+.start-sub{font-size:15px;color:rgba(255,255,255,0.55);text-align:center;max-width:340px;line-height:1.9}
+.start-tag{font-size:13px;color:var(--amber);background:rgba(230,145,56,0.1);padding:6px 18px;border-radius:20px;border:1px solid rgba(230,145,56,0.2)}
+.start-btn{background:var(--amber);color:#fff;border:none;padding:16px 48px;border-radius:50px;font-size:18px;cursor:pointer;font-family:inherit;box-shadow:0 4px 24px rgba(230,145,56,0.4);transition:transform 0.3s}
+.start-btn:hover{transform:scale(1.05)}
+.audio-hint{font-size:12px;color:var(--gold);opacity:0.6}
+
+/* === CONTENT SECTION === */
+.content{position:fixed;inset:0;z-index:20;overflow-y:auto;background:var(--dark);display:none;padding-top:20px}
+.content.show{display:block}
+
+.section{padding:36px 20px;max-width:600px;margin:0 auto}
+.section h2{color:var(--gold);font-size:22px;margin-bottom:14px;text-align:center}
+.section h3{color:var(--amber);font-size:17px;margin:18px 0 10px}
+.section .sub{text-align:center;color:rgba(255,255,255,0.45);font-size:13px;margin-bottom:20px}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+.compare-col{background:var(--card);border-radius:12px;padding:16px}
+.compare-col h4{text-align:center;margin-bottom:12px;font-size:14px}
+.compare-col.bad h4{color:var(--red)}
+.compare-col.good h4{color:var(--green)}
+.compare-col ul{list-style:none;font-size:12px;line-height:1.8}
+.compare-col li{padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+.rule{background:var(--card);border-radius:12px;padding:14px;text-align:center}
+.rule .icon{font-size:22px;margin-bottom:6px}
+.rule h4{color:var(--gold);font-size:12px;margin-bottom:5px}
+.rule p{font-size:11px;color:rgba(255,255,255,0.55);line-height:1.5}
+.rule .ref{font-size:10px;color:var(--amber);margin-top:5px}
+
+.steps{display:grid;grid-template-columns:1fr;gap:14px;margin:20px 0}
+.step{display:flex;gap:14px;align-items:center;background:var(--card);border-radius:12px;padding:14px}
+.step-num{background:var(--amber);color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0}
+.step h4{font-size:14px;margin-bottom:3px}
+.step p{font-size:12px;color:rgba(255,255,255,0.55)}
+
+.form{background:var(--card);border-radius:16px;padding:24px;margin:20px 0}
+.form h3{color:var(--gold);text-align:center;margin-bottom:16px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:12px;color:rgba(255,255,255,0.55);margin-bottom:4px}
+.form-group label .req{color:var(--red)}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px;color:#fff;font-size:14px;font-family:inherit}
+.form-group input.error,.form-group select.error,.form-group textarea.error{border-color:var(--red);background:rgba(231,76,60,0.05)}
+.form-group textarea{height:60px;resize:none}
+.form-submit{width:100%;background:var(--amber);color:#fff;border:none;padding:14px;border-radius:12px;font-size:16px;cursor:pointer;font-family:inherit;margin-top:8px}
+.form-submit:hover{background:#f0a050}
+.form-msg{text-align:center;margin-top:12px;font-size:13px;padding:10px;border-radius:8px;display:none}
+.form-msg.error{display:block;background:rgba(231,76,60,0.15);color:var(--red);border:1px solid rgba(231,76,60,0.3)}
+.form-msg.success{display:block;background:rgba(37,211,102,0.15);color:var(--green);border:1px solid rgba(37,211,102,0.3)}
+
+.badge-first{display:inline-block;background:rgba(212,175,55,0.15);color:var(--gold);padding:6px 16px;border-radius:20px;font-size:13px;margin:0 auto 16px;border:1px solid rgba(212,175,55,0.3)}
+.badge-wrap{text-align:center}
+
+.footer{text-align:center;padding:30px 20px;color:rgba(255,255,255,0.25);font-size:12px}
+.footer .brand{color:var(--gold);font-size:16px;margin-bottom:6px}
+
+@media(max-width:480px){
+  .compare{grid-template-columns:1fr}
+  .rules{grid-template-columns:1fr 1fr}
+  .btn{font-size:10px;padding:5px 9px}
+  .section{padding:28px 14px}
+  .start-logo{font-size:28px}
+  .start-sub{font-size:13px}
+  .scene-title h2{font-size:22px}
+  .scene-title .verse{font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<!-- ISLAMIC PATTERN -->
+<div class="islamic-pattern"></div>
+
+<!-- START SCREEN -->
+<div class="start-screen" id="startScreen">
+  <div class="start-logo">فطرة وسكينة</div>
+  <div class="start-sub">رحلةٌ سينمائيةٌ من الانهيارِ إلى العودة<br>منصة الزواج الشرعي السلفي</div>
+  <div class="start-tag">💍 زواجٌ على كتاب الله وسنة رسوله</div>
+  <button class="start-btn" onclick="startFilm()">ابدأ الرحلة</button>
+  <div class="audio-hint">🔊 اضغط لتفعيل الصوت</div>
+</div>
+
+<!-- BRAND BADGE -->
+<div class="brand-badge" id="brandBadge">فطرة وسكينة — منصة الزواج الشرعي</div>
+
+<!-- CINEMA -->
+<div class="cinema" id="cinema">
+
+  <!-- SCENE 1: LAW VS SHARIA -->
+  <div class="scene" id="scene0">
+    <img class="bg" src="https://media.base44.com/images/public/6a920081a841164a49489c5f/bf2cd6b00_generated_image.png" alt="">
+    <div class="overlay overlay-dark"></div>
+    <div class="overlay overlay-fade"></div>
+    <div class="scene-title">
+      <h2>تكالبُ القوانين</h2>
+      <div class="deco">۞</div>
+      <p class="verse">ظهر الفساد في البر والبحر بما كسبت أيدي الناس</p>
+      <p class="ref">الروم — 41</p>
+    </div>
+  </div>
+
+  <!-- SCENE 2: PHONE DESTRUCTION -->
+  <div class="scene" id="scene1">
+    <img class="bg" src="https://media.base44.com/images/public/6a920081a841164a49489c5f/7e0489fa8_generated_image.png" alt="">
+    <div class="overlay overlay-dark"></div>
+    <div class="overlay overlay-fade"></div>
+    <div class="scene-title">
+      <h2>الهواتفُ والحريةُ الزائفة</h2>
+      <div class="deco">۞</div>
+      <p class="verse">ومن أعرض عن ذكري فإن له معيشة ضنكا</p>
+      <p class="ref">طه — 124</p>
+    </div>
+  </div>
+
+  <!-- SCENE 3: DESERT DAWN — RETURN -->
+  <div class="scene" id="scene2">
+    <img class="bg" src="https://media.base44.com/images/public/6a920081a841164a49489c5f/90a16c6c9_generated_image.png" alt="">
+    <div class="overlay overlay-warm"></div>
+    <div class="overlay overlay-fade"></div>
+    <div class="scene-title">
+      <h2>العودةُ إلى الفطرة</h2>
+      <div class="deco">۞</div>
+      <p class="verse">ومن آياته أن خلق لكم من أنفسكم أزواجاً لتسكنوا إليها</p>
+      <p class="ref">الروم — 21</p>
+    </div>
+  </div>
+
+  <!-- SCENE 4: BEDOUIN TENT — THE CONTRACT -->
+  <div class="scene" id="scene3">
+    <img class="bg" src="https://media.base44.com/images/public/6a920081a841164a49489c5f/3c9dedad3_generated_image.png" alt="">
+    <div class="overlay overlay-warm"></div>
+    <div class="overlay overlay-fade"></div>
+    <div class="scene-title">
+      <h2>العقدُ على السنة</h2>
+      <div class="deco">💍</div>
+      <p class="verse">بارك الله لكما وبارك عليكما وجمع بينكما في خير</p>
+      <p class="ref">أبو داود والترمذي</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- CONTROLS -->
+<div class="controls" id="controls">
+  <button class="btn btn-audio" onclick="toggleAudio()" id="audioBtn">🔊</button>
+  <button class="btn btn-prev" onclick="prevScene()">‹</button>
+  <button class="btn" onclick="nextScene()">التالي ❯</button>
+  <button class="btn btn-skip" onclick="skipAll()">تخطي ⏭</button>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress" id="progress"></div>
+
+<!-- COUNTER -->
+<div class="counter" id="counter">1 / 4</div>
+
+<!-- WAVEFORM -->
+<div class="waveform idle" id="waveform">
+  <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+</div>
+
+<!-- EXPERT BADGE -->
+<div class="expert-badge" id="expertBadge">7 خبراء 🧠</div>
+
+<!-- WHATSAPP FLOAT -->
+<div class="wa-float" id="waFloat" onclick="shareWhatsApp()">💬</div>
+
+<!-- SHARE BUTTON -->
+<button class="share-btn" id="shareBtn" onclick="shareWhatsApp()">شارك الفيلم الدعوي</button>
+
+<!-- CONTENT SECTION -->
+<div class="content" id="content">
+  
+  <div class="section">
+    <div class="badge-wrap"><span class="badge-first">🌿 الرعيل الأول</span></div>
+    <h2>قانونُ اللهِ vs قانونُ البشر</h2>
+    <p class="sub">مقارنةٌ صريحةٌ بين منهجين ومصيرين</p>
+    
+    <div class="compare">
+      <div class="compare-col bad">
+        <h4>قانونُ البشر</h4>
+        <ul>
+          <li>الزواجُ دونَ وليٍّ — هباء</li>
+          <li>المهرُ المبالغُ فيه — عبء</li>
+          <li>الاختلاطُ — ذريعةٌ للفاحشة</li>
+          <li>الطلاقُ في المحاكم — عذاب</li>
+          <li>الحضانةُ — سلخٌ من والد</li>
+          <li>الحريةُ الزائفةُ — هدمُ أسرة</li>
+        </ul>
+      </div>
+      <div class="compare-col good">
+        <h4>شريعةُ الله</h4>
+        <ul>
+          <li>النكاحُ بوليٍّ — حفظٌ وأمان</li>
+          <li>المهرُ الميسور — بركةٌ ومحبة</li>
+          <li>السترُ والحياء — طهارة</li>
+          <li>الطلاقُ مرةٌ واحدة — بعدل</li>
+          <li>الحضانةُ للأم — إن صلحت</li>
+          <li>التقوى — أساسُ كلِّ علاقة</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>الضوابط الشرعية</h2>
+    <p class="sub">منصةُ زواجٍ على منهجِ أهلِ السنةِ والجماعة</p>
+    
+    <div class="rules">
+      <div class="rule">
+        <div class="icon">🧔</div>
+        <h4>اللحيةُ الكثيفة</h4>
+        <p>إعفاءُ اللحيةِ تاماً دونَ قصٍ أو تخفيف</p>
+        <div class="ref">«أعفوا اللحى» — البخاري ومسلم</div>
+      </div>
+      <div class="rule">
+        <div class="icon">🚫</div>
+        <h4>منعُ الاختلاط</h4>
+        <p>فصلٌ تامٌّ بينَ الرجالِ والنساء</p>
+        <div class="ref">«ولا يبيتن عنده» — مسلم</div>
+      </div>
+      <div class="rule">
+        <div class="icon">🤝</div>
+        <h4>الولايةُ الشرعية</h4>
+        <p>لا نكاحَ إلا بوليٍّ وصداقٍ وشهود</p>
+        <div class="ref">«لا نكاح إلا بولي» — أبو داود</div>
+      </div>
+      <div class="rule">
+        <div class="icon">📖</div>
+        <h4>الصدقُ والأمانة</h4>
+        <p>تعهّدٌ بالصدقِ ومحاسبةٌ على الكذب</p>
+        <div class="ref">«من غشنا فليس منا» — مسلم</div>
+      </div>
+      <div class="rule">
+        <div class="icon">🤲</div>
+        <h4>النصيحةُ والموعظة</h4>
+        <p>نصحٌ واستقامةٌ على المنهجِ السلفي</p>
+        <div class="ref">«الدين النصيحة» — مسلم</div>
+      </div>
+      <div class="rule">
+        <div class="icon">💍</div>
+        <h4>القصدُ في المهر</h4>
+        <p>تيسيرُ المهرِ أعظمُ لبركته</p>
+        <div class="ref">«أيسرهن مهراً» — أحمد</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>طريقةُ العمل</h2>
+    <p class="sub">من التسجيلِ حتى العقدِ على السنة</p>
+    
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div><h4>التسجيلُ الشرعي</h4><p>تملأُ استمارةً ببياناتك الشرعية: اللحية، الالتزام، الحالة، صفاتُ الشريك</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div><h4>المراجعةُ والمطابقة</h4><p>فريقٌ شرعيٌ يراجعُ ملفك ويبحثُ عن الموافقِ بضوابطَ دقيقة</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div><h4>التواصلُ عبر الولي</h4><p>التواصلُ بين الطرفينِ عبر الأولياءِ فقط، دونَ اختلاطٍ أو خلوة</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div><h4>العقدُ على السنة</h4><p>بوليٍّ وصداقٍ معلومٍ وشهودٍ عدول، على كتابِ اللهِ وسنةِ رسوله</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>انضمَّ إلى المنصة</h2>
+    <p class="sub">كن من الرعيلِ الأول في منصةِ الزواجِ السلفي</p>
+    
+    <div class="form">
+      <h3>الاستمارة الشرعية</h3>
+      <div class="form-group">
+        <label>الاسم (سري) <span class="req">*</span></label>
+        <input type="text" id="f_name" placeholder="اسمك الكامل">
+      </div>
+      <div class="form-group">
+        <label>الجنس <span class="req">*</span></label>
+        <select id="f_gender"><option value="">اختر</option><option>ذكر</option><option>أنثى</option></select>
+      </div>
+      <div class="form-group">
+        <label>العمر <span class="req">*</span></label>
+        <input type="number" id="f_age" placeholder="العمر">
+      </div>
+      <div class="form-group">
+        <label>الحالة <span class="req">*</span></label>
+        <select id="f_status"><option value="">اختر</option><option>أعزب</option><option>مطلق</option><option>أرمل</option></select>
+      </div>
+      <div class="form-group">
+        <label>الأولاد</label>
+        <input type="number" id="f_kids" placeholder="عدد الأولاد">
+      </div>
+      <div class="form-group">
+        <label>المدينة <span class="req">*</span></label>
+        <input type="text" id="f_city" placeholder="مدينتك">
+      </div>
+      <div class="form-group">
+        <label>مستوى الالتزام <span class="req">*</span></label>
+        <select id="f_commit"><option value="">اختر</option><option>ملتزم جداً (سلفي)</option><option>ملتزم</option><option>في طريق الالتزام</option><option>مسلم جديد</option></select>
+      </div>
+      <div class="form-group">
+        <label>نبذة عني <span class="req">*</span></label>
+        <textarea id="f_about" placeholder="اكتب نبذة مختصرة عنك"></textarea>
+      </div>
+      <div class="form-group">
+        <label>أبحث عن <span class="req">*</span></label>
+        <textarea id="f_seek" placeholder="صفات الشريك الذي تبحث عنه"></textarea>
+      </div>
+      <button class="form-submit" onclick="submitForm(event)">حفظ والبحث عن الموافق ✓</button>
+      <div class="form-msg" id="formMsg"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="brand">فطرة وسكينة</div>
+    <div>المنصة العالمية للزواج الشرعي — 2026</div>
+  </div>
+
+</div>
+
+<script>
+// === CONFIG ===
+const SCENE_DURATION = 55000;
+const TOTAL_SCENES = 4;
+
+const scenes = [
+  {
+    narration: "عندما تكالبت القوانين الوضعية على الأسر، وضلت الفطرة في ظلمات الشاشات، تمزقت البيوت، وغدا الحلال عسيراً والحرام يسيراً. القانونُ يُشرعُ الحريةَ الزائفة، والمرأةُ تتبارى في المطالبةِ بحقوقٍ تهدمُ بيتها، والقضاءُ يسلخُ الولدَ من أبيه.",
+    ayah: { surah: 30, ayah: 41 },
+    hadith: null
+  },
+  {
+    narration: "الهاتفُ في كلِّ يد، والحريةُ في كلِّ شارع، والزنا في كلِّ نظرة. أُفرغت البيوتُ من الحياء، وامتلأت بالغربةِ والوحشة. إن الإعراضَ عن منهجِ الله ليس اختياراً، بل انحدارٌ نحو معيشةِ الضنكِ وخرابِ الديار.",
+    ayah: { surah: 20, ayah: 124 },
+    hadith: { text: "يا معشر الشباب، من استطاع منكم الباءة فليتزوج، فإنه أغض للبصر وأحصن للفرج", ref: "البخاري ومسلم" }
+  },
+  {
+    narration: "لكن طوقَ النجاةِ قائم. العودةُ إلى الشرعِ والسنةِ هي المخرج. يوم نعودُ إلى الفطرة، ونيسرُ المهور، ونقيمُ الزواجَ على كتابِ اللهِ وسنةِ رسوله، يومها تسكنُ القلوبُ وتطمئنُ الأرواح.",
+    ayah: { surah: 30, ayah: 21 },
+    hadith: null
+  },
+  {
+    narration: "هذا هو العقدُ الشرعي. في خيمةٍ بدوية، شيخٌ جليلٌ بلحيةٍ بيضاء، يكتبُ الكتاب. بوليٍّ راضٍ، وصداقٍ معلوم، وشهودٍ عدول. لا اختلاط، لا موسيقى، لا تبذير. زواجٌ على كتابِ اللهِ وسنةِ رسوله.",
+    ayah: null,
+    hadith: { text: "بارك الله لكما وبارك عليكما وجمع بينكما في خير", ref: "أبو داود والترمذي" }
+  }
+];
+
+let currentScene = 0;
+let audioCtx = null;
+let ambientNode = null;
+let sceneTimer = null;
+let ayahAudio = null;
+let audioEnabled = true;
+let narrationInProgress = false;
+
+// === START ===
+function startFilm() {
+  document.getElementById('startScreen').classList.add('hide');
+  setTimeout(() => {
+    document.getElementById('startScreen').style.display = 'none';
+    // Show UI elements
+    document.getElementById('controls').classList.add('show');
+    document.getElementById('progress').classList.add('show');
+    document.getElementById('counter').classList.add('show');
+    document.getElementById('waveform').classList.add('show');
+    document.getElementById('expertBadge').classList.add('show');
+    document.getElementById('waFloat').classList.add('show');
+    document.getElementById('brandBadge').classList.add('show');
+    initAudio();
+    showScene(0);
+  }, 1200);
+}
+
+// === AUDIO INIT ===
+function initAudio() {
+  try {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  } catch(e) {}
+  if (window.speechSynthesis) {
+    window.speechSynthesis.getVoices();
+  }
+}
+
+// === SHOW SCENE ===
+function showScene(idx) {
+  if (idx < 0 || idx >= TOTAL_SCENES) return;
+  
+  document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
+  document.getElementById('scene' + idx).classList.add('active');
+  
+  currentScene = idx;
+  updateProgress();
+  updateCounter();
+  
+  stopAllAudio();
+  setTimeout(() => playSceneAudio(idx), 2000);
+  
+  clearTimeout(sceneTimer);
+  sceneTimer = setTimeout(() => {
+    if (idx < TOTAL_SCENES - 1) nextScene();
+    else showEndScreen();
+  }, SCENE_DURATION);
+}
+
+// === PLAY SCENE AUDIO (SEQUENCED - no overlap) ===
+function playSceneAudio(idx) {
+  const data = scenes[idx];
+  if (!audioEnabled) return;
+  
+  document.getElementById('waveform').classList.remove('idle');
+  startAmbient(idx);
+  
+  // Step 1: Narration first. When it ENDS, play Quran. Then Hadith.
+  speakNarration(data.narration, function() {
+    // Narration finished → play Quran
+    if (data.ayah) {
+      playAyah(data.ayah.surah, data.ayah.ayah, function() {
+        // Quran finished → play Hadith if any
+        if (data.hadith) {
+          speakHadith(data.hadith);
+        }
+      });
+    } else if (data.hadith) {
+      // No ayah, play hadith directly
+      speakHadith(data.hadith);
+    }
+  });
+}
+
+// === NARRATION with onend callback ===
+function speakNarration(text, onDone) {
+  if (!audioEnabled || !window.speechSynthesis) { if(onDone) onDone(); return; }
+  
+  narrationInProgress = true;
+  window.speechSynthesis.cancel();
+  
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'ar-SA';
+  utter.rate = 0.75;
+  utter.pitch = 1;
+  utter.volume = 1;
+  
+  const voices = window.speechSynthesis.getVoices();
+  const arabicVoice = voices.find(v => v.lang.startsWith('ar'));
+  if (arabicVoice) utter.voice = arabicVoice;
+  
+  utter.onend = function() {
+    narrationInProgress = false;
+    if (onDone) onDone();
+  };
+  
+  utter.onerror = function() {
+    narrationInProgress = false;
+    if (onDone) onDone();
+  };
+  
+  window.speechSynthesis.speak(utter);
+}
+
+// === HADITH narration ===
+function speakHadith(hadith) {
+  if (!audioEnabled || !window.speechSynthesis) return;
+  
+  const utter = new SpeechSynthesisUtterance("قال النبي صلى الله عليه وسلم: " + hadith.text + " — " + hadith.ref);
+  utter.lang = 'ar-SA';
+  utter.rate = 0.75;
+  utter.pitch = 1;
+  
+  const voices = window.speechSynthesis.getVoices();
+  const arabicVoice = voices.find(v => v.lang.startsWith('ar'));
+  if (arabicVoice) utter.voice = arabicVoice;
+  
+  window.speechSynthesis.speak(utter);
+}
+
+// === QURAN RECITATION with onended callback ===
+function playAyah(surah, ayah, onDone) {
+  if (!audioEnabled) { if(onDone) onDone(); return; }
+  
+  const surahStr = String(surah).padStart(3, '0');
+  const ayahStr = String(ayah).padStart(3, '0');
+  const url = `https://everyayah.com/data/Alafasy_128kbps/${surahStr}${ayahStr}.mp3`;
+  
+  ayahAudio = new Audio(url);
+  ayahAudio.crossOrigin = 'anonymous';
+  
+  ayahAudio.onended = function() {
+    if (onDone) onDone();
+  };
+  
+  ayahAudio.onerror = function() {
+    // Try fallback reciter
+    const fallback = `https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/${surahStr}${ayahStr}.mp3`;
+    ayahAudio = new Audio(fallback);
+    ayahAudio.onended = function() { if(onDone) onDone(); };
+    ayahAudio.onerror = function() { if(onDone) onDone(); };
+    ayahAudio.play().catch(() => { if(onDone) onDone(); });
+  };
+  
+  ayahAudio.play().catch(() => {
+    // Try fallback
+    const fallback = `https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/${surahStr}${ayahStr}.mp3`;
+    ayahAudio = new Audio(fallback);
+    ayahAudio.onended = function() { if(onDone) onDone(); };
+    ayahAudio.onerror = function() { if(onDone) onDone(); };
+    ayahAudio.play().catch(() => { if(onDone) onDone(); });
+  });
+}
+
+// === AMBIENT SOUND ===
+function startAmbient(idx) {
+  if (!audioCtx || !audioEnabled) return;
+  try {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    const filter = audioCtx.createBiquadFilter();
+    
+    osc.type = 'sine';
+    osc.frequency.value = idx < 2 ? 70 : 110;
+    
+    filter.type = 'lowpass';
+    filter.frequency.value = 180;
+    
+    gain.gain.setValueAtTime(0, audioCtx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.025, audioCtx.currentTime + 3);
+    
+    osc.connect(filter);
+    filter.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    
+    ambientNode = { osc, gain, filter };
+  } catch(e) {}
+}
+
+// === STOP ALL AUDIO ===
+function stopAllAudio() {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  if (ayahAudio) { try { ayahAudio.pause(); ayahAudio.onended = null; ayahAudio = null; } catch(e){} }
+  if (ambientNode) {
+    try {
+      ambientNode.gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.5);
+      setTimeout(() => { try { ambientNode.osc.stop(); } catch(e){} }, 600);
+    } catch(e){}
+    ambientNode = null;
+  }
+  narrationInProgress = false;
+  document.getElementById('waveform').classList.add('idle');
+}
+
+// === NAVIGATION ===
+function nextScene() {
+  if (currentScene < TOTAL_SCENES - 1) showScene(currentScene + 1);
+  else showEndScreen();
+}
+
+function prevScene() {
+  if (currentScene > 0) showScene(currentScene - 1);
+}
+
+function skipAll() {
+  showEndScreen();
+}
+
+// === END SCREEN ===
+function showEndScreen() {
+  clearTimeout(sceneTimer);
+  stopAllAudio();
+  
+  document.getElementById('cinema').style.display = 'none';
+  document.getElementById('controls').classList.remove('show');
+  document.getElementById('progress').classList.remove('show');
+  document.getElementById('counter').classList.remove('show');
+  document.getElementById('waveform').classList.remove('show');
+  document.getElementById('brandBadge').classList.remove('show');
+  document.getElementById('expertBadge').classList.remove('show');
+  document.getElementById('waFloat').classList.remove('show');
+  
+  document.getElementById('shareBtn').classList.add('show');
+  document.getElementById('content').classList.add('show');
+  document.getElementById('content').scrollTop = 0;
+}
+
+// === PROGRESS ===
+function updateProgress() {
+  const prog = document.getElementById('progress');
+  prog.innerHTML = '';
+  for (let i = 0; i < TOTAL_SCENES; i++) {
+    const dot = document.createElement('div');
+    dot.className = i === currentScene ? 'dot active' : (i < currentScene ? 'dot done' : 'dot');
+    prog.appendChild(dot);
+  }
+}
+
+function updateCounter() {
+  document.getElementById('counter').textContent = (currentScene + 1) + ' / ' + TOTAL_SCENES;
+}
+
+// === TOGGLE AUDIO ===
+function toggleAudio() {
+  audioEnabled = !audioEnabled;
+  document.getElementById('audioBtn').textContent = audioEnabled ? '🔊' : '🔇';
+  if (!audioEnabled) stopAllAudio();
+  if (audioEnabled && document.getElementById('cinema').style.display !== 'none') playSceneAudio(currentScene);
+}
+
+// === SHARE ===
+function shareWhatsApp() {
+  const url = window.location.href;
+  const text = 'فطرة وسكينة — منصة الزواج الشرعي السلفي\nرحلة سينمائية من الانهيار إلى العودة\nشاهد وشارك:\n' + url;
+  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+}
+
+// === FORM VALIDATION ===
+function submitForm(e) {
+  e.preventDefault();
+  
+  const required = [
+    { id: 'f_name', label: 'الاسم' },
+    { id: 'f_gender', label: 'الجنس' },
+    { id: 'f_age', label: 'العمر' },
+    { id: 'f_status', label: 'الحالة' },
+    { id: 'f_city', label: 'المدينة' },
+    { id: 'f_commit', label: 'مستوى الالتزام' },
+    { id: 'f_about', label: 'نبذة عني' },
+    { id: 'f_seek', label: 'أبحث عن' }
+  ];
+  
+  let errors = [];
+  let firstError = null;
+  
+  // Clear previous errors
+  required.forEach(r => {
+    const el = document.getElementById(r.id);
+    el.classList.remove('error');
+  });
+  
+  // Check each field
+  required.forEach(r => {
+    const el = document.getElementById(r.id);
+    const val = el.value.trim();
+    if (!val) {
+      el.classList.add('error');
+      errors.push(r.label);
+      if (!firstError) firstError = el;
+    }
+  });
+  
+  const msg = document.getElementById('formMsg');
+  msg.className = 'form-msg';
+  
+  if (errors.length > 0) {
+    msg.classList.add('error');
+    msg.textContent = '⚠️ يرجى ملء الحقول التالية: ' + errors.join('، ');
+    if (firstError) firstError.focus();
+    return;
+  }
+  
+  // Validate age
+  const age = parseInt(document.getElementById('f_age').value);
+  if (isNaN(age) || age < 18 || age > 99) {
+    document.getElementById('f_age').classList.add('error');
+    msg.classList.add('error');
+    msg.textContent = '⚠️ العمر يجب أن يكون بين 18 و 99 سنة';
+    document.getElementById('f_age').focus();
+    return;
+  }
+  
+  // Success
+  msg.classList.add('success');
+  msg.textContent = '✓ تم حفظ بياناتك بنجاح. سيتم التواصل معك عبر وليك الشرعي.';
+  
+  // Scroll to message
+  msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// === LOAD VOICES ===
+if (window.speechSynthesis) {
+  window.speechSynthesis.onvoiceschanged = () => {
+    window.speechSynthesis.getVoices();
+  };
+}
+</script>
+</body>
+</html>
