@@ -281,6 +281,24 @@ body.content-mode{overflow-y:auto}
 .gw-icon{font-size:30px}
 .gw-t{font-size:16px;font-weight:700;color:#fff}
 .gw-d{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.7}
+
+/* ===== SLIDE APP MODE ===== */
+body.app-mode{overflow:hidden}
+body.app-mode #content{overflow:hidden;padding-top:0}
+body.app-mode #content > .section{position:absolute;inset:0;overflow-y:auto;padding:74px 22px 120px;display:none}
+body.app-mode #content > .section.slide-on{display:block;animation:fadeIn 0.5s}
+body.app-mode #content > .section > *{max-width:680px;margin-left:auto;margin-right:auto}
+.mini-btn{background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.25);color:var(--gold);padding:9px 16px;border-radius:50px;font-size:12px;cursor:pointer;font-family:inherit;min-height:38px}
+.app-nav{position:fixed;bottom:0;left:0;right:0;z-index:60;background:rgba(10,8,16,0.97);border-top:1px solid rgba(212,175,55,0.2);padding:12px 18px calc(12px + env(safe-area-inset-bottom));display:none;align-items:center;justify-content:center;gap:20px;backdrop-filter:blur(10px)}
+.app-nav.show{display:flex}
+.app-nav button{background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.35);color:var(--gold);width:46px;height:46px;border-radius:50%;font-size:22px;cursor:pointer;min-height:46px;-webkit-appearance:none}
+.app-nav button:active{transform:scale(0.92)}
+#navDots{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:60vw}
+.nav-dot{width:9px;height:9px;border-radius:50%;background:rgba(212,175,55,0.25);border:none;padding:0;cursor:pointer;min-height:9px}
+.nav-dot.on{background:var(--gold);width:26px;border-radius:5px}
+body.app-mode .signup-success{position:fixed;inset:0;z-index:55;overflow-y:auto;background:var(--dark);padding-bottom:40px}
+.teaser-close{position:fixed;top:14px;left:14px;z-index:56;background:rgba(26,22,34,0.9);border:1px solid rgba(212,175,55,0.3);color:#fff;border-radius:10px;font-size:16px;width:38px;height:38px;display:none;cursor:pointer;font-family:inherit}
+.signup-success.show .teaser-close{display:block}
 </style>
 </head>
 <body>
@@ -358,16 +376,10 @@ body.content-mode{overflow-y:auto}
 <!-- CONTENT -->
 <div class="content" id="content">
 
-  <!-- LOGO -->
-  <div class="section logo-section">
-    <img src="https://media.base44.com/images/public/6a920081a841164a49489c5f/64fed36dd_generated_image.png" alt="شعار فطرة وسكينة">
-    <h2 style="margin-top:14px">فطرة وسكينة</h2>
-    <p class="sub" data-i18n="logoSub">المنصة العالمية للزواج الشرعي على منهج أهل السنة</p>
-  </div>
 
-
-  <!-- PERSONA GATEWAY: one decision, one path -->
+  <!-- PERSONA GATEWAY SLIDE -->
   <div class="section" id="gatewaySection" style="text-align:center">
+    <img src="https://media.base44.com/images/public/6a920081a841164a49489c5f/64fed36dd_generated_image.png" alt="شعار فطرة وسكينة" style="width:96px;height:96px;border-radius:50%;border:2px solid rgba(212,175,55,0.3);box-shadow:0 0 40px rgba(212,175,55,0.15);margin-bottom:14px">
     <h2 data-i18n="gwTitle">قبل أنْ تُكمل… مَن أنت؟</h2>
     <p class="sub" data-i18n="gwSub">لن نُلقِ عليكَ كلَّ شيء — بل الطريقَ الذي يخصُّكَ وحدَك</p>
     <div class="gw-grid">
@@ -386,6 +398,10 @@ body.content-mode{overflow-y:auto}
         <span class="gw-t" data-i18n="gw3">لستُ مسلماً — أريدُ أنْ أفهم</span>
         <span class="gw-d" data-i18n="gw3d">شيءٌ غريبٌ ينتظرُك — دقيقةٌ واحدة</span>
       </button>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:center;margin-top:24px">
+      <button class="mini-btn" onclick="replayFilm()" data-i18n="gwFilm">شاهد الفيلم مرة أخرى 🔄</button>
+      <button class="mini-btn" onclick="shareWhatsApp()" data-i18n="gwShare">شارك 📤</button>
     </div>
   </div>
 
@@ -464,7 +480,6 @@ body.content-mode{overflow-y:auto}
     <div style="background:linear-gradient(135deg,rgba(212,175,55,0.12),rgba(26,22,34,0.9));border:1px solid rgba(212,175,55,0.35);border-radius:16px;padding:26px 20px;max-width:600px;margin:0 auto">
       <h3 style="margin:0 0 10px" data-i18n="bTitle">العودةُ لا تحتاجُ خطبةً — تحتاجُ قراراً</h3>
       <p style="font-size:14px;line-height:2;color:rgba(255,255,255,0.78);margin:0 0 18px" data-i18n="bLine">وأوّلُ قرارٍ يبنى عليهِ الباقي: بيتٌ على ذكرِ الله. زواجٌ شرعيٌّ يُعيدُ للقلبِ سكينتَه — نحنُ معكَ من أوّلِ خطوة.</p>
-      <button class="donate-cta" onclick="smartRegister()" data-i18n="bBtn">ابدأْ ببيتٍ على تقوى — سجّل 💍</button>
     </div>
   </div>
 
@@ -489,6 +504,17 @@ body.content-mode{overflow-y:auto}
         <h3 data-i18n="mysTitle">كتابٌ لم يتغيّرْ فيهِ حرفٌ واحدٌ منذُ 1400 سنة</h3>
         <button class="mystery-btn" data-i18n="mysBtn">اضغط لتكتشف 👁</button>
       </div>
+    </div>
+  </div>
+
+  <!-- PATH C FINAL -->
+  <div class="section" data-paths="c" style="text-align:center">
+    <div style="background:var(--card);border:1px solid rgba(212,175,55,0.25);border-radius:16px;padding:28px 22px;max-width:560px;margin:0 auto">
+      <h3 data-i18n="cfT">وماذا بعد؟</h3>
+      <p style="font-size:14px;line-height:2.1;color:rgba(255,255,255,0.75)" data-i18n="cfB">لا نطلبُ منكَ قراراً الآن — نطلبُ أنْ تقرأَ بعينٍ مفتوحة. والبابُ مفتوحٌ دائماً:</p>
+      <button class="donate-cta" onclick="window.open('https://quran.com','_blank')" data-i18n="cf1">📖 اقرأ القرآنَ بلغتِك</button>
+      <button class="donate-cta" onclick="dawahContact()" data-i18n="cf2">💬 راسلنا — حوارٌ هادئٌ بلا إلزام</button>
+      <button class="donate-cta" onclick="dawahRegister()" data-i18n="cf3">💍 أسلمتُ — أريدُ الزواجَ على السنة</button>
     </div>
   </div>
 
@@ -540,10 +566,10 @@ body.content-mode{overflow-y:auto}
 
   <!-- HONEST DONATION: direct human contact, no fake checkout -->
   <div class="section" data-paths="a b">
-    <h2 data-i18n="donH">إعانةُ المسلمين على الزواج</h2>
-    <p class="sub" data-i18n="donS">صدقةٌ جاريةٌ ما دامَ النكاحُ قائماً</p>
+    <h2 data-i18n="donH">منحةُ الانتماء — عونٌ بلا مِنّة</h2>
+    <p class="sub" data-i18n="donS">تبرعُكَ يصلُ المنتسبَ كحقِّ انتماءٍ لا كصدقةٍ تُمِنُّ — فلا يشعرُ أحدٌ بذلٍّ ولا تقصير</p>
     <div class="donation-card" style="text-align:center">
-      <p style="font-size:14px;line-height:2.2;color:rgba(255,255,255,0.78);margin-top:0" data-i18n="donHonest">💛 لا يوجدُ هنا دفعٌ آليٌّ ولا أرقامُ بطاقاتٍ ولا "بوابةُ دفع". نحنُ منصةٌ شرعيةٌ يُديرُها فريقٌ يخافُ الله: تواصلْ معنا مباشرةً عبرَ واتساب، ونرافقُكَ خطوةً بخطوةٍ حتى تصلَ صدقتُكَ إلى مستحقِّها — بشفافيةٍ كاملةٍ وشهودٍ عدول.</p>
+      <p style="font-size:14px;line-height:2.2;color:rgba(255,255,255,0.78);margin-top:0" data-i18n="donHonest">💛 لا دفعَ آلياً ولا وسطاءَ هنا — التبرعُ يصلُ مباشرةً إلى إدارةِ المنصةِ (واتساب)، وتُقدَّمُ بكرامةٍ كمنحةِ انتماءٍ يستحقُّها كلُّ منتسبٍ عندَ عقدِه — دونَ أن يعلمَ أحدٌ مَنْ أخذَها، وبشفافيةٍ معَ الفريق.</p>
       <button class="donate-cta" onclick="donate(0)" data-i18n="donWaliBtn">أريدُ المساهمة — حوارٌ مباشرٌ عبرَ واتساب 💬</button>
       <p class="donate-ref">«ومنْ يتقِ اللهَ يجعلْ لهُ مخرجاً ويرزقْهُ منْ حيثُ لا يحتسبُ» — الطلاق 2-3</p>
     </div>
@@ -651,12 +677,20 @@ body.content-mode{overflow-y:auto}
 
   <!-- POST SIGNUP TEASER — appears after form submission -->
   <div class="signup-success" id="signupSuccess">
+<button class="teaser-close" onclick="document.getElementById('signupSuccess').classList.remove('show')" aria-label="close">✕</button>
     <div class="section">
       <div class="logo-section">
         <img src="https://media.base44.com/images/public/6a920081a841164a49489c5f/64fed36dd_generated_image.png" alt="شعار فطرة وسكينة">
       </div>
       <h2>مرحباً بك، أنتَ الآن من المؤسسينَ الأوائل 🌿</h2>
       <p class="sub">أنتَ الآن ضمن أوائلِ المنصةِ السلفيةِ للزواجِ الشرعي</p>
+    </div>
+
+    <div class="section">
+      <div style="background:linear-gradient(135deg,rgba(212,175,55,0.12),rgba(26,22,34,0.9));border:1px solid rgba(212,175,55,0.35);border-radius:16px;padding:24px 20px;max-width:560px;margin:0 auto;text-align:center">
+        <h3 data-i18n="grantT">منحةُ انتمائِك 💛</h3>
+        <p style="font-size:14px;line-height:2.1;color:rgba(255,255,255,0.78)" data-i18n="grantB">عونُ تكاليفِ نكاحِكَ حقٌّ لكلِّ منتسبٍ هنا — يُقدَّمُ بكرامةٍ ودونَ أنْ تطلبَهُ. لا أحدَ هنا يتلقّى صدقةً: منحةُ انتماءٍ يستحقُّها كلُّ عضوٍ عندَ عقدِه.</p>
+      </div>
     </div>
 
     <div class="section">
@@ -788,7 +822,6 @@ function showScene(idx) {
   updateCounter();
   setTimeout(() => {
     isTransitioning = false;
-    startAmbient(idx);
     playAyahSequence(idx, 0);
   }, 3000);
 }
@@ -916,25 +949,14 @@ function nextScene() { if (currentScene < TOTAL_SCENES - 1) showScene(currentSce
 function prevScene() { if (currentScene > 0) showScene(currentScene - 1); }
 function skipAll() { showEndScreen(); }
 
-function showEndScreen() {
-  document.getElementById('stickyCta').classList.add('show');
-  stopAllAudio();
-  document.getElementById('cinema').style.display = 'none';
-  hideAllUI();
-  document.getElementById('shareBtn').classList.add('show');
-  document.getElementById('replayBtn').classList.add('show');
-  document.getElementById('content').classList.add('show');
-  document.body.classList.add('content-mode');
-  document.getElementById('content').scrollTop = 0;
-}
+function showEndScreen() { appStart(); }
 
 function replayFilm() {
-  document.getElementById('stickyCta').classList.remove('show');
-  document.getElementById('shareBtn').classList.remove('show');
-  document.getElementById('replayBtn').classList.remove('show');
+  document.getElementById('appNav').classList.remove('show');
   document.getElementById('content').classList.remove('show');
   document.getElementById('signupSuccess').classList.remove('show');
-  document.body.classList.remove('content-mode');
+  document.body.classList.remove('app-mode');
+  document.querySelectorAll('#content > .section').forEach(s => s.classList.remove('slide-on'));
   document.getElementById('cinema').style.display = 'block';
   showAllUI();
   showScene(0);
@@ -1040,33 +1062,25 @@ function submitForm(e) {
   }
   msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-  // Show post-signup teaser after 2 seconds
+  // Show post-signup overlay after 2 seconds
   setTimeout(() => {
-    const teaser = document.getElementById('signupSuccess');
-    teaser.classList.add('show');
-    teaser.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 2500);
+    document.getElementById('signupSuccess').classList.add('show');
+  }, 2000);
 }
 
-// Sticky CTA scroll logic
-const contentEl = document.getElementById('content');
-contentEl.addEventListener('scroll', function() {
-  if (!contentEl.classList.contains('show')) return;
-  const formEl = document.querySelector('.form');
-  if (!formEl) return;
-  const formRect = formEl.getBoundingClientRect();
-  if (formRect.bottom < 0 && !document.getElementById('signupSuccess').classList.contains('show')) {
-    document.getElementById('stickyCta').classList.add('show');
-  } else {
-    document.getElementById('stickyCta').classList.remove('show');
-  }
-});
+
 document.addEventListener('keydown', function(e) {
-  if (document.getElementById('cinema').style.display === 'none') return;
-  if (e.key === 'ArrowLeft') nextScene();
-  if (e.key === 'ArrowRight') prevScene();
-  if (e.key === 'Escape') skipAll();
-  if (e.key === ' ') { e.preventDefault(); toggleAudio(); }
+  const cinemaHidden = document.getElementById('cinema').style.display === 'none';
+  if (!cinemaHidden) {
+    if (e.key === 'ArrowLeft') nextScene();
+    if (e.key === 'ArrowRight') prevScene();
+    if (e.key === 'Escape') skipAll();
+    if (e.key === ' ') { e.preventDefault(); toggleAudio(); }
+    return;
+  }
+  if (!document.body.classList.contains('app-mode')) return;
+  if (e.key === 'ArrowLeft') slideNext();
+  if (e.key === 'ArrowRight') slidePrev();
 });
 
 // ==================== I18N SYSTEM (AR auto-snapshot + FR/EN/ES) ====================
@@ -1106,7 +1120,7 @@ const I18N = {
     cmpH: "La loi d'Allah vs la loi des hommes", cmpS: "Comparaison franche entre deux voies et deux destins",
     prH: "Les règles de la Charia", prS: "Une plateforme selon la voie des Gens de la Sunna",
     lookH: "Le regard licite", lookS: "Un regard permis, en présence du tuteur, dans les limites de la Charia",
-    donH: "Aider les musulmans à se marier", donS: "Une aumône continue qui mène à la récompense et facilite le nikah",
+    donH: "La bourse d'appartenance — une aide sans faveur", donS: "Ton don parvient directement à l'administration de la plateforme, qui l'offre avec dignité comme un droit d'appartenance — personne ne se sent petit",
     stepsH: "Comment ça marche", stepsS: "De l'inscription au contrat selon la Sunna",
     joinH: "Rejoignez la plateforme", joinS: "Faites partie des pionniers fondateurs de la plateforme salafie du mariage halal",
     fName: "Nom (confidentiel) *", fGender: "Sexe *", fSeek: "Profil recherché *", fAge: "Âge *",
@@ -1130,6 +1144,15 @@ const I18N = {
     shareText: "🌿 Fitra wa Sakina — la plateforme du mariage halal salafi\n\nUn site qui fait la différence :\n✅ Mariage avec tuteur, dot et témoins\n✅ Aucun mélange — contact entre tuteurs uniquement\n✅ Regard licite de 4 secondes en présence du mahram\n✅ Revue religieuse de chaque dossier\n✅ Aider les musulmans à se marier\n\nRegardez et partagez :",
     dwRead: "Lire le Coran", dwContact: "Nous contacter", dwRegister: "Je suis musulman — m'inscrire 💍",
     dwContactMsg: "Bonjour, je visite votre site et j'aimerais en savoir plus sur l'Islam",
+    gwFilm: "Revoir le film 🔄",
+    gwShare: "Partager 📤",
+    cfT: "Et ensuite ?",
+    cfB: "Nous ne te demandons aucune décision maintenant — seulement de lire, l'œil ouvert. La porte reste toujours ouverte :",
+    cf1: "📖 Lire le Coran dans ta langue",
+    cf2: "💬 Écris-nous — un dialogue calme, sans engagement",
+    cf3: "💍 Je suis musulman — je veux me marier selon la Sunna",
+    grantT: "Ta bourse d'appartenance 💛",
+    grantB: "L'aide pour les frais de ton nikah est un droit de chaque membre ici — offerte avec dignité, sans que tu aies à la demander. Personne ne reçoit une aumône : une bourse d'appartenance que chaque membre mérite à son contrat.",
     gwTitle: "Avant de continuer… qui es-tu ?",
     gwSub: "Nous ne te noierons pas d'informations — juste le chemin qui est le tien",
     gw1: "Musulman en quête d'un mariage halal",
@@ -1141,7 +1164,7 @@ const I18N = {
     bTitle: "Revenir ne demande pas un sermon — mais une décision",
     bLine: "Et la première décision : un foyer bâti sur le rappel d'Allah. Un mariage halal qui rend au cœur sa sérénité — nous sommes avec toi dès la première étape.",
     bBtn: "Commencer par un foyer sur la piété — s'inscrire 💍",
-    donHonest: "💛 Ici, pas de paiement automatique, pas de numéros de carte, pas de « passerelle de paiement ». Une plateforme religieuse gérée par une équipe qui craint Allah : contacte-nous directement sur WhatsApp, et nous t'accompagnerons pas à pas jusqu'à ce que ton aumône atteigne celui qui la mérite — en toute transparence, avec des témoins dignes de foi.",
+    donHonest: "💛 Pas de paiement automatique ni d'intermédiaires ici — le don arrive directement à l'administration de la plateforme (WhatsApp), et est offert avec dignité comme une bourse d'appartenance que chaque membre mérite à son contrat — sans que personne sache qui l'a reçue, en toute transparence avec l'équipe.",
     donWaliBtn: "Je veux contribuer — dialogue direct via WhatsApp 💬",
   },
   en: {
@@ -1178,7 +1201,7 @@ const I18N = {
     cmpH: "Allah's law vs man-made law", cmpS: "A frank comparison between two paths and two destinies",
     prH: "Sharia guidelines", prS: "A platform upon the way of Ahl as-Sunnah",
     lookH: "The permissible look", lookS: "A permitted look, with the wali present, within Sharia limits",
-    donH: "Helping Muslims get married", donS: "An ongoing charity that earns reward and eases nikah",
+    donH: "The Membership Grant — support without humiliation", donS: "Your donation goes directly to the platform's administration, which offers it with dignity as a right of belonging — no one feels small",
     stepsH: "How it works", stepsS: "From registration to a Sunnah marriage contract",
     joinH: "Join the platform", joinS: "Be among the founding pioneers of the Salafi halal marriage platform",
     fName: "Name (private) *", fGender: "Gender *", fSeek: "Seeking *", fAge: "Age *",
@@ -1202,6 +1225,15 @@ const I18N = {
     shareText: "🌿 Fitra wa Sakina — the Salafi halal marriage platform\n\nA site that makes a difference:\n✅ Marriage with wali, mahr and witnesses\n✅ No free mixing — guardians communicate only\n✅ Permissible 4-second look with a mahram present\n✅ Sharia review of every file\n✅ Helping Muslims get married\n\nWatch and share:",
     dwRead: "Read the Quran", dwContact: "Talk to us", dwRegister: "I'm Muslim — register 💍",
     dwContactMsg: "Hello, I'm visiting your site and would like to learn more about Islam",
+    gwFilm: "Watch the film again 🔄",
+    gwShare: "Share 📤",
+    cfT: "And what now?",
+    cfB: "We ask no decision from you now — only to read with open eyes. The door is always open:",
+    cf1: "📖 Read the Quran in your language",
+    cf2: "💬 Write to us — a calm conversation, no pressure",
+    cf3: "💍 I've embraced Islam — I want a Sunnah marriage",
+    grantT: "Your membership grant 💛",
+    grantB: "Support for your nikah costs is a right of every member here — offered with dignity, without you ever asking. No one receives charity: a membership grant every member deserves at their contract.",
     gwTitle: "Before you continue… who are you?",
     gwSub: "We won't dump everything on you — only the path that is yours",
     gw1: "A Muslim seeking halal marriage",
@@ -1213,7 +1245,7 @@ const I18N = {
     bTitle: "Returning doesn't need a sermon — it needs a decision",
     bLine: "And the first decision: a home built on the remembrance of Allah. A halal marriage that returns serenity to the heart — we are with you from the very first step.",
     bBtn: "Start with a home upon taqwa — register 💍",
-    donHonest: "💛 No automatic payments here, no card numbers, no 'payment gateway'. A Sharia platform run by a team that fears Allah: contact us directly on WhatsApp, and we'll walk with you step by step until your charity reaches the one who deserves it — full transparency, trustworthy witnesses.",
+    donHonest: "💛 No automatic payments and no middlemen here — the donation arrives directly to the platform's administration (WhatsApp), and is offered with dignity as a membership grant every member deserves at their nikah — no one ever knows who received it, with full transparency with the team.",
     donWaliBtn: "I want to contribute — direct conversation via WhatsApp 💬",
   },
   es: {
@@ -1250,7 +1282,7 @@ const I18N = {
     cmpH: "La ley de Allah vs la ley de los hombres", cmpS: "Comparación franca entre dos caminos y dos destinos",
     prH: "Reglas de la sharia", prS: "Una plataforma según el camino de la Gente de la Sunna",
     lookH: "La mirada permitida", lookS: "Una mirada lícita, con el tutor presente, dentro de los límites de la sharia",
-    donH: "Ayudar a los musulmanes a casarse", donS: "Una caridad continua que lleva a la recompensa y facilita el nikah",
+    donH: "La Beca de Pertenencia — ayuda sin humillación", donS: "Tu donación llega directamente a la administración de la plataforma, que la ofrece con dignidad como un derecho de pertenencia — nadie se siente pequeño",
     stepsH: "Cómo funciona", stepsS: "Del registro al contrato según la Sunna",
     joinH: "Únete a la plataforma", joinS: "Sé parte de los pioneros fundadores de la plataforma salafí de matrimonio halal",
     fName: "Nombre (privado) *", fGender: "Género *", fSeek: "Busco *", fAge: "Edad *",
@@ -1274,6 +1306,15 @@ const I18N = {
     shareText: "🌿 Fitra wa Sakina — la plataforma de matrimonio halal salafí\n\nUn sitio que marca la diferencia:\n✅ Matrimonio con tutor, mahr y testigos\n✅ Sin mezcla — comunicación solo entre tutores\n✅ Mirada lícita de 4 segundos con el mahram presente\n✅ Revisión legal de cada expediente\n✅ Ayudar a los musulmanes a casarse\n\nMira y comparte:",
     dwRead: "Leer el Corán", dwContact: "Háblanos", dwRegister: "Soy musulmán — registrarme 💍",
     dwContactMsg: "Hola, visito su sitio y me gustaría saber más sobre el Islam",
+    gwFilm: "Ver la película otra vez 🔄",
+    gwShare: "Compartir 📤",
+    cfT: "¿Y ahora qué?",
+    cfB: "No te pedimos una decisión ahora — solo leer con ojos abiertos. La puerta siempre está abierta:",
+    cf1: "📖 Lee el Corán en tu idioma",
+    cf2: "💬 Escríbenos — una conversación tranquila, sin compromiso",
+    cf3: "💍 Acepté el Islam — quiero casarme según la Sunna",
+    grantT: "Tu beca de pertenencia 💛",
+    grantB: "La ayuda para los costos de tu nikah es un derecho de cada miembro aquí — ofrecida con dignidad, sin que tengas que pedir. Nadie recibe limosna: una beca de pertenencia que cada miembro merece en su contrato.",
     gwTitle: "Antes de continuar… ¿quién eres?",
     gwSub: "No te saturaremos con todo — solo el camino que es tuyo",
     gw1: "Musulmán que busca matrimonio halal",
@@ -1285,7 +1326,7 @@ const I18N = {
     bTitle: "Volver no necesita un sermón — necesita una decisión",
     bLine: "Y la primera decisión: un hogar construido sobre el recuerdo de Allah. Un matrimonio halal que devuelve la serenidad al corazón — estamos contigo desde el primer paso.",
     bBtn: "Empieza con un hogar sobre el temor de Allah — regístrate 💍",
-    donHonest: "💛 Aquí no hay pagos automáticos, ni números de tarjeta, ni 'pasarela de pago'. Una plataforma religiosa dirigida por un equipo que teme a Allah: contáctanos directamente por WhatsApp y te acompañaremos paso a paso hasta que tu caridad llegue a quien la merece — con total transparencia y testigos dignos.",
+    donHonest: "💛 No hay pagos automáticos ni intermediarios aquí — la donación llega directamente a la administración de la plataforma (WhatsApp) y se ofrece con dignidad como una beca de pertenencia que cada miembro merece en su nikah — nadie sabe quién la recibió, con total transparencia con el equipo.",
     donWaliBtn: "Quiero contribuir — conversación directa por WhatsApp 💬",
   }
 };
@@ -1449,10 +1490,51 @@ function renderDawah() {
 }
 function dawahNext() { const steps = DAWAH[curLang] || DAWAH.ar; if (dawahStep < steps.length - 1) { dawahStep++; renderDawah(); } }
 function dawahContact() { window.open('https://wa.me/?text=' + encodeURIComponent(T('dwContactMsg')), '_blank'); }
-function dawahRegister() { closeDawah(); const el = document.getElementById('f_name'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
+function dawahRegister() { closeDawah(); if (!chosenPath) choosePath('a'); smartRegister(); }
 
 
-// ==================== PERSONA PATHS ====================
+// ==================== SLIDE APP + PERSONA PATHS ====================
+function slideEls() {
+  return Array.from(document.querySelectorAll('#content > .section')).filter(s => !s.classList.contains('path-hidden'));
+}
+let curSlide = 0;
+function appStart() {
+  stopAllAudio();
+  document.getElementById('cinema').style.display = 'none';
+  hideAllUI();
+  document.getElementById('content').classList.add('show');
+  document.body.classList.add('app-mode');
+  document.getElementById('appNav').classList.add('show');
+  showSlide(0);
+}
+function showSlide(i) {
+  const els = slideEls();
+  if (!els.length) return;
+  curSlide = Math.max(0, Math.min(i, els.length - 1));
+  els.forEach((s, j) => s.classList.toggle('slide-on', j === curSlide));
+  els[curSlide].scrollTop = 0;
+  const dots = document.getElementById('navDots');
+  dots.innerHTML = '';
+  els.forEach((s, j) => {
+    const d = document.createElement('button');
+    d.className = 'nav-dot' + (j === curSlide ? ' on' : '');
+    d.onclick = () => showSlide(j);
+    dots.appendChild(d);
+  });
+  document.getElementById('navPrev').style.visibility = curSlide === 0 ? 'hidden' : 'visible';
+  document.getElementById('navNext').style.visibility = curSlide === els.length - 1 ? 'hidden' : 'visible';
+}
+function slideNext() { showSlide(curSlide + 1); }
+function slidePrev() { showSlide(curSlide - 1); }
+let touchX = null;
+document.getElementById('content').addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+document.getElementById('content').addEventListener('touchend', e => {
+  if (touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  if (Math.abs(dx) > 60) { if (dx > 0) slidePrev(); else slideNext(); }
+  touchX = null;
+}, { passive: true });
+
 let chosenPath = null;
 function choosePath(p) {
   chosenPath = p;
@@ -1462,26 +1544,25 @@ function choosePath(p) {
   });
   const gw = document.getElementById('gatewaySection');
   if (gw) gw.classList.add('path-hidden');
-  // hide path sections is done; scroll to first one of this path
-  const firsts = Array.from(document.querySelectorAll('#content .section[data-paths]')).filter(s => !s.classList.contains('path-hidden'));
-  if (firsts.length) firsts[0].scrollIntoView({ behavior: 'smooth' });
+  showSlide(0);
 }
 function smartRegister() {
-  const formEl = document.getElementById('f_name');
   if (!chosenPath) {
     const gw = document.getElementById('gatewaySection');
-    if (gw) { gw.classList.remove('path-hidden'); gw.scrollIntoView({ behavior: 'smooth' }); }
+    gw.classList.remove('path-hidden');
+    document.body.classList.add('app-mode');
+    document.getElementById('content').classList.add('show');
+    document.getElementById('appNav').classList.add('show');
+    showSlide(slideEls().indexOf(gw));
     return;
   }
-  const formSection = formEl.closest('.section');
-  if (formSection && formSection.classList.contains('path-hidden')) choosePath('a');
-  formEl.scrollIntoView({ behavior: 'smooth' });
+  const formSection = document.getElementById('f_name').closest('.section');
+  showSlide(slideEls().indexOf(formSection));
 }
-// on load: hide all path sections until the user chooses (clean canvas, zero scatter)
+// hide all path slides until the user chooses (clean canvas, zero scatter)
 (function () {
   document.querySelectorAll('#content .section[data-paths]').forEach(sec => sec.classList.add('path-hidden'));
 })();
-
 </script>
 
 <div class="lang-pills" id="langPills">
@@ -1489,6 +1570,13 @@ function smartRegister() {
   <button onclick="setLang('fr')" id="lp-fr">FR</button>
   <button onclick="setLang('en')" id="lp-en">EN</button>
   <button onclick="setLang('es')" id="lp-es">ES</button>
+</div>
+
+
+<div class="app-nav" id="appNav">
+  <button id="navPrev" onclick="slidePrev()" aria-label="prev">‹</button>
+  <div id="navDots"></div>
+  <button id="navNext" onclick="slideNext()" aria-label="next">›</button>
 </div>
 
 <div class="dawah-overlay" id="dawahOverlay" onclick="if(event.target===this)closeDawah()">
@@ -1505,6 +1593,5 @@ function smartRegister() {
   </div>
 </div>
 
-<div class="sticky-cta" id="stickyCta"><button onclick="document.getElementById('f_name').scrollIntoView({behavior:'smooth'});" data-i18n="stickyBtn">سجّل الآن — مجاناً ✓</button></div>
 </body>
 </html>
