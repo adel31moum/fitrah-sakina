@@ -818,6 +818,7 @@ let audioEnabled = true;
 let isTransitioning = false;
 
 function startFilm() {
+  fsTrack('start');
   document.getElementById('startScreen').classList.add('hide');
   setTimeout(() => {
     document.getElementById('startScreen').style.display = 'none';
@@ -984,9 +985,22 @@ function stopAllAudio() {
 
 function nextScene() { if (currentScene < TOTAL_SCENES - 1) showScene(currentScene + 1); else showEndScreen(); }
 function prevScene() { if (currentScene > 0) showScene(currentScene - 1); }
+// ==================== FUNNEL ANALYTICS ====================
+const FS_EP = 'https://solas-49489c5f.base44.app/functions/logFunnelEvent';
+let fsSid = (function () { try { let x = sessionStorage.getItem('fs_sid'); if (!x) { x = Math.random().toString(36).slice(2, 10) + Date.now().toString(36); sessionStorage.setItem('fs_sid', x); } return x; } catch (e) { return 'anon'; } })();
+function fsTrack(type, path) {
+  try {
+    const body = JSON.stringify({ eventType: type, path: path || 'na', lang: (typeof curLang !== 'undefined' ? curLang : 'ar'), sessionId: fsSid });
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(FS_EP, new Blob([body], { type: 'application/json' }));
+    } else {
+      fetch(FS_EP, { method: 'POST', body: body, keepalive: true }).catch(function () {});
+    }
+  } catch (e) {}
+}
 function skipAll() { showEndScreen(); }
 
-function showEndScreen() { appStart(); }
+function showEndScreen() { fsTrack('skip'); appStart(); }
 
 function replayFilm() {
   document.getElementById('appNav').classList.remove('show');
@@ -1097,6 +1111,7 @@ function submitForm(e) {
   } else {
     msg.textContent = T('msgSuccessM');
   }
+  fsTrack('form_submit');
   msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
   // Show post-signup overlay after 2 seconds
@@ -1517,6 +1532,7 @@ const DAWAH = {
 
 let dawahStep = 0;
 function openDawah() {
+  fsTrack('dawah_open');
   document.getElementById('dawahOverlay').style.display = 'flex';
   dawahStep = 0;
   renderDawah();
@@ -1540,9 +1556,9 @@ function renderDawah() {
   }
   document.getElementById('dawahBody').innerHTML = h;
 }
-function dawahNext() { const steps = DAWAH[curLang] || DAWAH.ar; if (dawahStep < steps.length - 1) { dawahStep++; renderDawah(); } }
+function dawahNext() { const steps = DAWAH[curLang] || DAWAH.ar; if (dawahStep < steps.length - 1) { dawahStep++; if (dawahStep === steps.length - 1) fsTrack('dawah_done'); renderDawah(); } }
 function dawahContact() { window.open('https://wa.me/?text=' + encodeURIComponent(T('dwContactMsg')), '_blank'); }
-function dawahRegister() { closeDawah(); if (chosenPath !== 'a' && chosenPath !== 'b') choosePath('a'); smartRegister(); }
+function dawahRegister() { fsTrack('dawah_register'); closeDawah(); if (chosenPath !== 'a' && chosenPath !== 'b') choosePath('a'); smartRegister(); }
 
 
 // ==================== SLIDE APP + PERSONA PATHS ====================
@@ -1551,6 +1567,7 @@ function slideEls() {
 }
 let curSlide = 0;
 function appStart() {
+  fsTrack('gateway');
   stopAllAudio();
   document.getElementById('cinema').style.display = 'none';
   hideAllUI();
@@ -1589,6 +1606,7 @@ document.getElementById('content').addEventListener('touchend', e => {
 
 let chosenPath = null;
 function choosePath(p) {
+  fsTrack('path_' + p);
   chosenPath = p;
   document.querySelectorAll('#content .section[data-paths]').forEach(sec => {
     const paths = (sec.getAttribute('data-paths') || '').split(' ');
@@ -1609,6 +1627,7 @@ function smartRegister() {
     return;
   }
   const formSection = document.getElementById('f_name').closest('.section');
+  fsTrack('form_open');
   showSlide(slideEls().indexOf(formSection));
 }
 // hide all path slides until the user chooses (clean canvas, zero scatter)
