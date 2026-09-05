@@ -1527,7 +1527,7 @@ function renderDawah() {
 }
 function dawahNext() { const steps = DAWAH[curLang] || DAWAH.ar; if (dawahStep < steps.length - 1) { dawahStep++; renderDawah(); } }
 function dawahContact() { window.open('https://wa.me/?text=' + encodeURIComponent(T('dwContactMsg')), '_blank'); }
-function dawahRegister() { closeDawah(); if (!chosenPath) choosePath('a'); smartRegister(); }
+function dawahRegister() { closeDawah(); if (chosenPath !== 'a' && chosenPath !== 'b') choosePath('a'); smartRegister(); }
 
 
 // ==================== SLIDE APP + PERSONA PATHS ====================
