@@ -595,7 +595,7 @@ body.app-mode .signup-success{position:fixed;inset:0;z-index:55;overflow-y:auto;
       <h3>الاستمارة الشرعية</h3>
       <div class="form-group">
         <label data-i18n="fName">الاسم (سري) <span class="req">*</span></label>
-        <input type="text" id="f_name" placeholder="اسمك الكامل">
+        <input type="text" id="f_name" placeholder="اسمك الكامل" data-i18n-ph="phName">
       </div>
       <div class="form-group">
         <label data-i18n="fGender">الجنس <span class="req">*</span></label>
@@ -623,7 +623,7 @@ body.app-mode .signup-success{position:fixed;inset:0;z-index:55;overflow-y:auto;
       </div>
       <div class="form-group">
         <label data-i18n="fAge">العمر <span class="req">*</span></label>
-        <input type="number" id="f_age" placeholder="العمر">
+        <input type="number" id="f_age" placeholder="العمر" data-i18n-ph="phAge">
       </div>
       <div class="form-group">
         <label data-i18n="fStatus">الحالة <span class="req">*</span></label>
@@ -1107,14 +1107,21 @@ document.addEventListener('keydown', function(e) {
     return;
   }
   if (!document.body.classList.contains('app-mode')) return;
-  if (e.key === 'ArrowLeft') slideNext();
-  if (e.key === 'ArrowRight') slidePrev();
+  const daw = document.getElementById('dawahOverlay');
+  if (daw && daw.style.display !== 'none') return;
+  const tag = (e.target.tagName || '').toLowerCase();
+  if (tag === 'input' || tag === 'select' || tag === 'textarea') return;
+  const rtl = (typeof curLang !== 'undefined' && curLang === 'ar');
+  if (e.key === 'ArrowLeft') { rtl ? slideNext() : slidePrev(); }
+  if (e.key === 'ArrowRight') { rtl ? slidePrev() : slideNext(); }
 });
 
 // ==================== I18N SYSTEM (AR auto-snapshot + FR/EN/ES) ====================
 const I18N = {
   ar: {},
   fr: {
+    phName: "Votre nom complet",
+    phAge: "Âge",
     startSub: "Un voyage cinématographique — de l'effondrement au retour<br>La plateforme du mariage halal salafi",
     startTag: "💍 Un mariage selon le Livre d'Allah et la Sunna",
     startBtn: "Commencer le voyage",
@@ -1196,6 +1203,8 @@ const I18N = {
     donWaliBtn: "Je veux contribuer — dialogue direct via WhatsApp 💬",
   },
   en: {
+    phName: "Your full name",
+    phAge: "Age",
     startSub: "A cinematic journey — from collapse to return<br>The Salafi halal marriage platform",
     startTag: "💍 Marriage by the Book of Allah and the Sunnah",
     startBtn: "Begin the journey",
@@ -1277,6 +1286,8 @@ const I18N = {
     donWaliBtn: "I want to contribute — direct conversation via WhatsApp 💬",
   },
   es: {
+    phName: "Tu nombre completo",
+    phAge: "Edad",
     startSub: "Un viaje cinematográfico — del colapso al regreso<br>La plataforma de matrimonio halal salafí",
     startTag: "💍 Matrimonio según el Libro de Allah y la Sunna",
     startBtn: "Comienza el viaje",
@@ -1402,6 +1413,10 @@ function setLang(l) {
     const k = el.getAttribute('data-i18n');
     const v = I18N[l] ? I18N[l][k] : undefined;
     if (v !== undefined) el.innerHTML = v;
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const v = I18N[l] ? I18N[l][el.getAttribute('data-i18n-ph')] : undefined;
+    if (v !== undefined) el.setAttribute('placeholder', v);
   });
   localizeCountries(l);
   ['lp', 'dw'].forEach(p => ['ar', 'fr', 'en', 'es'].forEach(x => {
