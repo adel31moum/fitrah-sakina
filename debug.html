@@ -291,7 +291,7 @@ body.app-mode #content > .section > *{max-width:680px;margin-left:auto;margin-ri
 .mini-btn{background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.25);color:var(--gold);padding:9px 16px;border-radius:50px;font-size:12px;cursor:pointer;font-family:inherit;min-height:38px}
 .app-nav{position:fixed;bottom:0;left:0;right:0;z-index:60;background:rgba(10,8,16,0.97);border-top:1px solid rgba(212,175,55,0.2);padding:12px 18px calc(12px + env(safe-area-inset-bottom));display:none;align-items:center;justify-content:center;gap:20px;backdrop-filter:blur(10px)}
 .app-nav.show{display:flex}
-.app-nav button{background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.35);color:var(--gold);width:46px;height:46px;border-radius:50%;font-size:22px;cursor:pointer;min-height:46px;-webkit-appearance:none}
+#navPrev,#navNext{background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.35);color:var(--gold);width:46px;height:46px;border-radius:50%;font-size:22px;cursor:pointer;min-height:46px;-webkit-appearance:none;flex:none}
 .app-nav button:active{transform:scale(0.92)}
 #navDots{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:60vw}
 .nav-dot{width:9px;height:9px;border-radius:50%;background:rgba(212,175,55,0.25);border:none;padding:0;cursor:pointer;min-height:9px}
@@ -991,11 +991,8 @@ let fsSid = (function () { try { let x = sessionStorage.getItem('fs_sid'); if (!
 function fsTrack(type, path) {
   try {
     const body = JSON.stringify({ eventType: type, path: path || 'na', lang: (typeof curLang !== 'undefined' ? curLang : 'ar'), sessionId: fsSid });
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(FS_EP, new Blob([body], { type: 'application/json' }));
-    } else {
-      fetch(FS_EP, { method: 'POST', body: body, keepalive: true }).catch(function () {});
-    }
+    if (navigator.sendBeacon && navigator.sendBeacon(FS_EP, new Blob([body], { type: 'text/plain;charset=UTF-8' }))) return;
+    fetch(FS_EP, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: body, keepalive: true }).catch(function () {});
   } catch (e) {}
 }
 function skipAll() { showEndScreen(); }

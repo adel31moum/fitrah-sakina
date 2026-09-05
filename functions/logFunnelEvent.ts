@@ -28,7 +28,7 @@ Deno.serve(async (req) => {
       sessionId: String(body.sessionId || '').slice(0, 40),
     };
     const base44 = createClientFromRequest(req);
-    await base44.entities.FunnelEvent.create(data);
+    await base44.asServiceRole.entities.FunnelEvent.create(data);
     return new Response(JSON.stringify({ ok: true }), { headers: { ...cors, 'Content-Type': 'application/json' } });
   } catch (e) {
     return new Response(JSON.stringify({ ok: false, error: String(e) }), { status: 500, headers: { ...cors, 'Content-Type': 'application/json' } });
