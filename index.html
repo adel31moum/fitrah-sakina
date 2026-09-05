@@ -982,11 +982,8 @@ let fsSid = (function () { try { let x = sessionStorage.getItem('fs_sid'); if (!
 function fsTrack(type, path) {
   try {
     const body = JSON.stringify({ eventType: type, path: path || 'na', lang: (typeof curLang !== 'undefined' ? curLang : 'ar'), sessionId: fsSid });
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(FS_EP, new Blob([body], { type: 'application/json' }));
-    } else {
-      fetch(FS_EP, { method: 'POST', body: body, keepalive: true }).catch(function () {});
-    }
+    if (navigator.sendBeacon && navigator.sendBeacon(FS_EP, new Blob([body], { type: 'text/plain;charset=UTF-8' }))) return;
+    fetch(FS_EP, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: body, keepalive: true }).catch(function () {});
   } catch (e) {}
 }
 function skipAll() { showEndScreen(); }
