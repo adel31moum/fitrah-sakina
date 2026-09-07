@@ -299,6 +299,32 @@ body.app-mode #content > .section > *{max-width:680px;margin-left:auto;margin-ri
 body.app-mode .signup-success{position:fixed;inset:0;z-index:55;overflow-y:auto;background:var(--dark);padding-bottom:40px}
 .teaser-close{position:fixed;top:14px;left:14px;z-index:56;background:rgba(26,22,34,0.9);border:1px solid rgba(212,175,55,0.3);color:#fff;border-radius:10px;font-size:16px;width:38px;height:38px;display:none;cursor:pointer;font-family:inherit}
 .signup-success.show .teaser-close{display:block}
+
+/* === v7: stats, goals, quotes, stories, banners === */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;max-width:920px;margin:0 auto}
+.stat-card{background:var(--card);border:1px solid rgba(212,175,55,0.22);border-radius:14px;padding:18px 12px;text-align:center;position:relative;overflow:hidden}
+.stat-card::after{content:'';position:absolute;inset:auto 0 0 0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.stat-num{font-size:30px;font-weight:800;color:var(--gold);letter-spacing:.5px}
+.stat-desc{font-size:13px;line-height:1.9;margin:8px 0 6px;color:rgba(255,255,255,0.82)}
+.stat-src{font-size:10px;color:rgba(255,255,255,0.35);display:block}
+.goal-strip{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:920px;margin:0 auto}
+.goal-item{flex:1 1 150px;min-width:150px;background:linear-gradient(150deg,rgba(212,175,55,0.1),rgba(26,22,34,0.9));border:1px solid rgba(212,175,55,0.3);border-radius:14px;padding:18px 14px;text-align:center}
+.goal-num{font-size:26px;font-weight:800;color:var(--gold)}
+.goal-item p{font-size:12.5px;line-height:1.9;margin:6px 0 0;color:rgba(255,255,255,0.75)}
+.sec-banner{position:relative;border-radius:16px;overflow:hidden;max-width:880px;margin:0 auto 20px;border:1px solid rgba(212,175,55,0.3)}
+.sec-banner img{width:100%;height:200px;object-fit:cover;display:block}
+.sec-banner .banner-cap{position:absolute;inset:auto 0 0 0;padding:16px 14px 12px;background:linear-gradient(transparent,rgba(10,8,16,0.95));text-align:center;font-size:13px;font-weight:700;color:var(--gold)}
+.quote-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;max-width:1000px;margin:0 auto}
+.quote-card{background:linear-gradient(160deg,rgba(212,175,55,0.08),rgba(26,22,34,0.95));border:1px solid rgba(212,175,55,0.25);border-radius:14px;padding:20px 18px 16px;position:relative}
+.quote-card::before{content:'❝';position:absolute;top:8px;inset-inline-start:12px;font-size:22px;color:rgba(212,175,55,0.35)}
+.quote-card p{font-size:15px;line-height:2.3;margin:14px 0 0}
+.quote-ref{display:block;margin-top:12px;font-size:11px;color:var(--gold);opacity:.85}
+.story-card{max-width:700px;margin:0 auto 18px;background:linear-gradient(160deg,rgba(212,175,55,0.07),rgba(26,22,34,0.95));border:1px solid rgba(212,175,55,0.3);border-radius:16px;padding:24px 20px}
+.story-card h3{color:var(--gold);margin:0 0 4px;font-size:18px}
+.story-tag{font-size:11.5px;color:rgba(255,255,255,0.5);margin:0 0 14px}
+.story-step{position:relative;padding-inline-start:20px;margin:10px 0;font-size:14px;line-height:2.1;color:rgba(255,255,255,0.85)}
+.story-step::before{content:'';position:absolute;inset-inline-start:0;top:12px;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.story-src{font-size:11px;color:rgba(255,255,255,0.4);border-top:1px solid rgba(212,175,55,0.15);padding-top:10px;margin-top:14px;line-height:1.8}
 </style>
 </head>
 <body>
@@ -537,6 +563,36 @@ body.app-mode .signup-success{position:fixed;inset:0;z-index:55;overflow-y:auto;
     </div>
   </div>
 
+  <!-- WORLD STATS: the silent collapse (real figures) -->
+  <div class="section" data-paths="a b c">
+    <h2 data-i18n="statH">العالمُ ينهارُ بصمت</h2>
+    <p class="sub" data-i18n="statS">أرقامٌ حقيقيةٌ من جهاتٍ رسمية — لماذا يحتاجُ الزواجُ منصةً تُعيدهُ إلى فطرتِه</p>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-num">48%</div><p class="stat-desc" data-i18n="st1">في الكويت: قرابةُ نصفِ الزيجاتِ تنتهي بالطلاق</p><span class="stat-src" data-i18n="st1s">بياناتٌ رسميةٌ خليجية</span></div>
+      <div class="stat-card"><div class="stat-num">40%</div><p class="stat-desc" data-i18n="st2">في مصر: أربعةٌ من كلِّ عشرةِ زيجاتٍ تنتهي بالطلاق</p><span class="stat-src" data-i18n="st2s">إحصاءاتٌ رسمية</span></div>
+      <div class="stat-card"><div class="stat-num">⅓</div><p class="stat-desc" data-i18n="st3">في أمريكا: ثلثُ جيلِ الشبابِ لن يتزوّجَ أبداً — رقمٌ قياسي</p><span class="stat-src" data-i18n="st3s">معهد IFS — 2024</span></div>
+      <div class="stat-card"><div class="stat-num">25→32</div><p class="stat-desc" data-i18n="st4">سنُّ الزواجِ الأولِ عالمياً تأخّرَ من 25 إلى 32 سنةً في قرنٍ واحد</p><span class="stat-src" data-i18n="st4s">بياناتٌ سكانيةٌ عالمية</span></div>
+      <div class="stat-card"><div class="stat-num">2.1</div><p class="stat-desc" data-i18n="st5">الخصوبةُ العالميةُ تنهارُ إلى مستوى الاستبدال — شتاءٌ ديموغرافيّ</p><span class="stat-src" data-i18n="st5s">الأممُ المتحدةُ — 2024</span></div>
+      <div class="stat-card"><div class="stat-num">187K</div><p class="stat-desc" data-i18n="st6">في تركيا وحدَها: 187 ألفَ حالةِ طلاقٍ في سنةٍ واحدة</p><span class="stat-src" data-i18n="st6s">TurkStat — 2024</span></div>
+    </div>
+  </div>
+
+  <!-- ANNUAL GOALS -->
+  <div class="section" data-paths="a b c">
+    <div class="sec-banner">
+      <img src="https://media.base44.com/images/public/6a920081a841164a49489c5f/8fec06f65_generated_image.png" alt="بابُ الخير">
+      <div class="banner-cap" data-i18n="goalCap">✦ هذه ليست أرقامَ سوقٍ — إنها أهدافُ أمةٍ تريدُ أن تعودَ إلى بيتِها</div>
+    </div>
+    <h2 data-i18n="goalH">أهدافُنا لهذا العام</h2>
+    <p class="sub" data-i18n="goalS">نعدُكم بها أمامَ الله — لا أمامَ مساهمينَ ولا مستثمرين</p>
+    <div class="goal-strip">
+      <div class="goal-item"><div class="goal-num">1000</div><p data-i18n="g1">عقدِ نكاحٍ نُعينُ عليهِ بإذنِ اللهِ حتى نهايةِ 2027</p></div>
+      <div class="goal-item"><div class="goal-num">30+</div><p data-i18n="g2">دولةً يغطيها فريقُنا الشرعيُّ حولَ العالم</p></div>
+      <div class="goal-item"><div class="goal-num">48h</div><p data-i18n="g3">مراجعةٌ شرعيةٌ لكلِّ ملفٍ خلالَ يومين</p></div>
+      <div class="goal-item"><div class="goal-num">0€</div><p data-i18n="g4">لا أحدَ يدفعُ ثمنَ بحثِهِ عن زواجٍ شرعيٍّ أبداً</p></div>
+    </div>
+  </div>
+
   <!-- RULES -->
   <div class="section" data-paths="a">
     <h2 data-i18n="prH">الضوابط الشرعية</h2>
@@ -548,6 +604,52 @@ body.app-mode .signup-success{position:fixed;inset:0;z-index:55;overflow-y:auto;
       <div class="rule"><div class="icon">📖</div><h4>الصدقُ والأمانة</h4><p>محاسبةٌ على الكذب</p><div class="ref">«من غشنا فليس منا» — مسلم</div></div>
       <div class="rule"><div class="icon">🤲</div><h4>النصيحةُ والموعظة</h4><p>استقامةٌ سلفية</p><div class="ref">«الدين النصيحة» — مسلم</div></div>
       <div class="rule"><div class="icon">💍</div><h4>القصدُ في المهر</h4><p>تيسيرُ المهرِ أعظم</p><div class="ref">«أيسرهن مهراً» — أحمد</div></div>
+    </div>
+  </div>
+
+  <!-- QUOTES: Revelation on marriage -->
+  <div class="section" data-paths="a b c">
+    <div class="sec-banner">
+      <img src="https://media.base44.com/images/public/6a920081a841164a49489c5f/4637a9c84_generated_image.png" alt="آياتُ المودةِ والرحمة">
+      <div class="banner-cap" data-i18n="qCap">﴿ وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ﴾</div>
+    </div>
+    <h2 data-i18n="qh">مأثوراتُ النكاح — نورٌ منَ الوحي</h2>
+    <p class="sub" data-i18n="qs">كلماتٌ لم تزَلْ تُصلِحُ البيوتَ منذُ أربعةَ عشرَ قرناً</p>
+    <div class="quote-grid">
+      <div class="quote-card"><p>﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ﴾</p><span class="quote-ref">سورة الروم — 21</span></div>
+      <div class="quote-card"><p>«يَا مَعْشَرَ الشَّبَابِ، مَنِ اسْتَطَاعَ مِنْكُمُ الْبَاءَةَ فَلْيَتَزَوَّجْ، فَإِنَّهُ أَغَضُّ لِلْبَصَرِ وَأَحْصَنُ لِلْفَرْجِ»</p><span class="quote-ref">متفقٌ عليه — البخاري 5066، مسلم 1400</span></div>
+      <div class="quote-card"><p>«فَاظْفَرْ بِذَاتِ الدِّينِ تَرِبَتْ يَدَاكَ»</p><span class="quote-ref">متفقٌ عليه — البخاري 5090، مسلم 1466</span></div>
+      <div class="quote-card"><p>«خَيْرُكُمْ خَيْرُكُمْ لِأَهْلِهِ، وَأَنَا خَيْرُكُمْ لِأَهْلِي»</p><span class="quote-ref">الترمذي 3895 — صحيح</span></div>
+      <div class="quote-card"><p>«خَيْرُ الصَّدَاقِ أَيْسَرُهُ»</p><span class="quote-ref">صحيح ابن حبان 4038</span></div>
+      <div class="quote-card"><p>«أَعْظَمُ النِّسَاءِ بَرَكَةً أَيْسَرُهُنَّ مَئُونَةً»</p><span class="quote-ref">مسند أحمد 24529 — حسّنه الألباني</span></div>
+    </div>
+  </div>
+
+  <!-- PROPHETIC STORIES -->
+  <div class="section" data-paths="a b">
+    <div class="sec-banner">
+      <img src="https://media.base44.com/images/public/6a920081a841164a49489c5f/9f99c467b_generated_image.png" alt="على خطى النبوة">
+      <div class="banner-cap" data-i18n="storyCap">أعظمُ الزيجاتِ ما بُنيتْ على التقوى لا على الكنوز</div>
+    </div>
+    <h2 data-i18n="storyH">قصصٌ من عهدِ النبوة</h2>
+    <p class="sub" data-i18n="storyS">زيجاتٌ صنعَها الإيمانُ — وباركَها اللهُ إلى اليومِ</p>
+    <div class="story-card">
+      <h3 data-i18n="sr1t">أغلى مهرٍ في التاريخ — أمُّ سليمٍ وأبو طلحة</h3>
+      <p class="story-tag" data-i18n="sr1g">قصةٌ صحيحةٌ رواها النسائي (3340) — صحّحه الألباني</p>
+      <div class="story-step" data-i18n="sr1a">أقبلَ أبو طلحةَ — أحدُ أثرياءِ المدينةِ وسادتِها — يخطبُ أمَّ سليمٍ، حاملاً مهراً ثقيلاً من الذهبِ والمالِ الفاخر.</div>
+      <div class="story-step" data-i18n="sr1b">فنظرتْ بعينِ الإيمانِ وقالتْ: «مثلي لا يُرَدُّ، ولكنكَ رجلٌ كافرٌ وأنا امرأةٌ مسلمة — ولا يحلُّ لي أن أتزوجَكَ».</div>
+      <div class="story-step" data-i18n="sr1c">فسألها: وأيُّ مهرٍ ترضين؟ فقالتْ كلمتَها الخالدة: «مَهري أن تُسلِمَ — لا أسألُكَ صفراءَ ولا بيضاءَ ولا غيرَها!».</div>
+      <div class="story-step" data-i18n="sr1d">فانقدحَ نورُ الحقِّ في قلبِه، فمضى إلى رسولِ اللهِ ﷺ يُعلنُ إسلامَه — فكانَ الإسلامُ صداقَها.</div>
+      <div class="story-step" data-i18n="sr1e">قال العلماءُ: ما سُمِعَ بمهرٍ قطُّ كانَ أكرمَ من مهرِ أمِّ سليمٍ — زوجةٌ صاغتِ الحبَّ طريقاً لنشلِ زوجِها من ظلماتِ الكفرِ إلى نورِ الإسلام.</div>
+    </div>
+    <div class="story-card">
+      <h3 data-i18n="sr2t">درعٌ حديديةٌ وسادةٌ من ليف — فاطمةُ وعلي</h3>
+      <p class="story-tag" data-i18n="sr2g">قصةٌ صحيحةٌ رواها النسائي (3375) وأبو داود (2125) — صحّحه الألباني</p>
+      <div class="story-step" data-i18n="sr2a">خطا عليُّ بنُ أبي طالبٍ إلى النبيِّ ﷺ يطلبُ يدَ ريحانتِه فاطمةَ الزهراءِ، بخطواتٍ ملؤُها الحياء.</div>
+      <div class="story-step" data-i18n="sr2b">سألهُ رسولُ اللهِ ﷺ بابتسامةِ الأبِ: «هل عندكَ من شيءٍ تُصدِقُها إياه؟» فقال: «لا واللهِ يا رسولَ الله!».</div>
+      <div class="story-step" data-i18n="sr2c">قالَ ﷺ: «فأينَ درعُكَ الحُطَمِيّةُ؟» — فكانتْ تلكَ الدرعُ الحربيةُ الخشنةُ كلَّ مهرِ ابنةِ سيدِ الخلقِ.</div>
+      <div class="story-step" data-i18n="sr2d">بُنيَ بيتُهما على البساطةِ: وسادةٌ حشوُها ليفٌ، وقربةُ ماءٍ، ورحى يطحنانِ بها عيشَهما الشريفَ معاً.</div>
+      <div class="story-step" data-i18n="sr2e">وأينعتْ في ذلكَ البيتِ البسيطِ أطهرُ سلالةٍ وأعظمُ بركةٍ — لتشهدَ الدنيا أنَّ السعادةَ لا تُشترى بالكنوزِ، بل تُبنى بشرعِ اللهِ والتراحمِ.</div>
     </div>
   </div>
 
@@ -570,6 +672,7 @@ body.app-mode .signup-success{position:fixed;inset:0;z-index:55;overflow-y:auto;
     <p class="sub" data-i18n="donS">تبرعُكَ يصلُ المنتسبَ كحقِّ انتماءٍ لا كصدقةٍ تُمِنُّ — فلا يشعرُ أحدٌ بذلٍّ ولا تقصير</p>
     <div class="donation-card" style="text-align:center">
       <p style="font-size:14px;line-height:2.2;color:rgba(255,255,255,0.78);margin-top:0" data-i18n="donHonest">💛 لا دفعَ آلياً ولا وسطاءَ هنا — التبرعُ يصلُ مباشرةً إلى إدارةِ المنصةِ (واتساب)، وتُقدَّمُ بكرامةٍ كمنحةِ انتماءٍ يستحقُّها كلُّ منتسبٍ عندَ عقدِه — دونَ أن يعلمَ أحدٌ مَنْ أخذَها، وبشفافيةٍ معَ الفريق.</p>
+      <p style="font-size:14px;line-height:2.2;color:rgba(255,255,255,0.7);margin-top:14px;border-top:1px dashed rgba(212,175,55,0.2);padding-top:14px" data-i18n="donLove">كلُّ مساهمةٍ منكَ ليست عميلةً في فاتورة — إنها لبنةٌ في بيتٍ يُبنى على ذكرِ الله. تخيّلْ: في يومٍ ما تقفُ وراءَ حجابِ الغيبِ زوجةٌ ووليٌّ يشكرانَ اللهَ على أنْ هيّأَ لهم من أعانَ على نكاحِهم... فكنْ أنتَ ذاكَ الذي قالَ فيهِ النبيُّ ﷺ: «ومنْ كانَ في حاجةِ أخيهِ كانَ اللهُ في حاجتِه».</p>
       <button class="donate-cta" onclick="donate(0)" data-i18n="donWaliBtn">أريدُ المساهمة — حوارٌ مباشرٌ عبرَ واتساب 💬</button>
       <p class="donate-ref">«ومنْ يتقِ اللهَ يجعلْ لهُ مخرجاً ويرزقْهُ منْ حيثُ لا يحتسبُ» — الطلاق 2-3</p>
     </div>
@@ -1038,15 +1141,23 @@ function toggleAudio() {
   }
 }
 
+const WA_NUMBER = ''; // ← رقمُ إدارةِ المنصة (صيغة دولية بلا + أو أصفار بادئة) — يُستبدل عند التوفر
+function fsToast(m){var t=document.getElementById('fsToast');if(!t){t=document.createElement('div');t.id='fsToast';t.style.cssText='position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:rgba(212,175,55,0.95);color:#1a1622;padding:10px 18px;border-radius:24px;font-size:13px;font-weight:700;z-index:99999;opacity:0;transition:opacity .3s;pointer-events:none;max-width:90vw;text-align:center';document.body.appendChild(t);}t.textContent=m;t.style.opacity='1';clearTimeout(fsToast._t);fsToast._t=setTimeout(function(){t.style.opacity='0';},2800);}
+function waOpen(text){
+  if (WA_NUMBER){ window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text), '_blank'); return; }
+  try{ if(navigator.clipboard) navigator.clipboard.writeText(text); }catch(e){}
+  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+  fsToast(T('waCopied'));
+}
 function donate(amount) {
   var msg = amount > 0 ? 'أريد المساهمة بـ ' + amount + ' يورو في إعانة المسلمين على الزواج — فطرة وسكينة' : 'أريد المساهمة في إعانة المسلمين على الزواج — فطرة وسكينة';
-  window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+  waOpen(msg);
 }
 
 function shareWhatsApp() {
   const url = window.location.href;
   const text = T('shareText') + '\n\n' + url;
-  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+  waOpen(text);
 }
 
 // === FORM VALIDATION with gender-aware success message ===
@@ -1132,6 +1243,17 @@ document.addEventListener('keydown', function(e) {
 const I18N = {
   ar: {},
   fr: {
+
+    statH: "Le monde s'effondre en silence", statS: "Des chiffres réels issus de sources officielles — pourquoi le mariage a besoin d'une plateforme qui le rend à sa nature",
+    st1: "Au Koweït : près d'un mariage sur deux finit en divorce", st1s: "Données officielles du Golfe", st2: "En Égypte : quatre mariages sur dix finissent en divorce", st2s: "Statistiques officielles", st3: "Aux États-Unis : un tiers des jeunes adultes ne se mariera jamais — un record", st3s: "Institut IFS — 2024", st4: "L'âge du premier mariage est passé de 25 à 32 ans en un siècle", st4s: "Données démographiques mondiales", st5: "La fertilité mondiale s'effondre au seuil de remplacement — un hiver démographique", st5s: "Nations Unies — 2024", st6: "En Turquie seule : 187 000 divorces en une seule année", st6s: "TurkStat — 2024",
+    goalCap: "✦ Ce ne sont pas des chiffres de marché — ce sont les objectifs d'une communauté qui veut retrouver son foyer", goalH: "Nos objectifs pour cette année", goalS: "Nous vous les promettons devant Allah — pas devant des investisseurs",
+    g1: "mariages que nous aiderons par la permission d'Allah d'ici fin 2027", g2: "pays couverts par notre équipe religieuse", g3: "de révision religieuse pour chaque dossier — sous 48h", g4: "Personne ne paie jamais pour chercher un mariage licite",
+    qCap: "﴿ Et Il a placé entre vous affection et miséricorde ﴾", qh: "Les sagesses du mariage — une lumière de la Révélation", qs: "Des paroles qui réparent les foyers depuis quatorze siècles",
+    storyCap: "Les plus grands mariages sont bâtis sur la piété, non sur les trésors", storyH: "Des récits de l'époque prophétique", storyS: "Des mariages façonnés par la foi — bénis par Allah jusqu'à ce jour",
+    sr1t: "La dot la plus chère de l'histoire — Umm Sulaym et Abu Talha", sr1g: "Récit authentique rapporté par an-Nasa'i (3340) — authentifié par al-Albani", sr1a: "Abu Talha, l'un des riches de Médine, vint demander la main d'Umm Sulaym, portant une dot lourde d'or et de richesses.", sr1b: "Elle regarda avec l'œil de la foi et dit : « Un homme comme toi ne se refuse pas, mais tu es mécréant et je suis musulmane — il ne m'est pas permis de t'épouser. »", sr1c: "Il demanda quelle dot elle accepterait. Elle prononça sa parole éternelle : « Ma dot ? Que tu embrasses l'islam — je ne te demande ni or ni argent ! »", sr1d: "La lumière de la vérité jaillit dans son cœur ; il alla auprès du Messager d'Allah ﷺ déclarer son islam — et l'islam fut sa dot.", sr1e: "Les savants dirent : jamais on n'entendit de dot plus noble que celle d'Umm Sulaym — une épouse qui fit de l'amour un chemin pour sortir son mari des ténèbres vers la lumière.",
+    sr2t: "Une cuirasse et un coussin de fibres — Fatima et Ali", sr2g: "Récit authentique rapporté par an-Nasa'i (3375) et Abu Dawud (2125) — authentifié par al-Albani", sr2a: "Ali ibn Abi Talib s'approcha du Prophète ﷺ pour demander la main de Fatima az-Zahra, d'un pas plein de pudeur.", sr2b: "Le Messager d'Allah ﷺ lui demanda avec le sourire d'un père : « As-tu quelque chose à lui offrir en dot ? » Il dit : « Non, par Allah, ô Messager d'Allah ! »", sr2c: "Il dit ﷺ : « Où est ta cuirasse ? » — et cette armure rugueuse fut toute la dot de la fille du maître de l'humanité.", sr2d: "Leur maison fut bâtie sur la simplicité : un coussin de fibres, une outre d'eau, et une meule avec laquelle ils moudraient leur pain.", sr2e: "De cette maison simple naquit la lignée la plus pure et la plus bénie — témoignant que le bonheur ne s'achète pas, il se construit sur la loi d'Allah et la tendresse.",
+    donLove: "Chaque contribution n'est pas une ligne de facture — c'est une pierre dans une maison bâtie sur le rappel d'Allah. Imagine : un jour, derrière le voile de l'invisible, une épouse et un tuteur remercieront Allah d'avoir suscité quelqu'un qui a aidé leur mariage... Sois celui-là.",
+    waCopied: "Message copié — choisis un contact dans WhatsApp",
     phName: "Votre nom complet",
     phAge: "Âge",
     startSub: "Un voyage cinématographique — de l'effondrement au retour<br>La plateforme du mariage halal salafi",
@@ -1215,6 +1337,17 @@ const I18N = {
     donWaliBtn: "Je veux contribuer — dialogue direct via WhatsApp 💬",
   },
   en: {
+
+    statH: "The world is collapsing in silence", statS: "Real figures from official sources — why marriage needs a platform that restores its true nature",
+    st1: "In Kuwait: nearly half of all marriages end in divorce", st1s: "Official Gulf data", st2: "In Egypt: four in ten marriages end in divorce", st2s: "Official statistics", st3: "In America: one in three young adults will never marry — a record", st3s: "IFS Institute — 2024", st4: "The age of first marriage worldwide rose from 25 to 32 within a single century", st4s: "Global demographic data", st5: "Global fertility is collapsing to replacement level — a demographic winter", st5s: "United Nations — 2024", st6: "In Turkey alone: 187,000 divorces in a single year", st6s: "TurkStat — 2024",
+    goalCap: "✦ These are not market numbers — they are the goals of a community that wants its home back", goalH: "Our goals for this year", goalS: "We promise them before Allah — not before investors",
+    g1: "marriages we will support, by Allah's permission, by the end of 2027", g2: "countries covered by our sharia team", g3: "of sharia review for every file — within 48 hours", g4: "No one ever pays to search for a halal marriage",
+    qCap: "﴿ And He placed between you affection and mercy ﴾", qh: "Wisdoms of marriage — light from Revelation", qs: "Words that have been repairing homes for fourteen centuries",
+    storyCap: "The greatest marriages were built on taqwa, not on treasures", storyH: "Stories from the prophetic era", storyS: "Marriages shaped by faith — blessed by Allah to this day",
+    sr1t: "The most precious dowry in history — Umm Sulaym and Abu Talha", sr1g: "Authentic narration reported by an-Nasa'i (3340) — authenticated by al-Albani", sr1a: "Abu Talha — one of the wealthiest men of Madinah — came to propose to Umm Sulaym, carrying a heavy dowry of gold and riches.", sr1b: 'She looked with the eye of faith and said: "A man like you is not refused, but you are a disbeliever and I am a Muslim — it is not lawful for me to marry you."', sr1c: 'He asked what dowry she would accept. She spoke her eternal words: "My dowry is that you embrace Islam — I ask no gold and no silver!"', sr1d: "The light of truth ignited in his heart; he went to the Messenger of Allah ﷺ and declared his Islam — and Islam became her dowry.", sr1e: "The scholars said: no dowry was ever heard of more noble than Umm Sulaym's — a wife who made love a path to rescue her husband from darkness into light.",
+    sr2t: "An iron armor and a cushion of fiber — Fatima and Ali", sr2g: "Authentic narration reported by an-Nasa'i (3375) and Abu Dawud (2125) — authenticated by al-Albani", sr2a: "Ali ibn Abi Talib walked toward the Prophet ﷺ to ask for the hand of Fatima az-Zahra, with steps full of shyness.", sr2b: "The Messenger of Allah ﷺ asked with a father's smile: \"Do you have anything to offer her as a dowry?\" He said: \"No, by Allah, O Messenger of Allah!\"", sr2c: "He said ﷺ: \"Where is your armor?\" — and that rough piece of armor was the entire dowry of the daughter of the master of mankind.", sr2d: "Their home was built on simplicity: a cushion stuffed with fiber, a water skin, and a hand mill with which they ground their bread together.", sr2e: "From that simple home blossomed the purest and most blessed lineage — witness that happiness is not bought with treasures, but built on Allah's law and mercy.",
+    donLove: "Every contribution is not a line on an invoice — it is a brick in a home built on the remembrance of Allah. Imagine: one day, behind the veil of the unseen, a wife and a wali will thank Allah for someone who helped their marriage happen... Be that person.",
+    waCopied: "Message copied — choose a contact in WhatsApp",
     phName: "Your full name",
     phAge: "Age",
     startSub: "A cinematic journey — from collapse to return<br>The Salafi halal marriage platform",
@@ -1298,6 +1431,17 @@ const I18N = {
     donWaliBtn: "I want to contribute — direct conversation via WhatsApp 💬",
   },
   es: {
+
+    statH: "El mundo se derrumba en silencio", statS: "Cifras reales de fuentes oficiales — por qué el matrimonio necesita una plataforma que lo devuelva a su naturaleza",
+    st1: "En Kuwait: casi la mitad de los matrimonios terminan en divorcio", st1s: "Datos oficiales del Golfo", st2: "En Egipto: cuatro de cada diez matrimonios terminan en divorcio", st2s: "Estadísticas oficiales", st3: "En EE.UU.: un tercio de los jóvenes nunca se casará — un récord", st3s: "Instituto IFS — 2024", st4: "La edad del primer matrimonio en el mundo subió de 25 a 32 años en un solo siglo", st4s: "Datos demográficos globales", st5: "La fertilidad mundial se derrumba al nivel de reemplazo — un invierno demográfico", st5s: "Naciones Unidas — 2024", st6: "Solo en Turquía: 187.000 divorcios en un único año", st6s: "TurkStat — 2024",
+    goalCap: "✦ No son cifras de mercado — son las metas de una comunidad que quiere recuperar su hogar", goalH: "Nuestras metas para este año", goalS: "Te las prometemos ante Allah — no ante inversores",
+    g1: "matrimonios que apoyaremos, si Allah quiere, hasta fines de 2027", g2: "países cubiertos por nuestro equipo religioso", g3: "de revisión religiosa para cada expediente — en 48 horas", g4: "Nadie paga jamás por buscar un matrimonio halal",
+    qCap: "﴿ Y puso entre vosotros afecto y misericordia ﴾", qh: "Sabidurías del matrimonio — luz de la Revelación", qs: "Palabras que reparan hogares desde hace catorce siglos",
+    storyCap: "Los matrimonios más grandes se construyeron sobre la piedad, no sobre tesoros", storyH: "Relatos de la época profética", storyS: "Matrimonios forjados por la fe — bendecidos por Allah hasta hoy",
+    sr1t: "La dote más preciada de la historia — Umm Sulaym y Abu Talha", sr1g: "Narración auténtica de an-Nasa'i (3340) — autenticada por al-Albani", sr1a: "Abu Talha — uno de los hombres más ricos de Medina — vino a pedir la mano de Umm Sulaym, cargando una dote pesada de oro y riquezas.", sr1b: "Ella miró con el ojo de la fe y dijo: «Un hombre como tú no se rechaza, pero eres incrédulo y yo soy musulmana — no me es lícito casarme contigo.»", sr1c: "Él preguntó qué dote aceptaría. Ella pronunció su palabra eterna: «¡Mi dote es que abraces el islam — no te pido oro ni plata!»", sr1d: "La luz de la verdad brotó en su corazón; fue al Mensajero de Allah ﷺ a declarar su islam — y el islam fue su dote.", sr1e: "Los sabios dijeron: nunca se oyó de una dote más noble que la de Umm Sulaym — una esposa que hizo del amor un camino para sacar a su esposo de las tinieblas a la luz.",
+    sr2t: "Una armadura y un cojín de fibra — Fatima y Ali", sr2g: "Narración auténtica de an-Nasa'i (3375) y Abu Dawud (2125) — autenticada por al-Albani", sr2a: "Ali ibn Abi Talib se acercó al Profeta ﷺ para pedir la mano de Fatima az-Zahra, con pasos llenos de pudor.", sr2b: "El Mensajero de Allah ﷺ le preguntó con la sonrisa de un padre: «¿Tienes algo que ofrecerle como dote?» Dijo: «¡No, por Allah, Mensajero de Allah!»", sr2c: "Dijo ﷺ: «¿Dónde está tu armadura?» — y esa armadura áspera fue toda la dote de la hija del señor de la humanidad.", sr2d: "Su hogar se construyó sobre la sencillez: un cojín relleno de fibra, una piel de agua y una muela con la que molían juntos su pan.", sr2e: "De esa casa sencilla brotó el linaje más puro y bendito — testigo de que la felicidad no se compra con tesoros, se construye sobre la ley de Allah y la ternura.",
+    donLove: "Cada contribución no es una línea de una factura — es un ladrillo en un hogar construido sobre el recuerdo de Allah. Imagina: un día, tras el velo de lo oculto, una esposa y un tutor agradecerán a Allah por alguien que ayudó a que su matrimonio ocurriera... Sé tú esa persona.",
+    waCopied: "Mensaje copiado — elige un contacto en WhatsApp",
     phName: "Tu nombre completo",
     phAge: "Edad",
     startSub: "Un viaje cinematográfico — del colapso al regreso<br>La plataforma de matrimonio halal salafí",
@@ -1383,6 +1527,8 @@ const I18N = {
 };
 
 // Arabic JS-only keys
+I18N.ar.waCopied = 'تم نسخُ الرسالة — اختر جهةَ الاتصال في واتساب';
+I18N.ar.donLove = 'كلُّ مساهمةٍ منكَ ليست عميلةً في فاتورة — إنها لبنةٌ في بيتٍ يُبنى على ذكرِ الله. تخيّلْ: في يومٍ ما يقفُ وراءَ حجابِ الغيبِ زوجةٌ ووليٌّ يشكرانَ اللهَ على أنْ هيّأَ لهم من أعانَ على نكاحِهم... فكنْ أنتَ ذاكَ الذي قالَ فيهِ النبيُّ ﷺ: «ومنْ كانَ في حاجةِ أخيهِ كانَ اللهُ في حاجتِه».';
 I18N.ar.msgRequired = 'يرجى ملء الحقول التالية: ';
 I18N.ar.msgAge = 'العمر يجب أن يكون بين 18 و 99 سنة';
 I18N.ar.msgSuccessM = '✓ تم حفظ بياناتك بنجاح. سيتواصل معك فريقنا الشرعي خلال 48 ساعة للمراجعة. أعانك الله على طاعته.';
@@ -1545,7 +1691,7 @@ function renderDawah() {
   document.getElementById('dawahBody').innerHTML = h;
 }
 function dawahNext() { const steps = DAWAH[curLang] || DAWAH.ar; if (dawahStep < steps.length - 1) { dawahStep++; if (dawahStep === steps.length - 1) fsTrack('dawah_done'); renderDawah(); } }
-function dawahContact() { window.open('https://wa.me/?text=' + encodeURIComponent(T('dwContactMsg')), '_blank'); }
+function dawahContact() { waOpen(T('dwContactMsg')); }
 function dawahRegister() { fsTrack('dawah_register'); closeDawah(); if (chosenPath !== 'a' && chosenPath !== 'b') choosePath('a'); smartRegister(); }
 
 
