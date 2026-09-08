@@ -293,6 +293,23 @@ body.app-mode #content > .section > *{max-width:680px;margin-left:auto;margin-ri
 .app-nav.show{display:flex}
 #navPrev,#navNext{background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.35);color:var(--gold);width:46px;height:46px;border-radius:50%;font-size:22px;cursor:pointer;min-height:46px;-webkit-appearance:none;flex:none}
 .app-nav button:active{transform:scale(0.92)}
+/* ===== STORIES NAV (Instagram/Snapchat pattern) ===== */
+.story-top{position:fixed;top:10px;left:12px;right:12px;z-index:65;display:none;align-items:center;gap:10px}
+body.app-mode .story-top{display:flex}
+.story-segs{display:flex;gap:3px;flex:1}
+.seg{height:4px;flex:1;background:rgba(255,255,255,0.18);border:none;border-radius:4px;cursor:pointer;min-width:4px;padding:0;appearance:none;-webkit-appearance:none}
+.seg.seen{background:var(--gold)}
+.seg.cur{background:var(--gold);animation:segPulse 1.6s ease-in-out infinite}
+@keyframes segPulse{0%,100%{opacity:1}50%{opacity:0.5}}
+.story-count{font-size:11px;color:rgba(255,255,255,0.6);font-weight:600;letter-spacing:0.5px;flex:none}
+body.app-mode #langPills{top:34px}
+body.app-mode #brandBadge{display:none!important}
+body.app-mode #appNav{display:none!important}
+body.app-mode #content .section{padding-top:64px}
+body.app-mode::before,body.app-mode::after{content:'';position:fixed;top:0;bottom:0;width:26px;z-index:55;pointer-events:none;opacity:0;transition:opacity .3s}
+body.app-mode::before{left:0;background:linear-gradient(to right,rgba(212,175,55,0.08),transparent)}
+body.app-mode::after{right:0;background:linear-gradient(to left,rgba(212,175,55,0.08),transparent)}
+@media(hover:hover){body.app-mode::before,body.app-mode::after{opacity:1}}
 #navDots{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:60vw}
 .nav-dot{width:9px;height:9px;border-radius:50%;background:rgba(212,175,55,0.25);border:none;padding:0;cursor:pointer;min-height:9px}
 .nav-dot.on{background:var(--gold);width:26px;border-radius:5px}
@@ -606,12 +623,12 @@ body.app-mode .signup-success{position:fixed;inset:0;z-index:55;overflow-y:auto;
     <h2 data-i18n="prH">الضوابط الشرعية</h2>
     <p class="sub" data-i18n="prS">منصةُ زواجٍ على منهجِ أهلِ السنةِ والجماعة</p>
     <div class="rules">
-      <div class="rule"><div class="icon">🧔</div><h4>اللحيةُ الكثيفة</h4><p>إعفاءُ اللحيةِ تاماً</p><div class="ref">«أعفوا اللحى» — مسلم</div></div>
-      <div class="rule"><div class="icon">🚫</div><h4>منعُ الاختلاط</h4><p>فصلٌ تامٌّ بين الجنسين</p><div class="ref">«لا يبيتنَّ رجلٌ عند امرأةٍ إلا أن يكون ناكحاً أو ذا محرم» — مسلم</div></div>
-      <div class="rule"><div class="icon">🤝</div><h4>الولايةُ الشرعية</h4><p>لا نكاحَ إلا بوليٍّ</p><div class="ref">«لا نكاح إلا بولي» — أبو داود</div></div>
-      <div class="rule"><div class="icon">📖</div><h4>الصدقُ والأمانة</h4><p>محاسبةٌ على الكذب</p><div class="ref">«من غشنا فليس منا» — مسلم</div></div>
-      <div class="rule"><div class="icon">🤲</div><h4>النصيحةُ والموعظة</h4><p>استقامةٌ سلفية</p><div class="ref">«الدين النصيحة» — مسلم</div></div>
-      <div class="rule"><div class="icon">💍</div><h4>القصدُ في المهر</h4><p>تيسيرُ المهرِ أعظم</p><div class="ref">«أعظمُ النساءِ بركةً أيسرُهنَّ مئونةً» — رواه أحمد</div></div>
+      <div class="rule"><div class="icon">🧔</div><h4 data-i18n="pr1t">اللحيةُ الكثيفة</h4><p data-i18n="pr1d">إعفاءُ اللحيةِ تاماً</p><div class="ref" data-i18n="pr1r">«أعفوا اللحى» — مسلم</div></div>
+      <div class="rule"><div class="icon">🚫</div><h4 data-i18n="pr2t">منعُ الاختلاط</h4><p data-i18n="pr2d">فصلٌ تامٌّ بين الجنسين</p><div class="ref" data-i18n="pr2r">«لا يبيتنَّ رجلٌ عند امرأةٍ إلا أن يكون ناكحاً أو ذا محرم» — مسلم</div></div>
+      <div class="rule"><div class="icon">🤝</div><h4 data-i18n="pr3t">الولايةُ الشرعية</h4><p data-i18n="pr3d">لا نكاحَ إلا بوليٍّ</p><div class="ref" data-i18n="pr3r">«لا نكاح إلا بولي» — أبو داود</div></div>
+      <div class="rule"><div class="icon">📖</div><h4 data-i18n="pr4t">الصدقُ والأمانة</h4><p data-i18n="pr4d">محاسبةٌ على الكذب</p><div class="ref" data-i18n="pr4r">«من غشنا فليس منا» — مسلم</div></div>
+      <div class="rule"><div class="icon">🤲</div><h4 data-i18n="pr5t">النصيحةُ والموعظة</h4><p data-i18n="pr5d">استقامةٌ سلفية</p><div class="ref" data-i18n="pr5r">«الدين النصيحة» — مسلم</div></div>
+      <div class="rule"><div class="icon">💍</div><h4 data-i18n="pr6t">القصدُ في المهر</h4><p data-i18n="pr6d">تيسيرُ المهرِ أعظم</p><div class="ref" data-i18n="pr6r">«أعظمُ النساءِ بركةً أيسرُهنَّ مئونةً» — رواه أحمد</div></div>
     </div>
   </div>
 
@@ -667,10 +684,10 @@ body.app-mode .signup-success{position:fixed;inset:0;z-index:55;overflow-y:auto;
     <p class="sub" data-i18n="lookS">رؤيةٌ مباحةٌ بحضورِ الوليِّ وضمنَ حدودِ الشرع</p>
     <div class="nazra-card">
       <div class="nazra-icon">📷</div>
-      <h3>نظرةٌ متبادلةٌ — 4 ثوانٍ فقط</h3>
-      <p>عند توافقِ الملفين، يُحدَّدُ موعدٌ لتُفتحَ الكاميرا آلياً لمدةِ 4 ثوانٍ فقط، بحضورِ الوليِّ أو المحرم. الناظرُ يرى والمنظورةُ ترى، ثم تُغلقُ الكاميرا فوراً.</p>
-      <div class="nazra-timer">⏱️ 4 ثوانٍ فقط — لا أكثر</div>
-      <p class="nazra-ref">«انظر إليها فإنه أحرى أن يؤدم بينكما» — الترمذي وأبو داود</p>
+      <h3 data-i18n="look1t">نظرةٌ متبادلةٌ — 4 ثوانٍ فقط</h3>
+      <p data-i18n="look1d">عند توافقِ الملفين، يُحدَّدُ موعدٌ لتُفتحَ الكاميرا آلياً لمدةِ 4 ثوانٍ فقط، بحضورِ الوليِّ أو المحرم. الناظرُ يرى والمنظورةُ ترى، ثم تُغلقُ الكاميرا فوراً.</p>
+      <div class="nazra-timer" data-i18n="lookTimer">⏱️ 4 ثوانٍ فقط — لا أكثر</div>
+      <p class="nazra-ref" data-i18n="lookRef">«انظر إليها فإنه أحرى أن يؤدم بينكما» — الترمذي وأبو داود</p>
     </div>
   </div>
 
@@ -869,10 +886,9 @@ body.app-mode .signup-success{position:fixed;inset:0;z-index:55;overflow-y:auto;
 </div>
 
 
-<div class="app-nav" id="appNav">
-  <button id="navPrev" onclick="slidePrev()" aria-label="prev">‹</button>
-  <div id="navDots"></div>
-  <button id="navNext" onclick="slideNext()" aria-label="next">›</button>
+<div class="story-top" id="storyTop">
+  <div class="story-segs" id="storySegs"></div>
+  <span class="story-count" id="storyCount"></span>
 </div>
 
 <div class="dawah-overlay" id="dawahOverlay" onclick="if(event.target===this)closeDawah()">
@@ -1114,7 +1130,6 @@ function skipAll() { showEndScreen(); }
 function showEndScreen() { fsTrack('skip'); appStart(); }
 
 function replayFilm() {
-  document.getElementById('appNav').classList.remove('show');
   document.getElementById('content').classList.remove('show');
   document.getElementById('signupSuccess').classList.remove('show');
   document.body.classList.remove('app-mode');
@@ -1325,8 +1340,13 @@ const I18N = {
     t3: "Revue religieuse", t3d: "Chaque dossier passe devant des savants",
     t4: "Portée mondiale", t4d: "De l'Algérie à l'Australie",
     cmpH: "La loi d'Allah vs la loi des hommes", cmpS: "Comparaison franche entre deux voies et deux destins",
-    prH: "Les règles de la Charia", prS: "Une plateforme selon la voie des Gens de la Sunna",
-    lookH: "Le regard licite", lookS: "Un regard permis, en présence du tuteur, dans les limites de la Charia",
+    prH: "Les règles de la Charia", prS: "Une plateforme selon la voie des Gens de la Sunna", pr1t: "La barbe complète", pr1d: "Laisser pousser la barbe entièrement", pr1r: "« Laissez pousser les barbes » — Sahih Muslim",
+    pr2t: "Aucun mélange", pr2d: "Séparation complète entre les sexes", pr2r: "« Qu'aucun homme ne passe la nuit chez une femme s'il n'est pas son époux ou son mahram » — Sahih Muslim",
+    pr3t: "La wilaya (tutelle)", pr3d: "Pas de mariage sans tuteur", pr3r: "« Pas de mariage sans tuteur » — Abû Dâwûd",
+    pr4t: "Vérité et honnêteté", pr4d: "Redevable du mensonge", pr4r: "« Celui qui nous trompe n'est pas des nôtres » — Sahih Muslim",
+    pr5t: "Le conseil sincère", pr5d: "Droiture salafie", pr5r: "« La religion, c'est le conseil sincère » — Sahih Muslim",
+    pr6t: "Dot modérée", pr6d: "La dot la plus aisée est la plus bénie", pr6r: "« La femme la plus bénie est celle qui coûte le moins » — Musnad Ahmad",
+    lookH: "Le regard licite", lookS: "Un regard permis, en présence du tuteur, dans les limites de la Charia", look1t: "Un regard mutuel — 4 secondes seulement", look1d: "Lorsque les profils concordent, un rendez-vous caméra s'ouvre automatiquement pour 4 secondes seulement, en présence du tuteur ou du mahram. Chacun voit l'autre, puis la caméra se ferme aussitôt.", lookTimer: "⏱️ 4 secondes seulement — pas plus", lookRef: "« Regarde-la, car cela favorise l'entente entre vous » — Tirmidhî et Abû Dâwûd",
     donH: "La bourse d'appartenance — une aide sans faveur", donS: "Ton don parvient directement à l'administration de la plateforme, qui l'offre avec dignité comme un droit d'appartenance — personne ne se sent petit",
     stepsH: "Comment ça marche", stepsS: "De l'inscription au contrat selon la Sunna",
     joinH: "Rejoignez la plateforme", joinS: "Faites partie des pionniers fondateurs de la plateforme salafie du mariage halal",
@@ -1421,8 +1441,13 @@ const I18N = {
     t3: "Sharia review", t3d: "Every file passes before students of knowledge",
     t4: "Global reach", t4d: "From Algeria to Australia",
     cmpH: "Allah's law vs man-made law", cmpS: "A frank comparison between two paths and two destinies",
-    prH: "Sharia guidelines", prS: "A platform upon the way of Ahl as-Sunnah",
-    lookH: "The permissible look", lookS: "A permitted look, with the wali present, within Sharia limits",
+    prH: "Sharia guidelines", prS: "A platform upon the way of Ahl as-Sunnah", pr1t: "The full beard", pr1d: "Letting the beard grow complete", pr1r: "“Let the beards grow” — Sahih Muslim",
+    pr2t: "No free mixing", pr2d: "Complete separation between the sexes", pr2r: "“No man may spend the night at a woman's place unless he is her husband or a mahram” — Sahih Muslim",
+    pr3t: "Guardianship (Wilayah)", pr3d: "No marriage without a wali", pr3r: "“There is no marriage without a guardian” — Abu Dawud",
+    pr4t: "Truth & honesty", pr4d: "Accountability for falsehood", pr4r: "“Whoever deceives us is not one of us” — Sahih Muslim",
+    pr5t: "Sincere counsel", pr5d: "Salafi uprightness", pr5r: "“The religion is sincere counsel” — Sahih Muslim",
+    pr6t: "Moderate dowry", pr6d: "The easiest dowry is the most blessed", pr6r: "“The most blessed of women is the one of easiest upkeep” — Musnad Ahmad",
+    lookH: "The permissible look", lookS: "A permitted look, with the wali present, within Sharia limits", look1t: "A mutual look — just 4 seconds", look1d: "When profiles match, a camera session opens automatically for 4 seconds only, with the wali or mahram present. Each sees the other, then the camera closes instantly.", lookTimer: "⏱️ 4 seconds only — no more", lookRef: "“Look at her, for it is more likely to create harmony between you” — Tirmidhi & Abu Dawud",
     donH: "The Membership Grant — support without humiliation", donS: "Your donation goes directly to the platform's administration, which offers it with dignity as a right of belonging — no one feels small",
     stepsH: "How it works", stepsS: "From registration to a Sunnah marriage contract",
     joinH: "Join the platform", joinS: "Be among the founding pioneers of the Salafi halal marriage platform",
@@ -1517,8 +1542,13 @@ const I18N = {
     t3: "Revisión legal islámica", t3d: "Cada expediente pasa por sabios",
     t4: "Alcance mundial", t4d: "De Argelia a Australia",
     cmpH: "La ley de Allah vs la ley de los hombres", cmpS: "Comparación franca entre dos caminos y dos destinos",
-    prH: "Reglas de la sharia", prS: "Una plataforma según el camino de la Gente de la Sunna",
-    lookH: "La mirada permitida", lookS: "Una mirada lícita, con el tutor presente, dentro de los límites de la sharia",
+    prH: "Reglas de la sharia", prS: "Una plataforma según el camino de la Gente de la Sunna", pr1t: "La barba completa", pr1d: "Dejar crecer la barba por completo", pr1r: "«Dejen crecer las barbas» — Sahih Muslim",
+    pr2t: "Sin mezcla", pr2d: "Separación total entre los sexos", pr2r: "«Ningún hombre debe pasar la noche en casa de una mujer si no es su esposo o su mahram» — Sahih Muslim",
+    pr3t: "La wilaya (tutela)", pr3d: "No hay matrimonio sin tutor", pr3r: "«No hay matrimonio sin tutor» — Abû Dâwûd",
+    pr4t: "Verdad y honestidad", pr4d: "Rendir cuentas por la mentira", pr4r: "«Quien nos engaña no es de los nuestros» — Sahih Muslim",
+    pr5t: "Consejo sincero", pr5d: "Rectitud salafí", pr5r: "«La religión es consejo sincero» — Sahih Muslim",
+    pr6t: "Dote moderada", pr6d: "La dote más ligera es la más bendecida", pr6r: "«La mujer más bendecida es la de menor costo» — Musnad Ahmad",
+    lookH: "La mirada permitida", lookS: "Una mirada lícita, con el tutor presente, dentro de los límites de la sharia", look1t: "Una mirada mutua — solo 4 segundos", look1d: "Cuando los perfiles coinciden, se programa una videollamada automática de solo 4 segundos, en presencia del tutor o mahram. Ambos se ven y la cámara se cierra al instante.", lookTimer: "⏱️ Solo 4 segundos — ni uno más", lookRef: "«Mírala, pues es más propenso para que haya armonía entre ustedes» — Tirmidi y Abû Dâwûd",
     donH: "La Beca de Pertenencia — ayuda sin humillación", donS: "Tu donación llega directamente a la administración de la plataforma, que la ofrece con dignidad como un derecho de pertenencia — nadie se siente pequeño",
     stepsH: "Cómo funciona", stepsS: "Del registro al contrato según la Sunna",
     joinH: "Únete a la plataforma", joinS: "Sé parte de los pioneros fundadores de la plataforma salafí de matrimonio halal",
@@ -1762,7 +1792,6 @@ function appStart() {
   hideAllUI();
   document.getElementById('content').classList.add('show');
   document.body.classList.add('app-mode');
-  document.getElementById('appNav').classList.add('show');
   showSlide(0);
 }
 function showSlide(i) {
@@ -1771,16 +1800,16 @@ function showSlide(i) {
   curSlide = Math.max(0, Math.min(i, els.length - 1));
   els.forEach((s, j) => s.classList.toggle('slide-on', j === curSlide));
   els[curSlide].scrollTop = 0;
-  const dots = document.getElementById('navDots');
-  dots.innerHTML = '';
+  const segs = document.getElementById('storySegs');
+  segs.innerHTML = '';
   els.forEach((s, j) => {
-    const d = document.createElement('button');
-    d.className = 'nav-dot' + (j === curSlide ? ' on' : '');
-    d.onclick = () => showSlide(j);
-    dots.appendChild(d);
+    const b = document.createElement('button');
+    b.className = 'seg' + (j < curSlide ? ' seen' : (j === curSlide ? ' cur' : ''));
+    b.setAttribute('aria-label', String(j + 1));
+    b.onclick = () => showSlide(j);
+    segs.appendChild(b);
   });
-  document.getElementById('navPrev').style.visibility = curSlide === 0 ? 'hidden' : 'visible';
-  document.getElementById('navNext').style.visibility = curSlide === els.length - 1 ? 'hidden' : 'visible';
+  document.getElementById('storyCount').textContent = (curSlide + 1) + '/' + els.length;
 }
 function slideNext() { showSlide(curSlide + 1); }
 function slidePrev() { showSlide(curSlide - 1); }
@@ -1789,9 +1818,23 @@ document.getElementById('content').addEventListener('touchstart', e => { touchX 
 document.getElementById('content').addEventListener('touchend', e => {
   if (touchX === null) return;
   const dx = e.changedTouches[0].clientX - touchX;
-  if (Math.abs(dx) > 60) { if (dx > 0) slidePrev(); else slideNext(); }
+  if (Math.abs(dx) > 60) { const rtl = document.body.dir === 'rtl'; if (dx > 0) (rtl ? slideNext() : slidePrev()); else (rtl ? slidePrev() : slideNext()); }
   touchX = null;
 }, { passive: true });
+// Stories tap zones: left/right screen edges navigate; direction follows language; buttons/forms untouched
+document.addEventListener('click', e => {
+  if (!document.body.classList.contains('app-mode')) return;
+  if (document.getElementById('dawahOverlay').style.display === 'flex') return;
+  const t = e.target;
+  if (t.closest('button,a,input,select,textarea,label,form,.gw-card,.chip,.deck-stage,.story-top,.lang-pills,.dawah-overlay,.deck-dots,.audio-ctl,iframe')) return;
+  const x = e.clientX, w = window.innerWidth;
+  if (x >= w * 0.18 && x <= w * 0.82) return;
+  const rtl = document.body.dir === 'rtl';
+  const onLeft = x < w * 0.18;
+  const next = rtl ? onLeft : !onLeft;
+  next ? slideNext() : slidePrev();
+});
+
 
 let chosenPath = null;
 function choosePath(p) {
@@ -1811,8 +1854,7 @@ function smartRegister() {
     gw.classList.remove('path-hidden');
     document.body.classList.add('app-mode');
     document.getElementById('content').classList.add('show');
-    document.getElementById('appNav').classList.add('show');
-    showSlide(slideEls().indexOf(gw));
+      showSlide(slideEls().indexOf(gw));
     return;
   }
   const formSection = document.getElementById('f_name').closest('.section');
